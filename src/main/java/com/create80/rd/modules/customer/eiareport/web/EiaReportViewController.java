@@ -56,7 +56,7 @@ public class EiaReportViewController extends BaseController {
 
 		EiaReportEntity entity = new EiaReportEntity();
     if (StringUtils.isNotBlank(id)) {
-      String apiBaseUrl = moduleLinkConfiguration.getLink("eiareport");
+      String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
       Map<String, Object> urlVariables = new HashMap<>();
       urlVariables.put("id", id);
       ResponseEntity<String> responseEntity = restTemplate
@@ -81,7 +81,7 @@ public class EiaReportViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("eiareport");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/eiareport/eiaReport/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -115,7 +115,7 @@ public class EiaReportViewController extends BaseController {
 		}
 
 	  EiaReport type = resolveBeanProperties(StringUtils.isEmpty(eiaReport.getId()), eiaReport);
-    String apiBaseUrl = moduleLinkConfiguration.getLink("eiareport");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
 	 	restTemplate.postForObject(apiBaseUrl+"/eiareport/eiaReport/api/save",type,String.class);
 		addMessage(redirectAttributes, "保存环评报告信息管理成功");
@@ -127,7 +127,7 @@ public class EiaReportViewController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(EiaReportEntity eiaReport, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("eiareport");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
   	EiaReport type = new EiaReport();
     BeanUtils.copyProperties(eiaReport, type);

@@ -49,7 +49,7 @@ public class IndustryTypeViewController extends BaseController {
 
 		IndustryTypeEntity entity = new IndustryTypeEntity();
 		if (StringUtils.isNotBlank(id)){
-	  	String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+	  	String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 		   Map<String, Object> urlVariables = new HashMap<>();
 		   urlVariables.put("id",id);
 		   ResponseEntity<String> responseEntity = restTemplate
@@ -74,7 +74,7 @@ public class IndustryTypeViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/it/industryType/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -109,7 +109,7 @@ public class IndustryTypeViewController extends BaseController {
 		}
 
     IndustryType type =resolveBeanProperties(StringUtils.isEmpty(industryType.getId()),industryType);
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
 	 	restTemplate.postForObject(apiBaseUrl+"/it/industryType/api/save",type,String.class);
 		addMessage(redirectAttributes, "保存污染行业类型成功");
@@ -121,7 +121,7 @@ public class IndustryTypeViewController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(IndustryTypeEntity industryType, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
   	IndustryType type = new IndustryType();
     BeanUtils.copyProperties(industryType, type);

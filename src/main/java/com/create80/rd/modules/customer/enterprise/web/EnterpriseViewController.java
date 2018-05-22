@@ -52,7 +52,7 @@ public class EnterpriseViewController extends BaseController {
 
     EnterpriseEntity entity = new EnterpriseEntity();
     if (StringUtils.isNotBlank(id)) {
-      String apiBaseUrl = moduleLinkConfiguration.getLink("enterprise");
+      String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
       Map<String, Object> urlVariables = new HashMap<>();
       urlVariables.put("id", id);
       ResponseEntity<String> responseEntity = restTemplate
@@ -77,7 +77,7 @@ public class EnterpriseViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/enterprise/enterprise/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -111,7 +111,7 @@ public class EnterpriseViewController extends BaseController {
     }
 
     Enterprise type = resolveBeanProperties(StringUtils.isEmpty(enterprise.getId()), enterprise);
-    String apiBaseUrl = moduleLinkConfiguration.getLink("enterprise");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
     restTemplate.postForObject(apiBaseUrl + "/enterprise/enterprise/api/save", type, String.class);
     addMessage(redirectAttributes, "保存企业信息管理成功");
@@ -123,7 +123,7 @@ public class EnterpriseViewController extends BaseController {
   @RequestMapping(value = "delete")
   public String delete(EnterpriseEntity enterprise, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("enterprise");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
     Enterprise type = new Enterprise();
     BeanUtils.copyProperties(enterprise, type);

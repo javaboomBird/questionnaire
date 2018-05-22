@@ -52,7 +52,7 @@ public class GovernmentViewController extends BaseController {
 
     GovernmentEntity entity = new GovernmentEntity();
     if (StringUtils.isNotBlank(id)) {
-      String apiBaseUrl = moduleLinkConfiguration.getLink("government");
+      String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
       Map<String, Object> urlVariables = new HashMap<>();
       urlVariables.put("id", id);
       ResponseEntity<String> responseEntity = restTemplate
@@ -77,7 +77,7 @@ public class GovernmentViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/government/government/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -111,7 +111,7 @@ public class GovernmentViewController extends BaseController {
     }
 
     Government type = resolveBeanProperties(StringUtils.isEmpty(government.getId()), government);
-    String apiBaseUrl = moduleLinkConfiguration.getLink("government");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
     restTemplate.postForObject(apiBaseUrl + "/government/government/api/save", type, String.class);
     addMessage(redirectAttributes, "保存政府信息管理成功");
@@ -123,7 +123,7 @@ public class GovernmentViewController extends BaseController {
   @RequestMapping(value = "delete")
   public String delete(GovernmentEntity government, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("government");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
     Government type = new Government();
     BeanUtils.copyProperties(government, type);

@@ -50,7 +50,7 @@ public class PollutionTypeViewController extends BaseController {
 
     PollutionTypeEntity entity = new PollutionTypeEntity();
     if (StringUtils.isNotBlank(id)) {
-      String apiBaseUrl = moduleLinkConfiguration.getLink("pt");
+      String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
       Map<String, Object> urlVariables = new HashMap<>();
       urlVariables.put("id", id);
       ResponseEntity<String> responseEntity = restTemplate
@@ -75,7 +75,7 @@ public class PollutionTypeViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/pt/pollutionType/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -110,7 +110,7 @@ public class PollutionTypeViewController extends BaseController {
 
     PollutionType type = resolveBeanProperties(StringUtils.isEmpty(pollutionType.getId()),
         pollutionType);
-    String apiBaseUrl = moduleLinkConfiguration.getLink("pt");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
     restTemplate.postForObject(apiBaseUrl + "/pt/pollutionType/api/save", type, String.class);
     addMessage(redirectAttributes, "保存排污类型管理成功");
@@ -122,7 +122,7 @@ public class PollutionTypeViewController extends BaseController {
   @RequestMapping(value = "delete")
   public String delete(PollutionTypeEntity pollutionType, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("pt");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
     PollutionType type = new PollutionType();
     BeanUtils.copyProperties(pollutionType, type);

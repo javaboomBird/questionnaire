@@ -49,7 +49,7 @@ public class BusinessTypeViewController extends BaseController {
 
 		BusinessTypeEntity entity = new BusinessTypeEntity();
 		if (StringUtils.isNotBlank(id)){
-	  	String apiBaseUrl = moduleLinkConfiguration.getLink("bt");
+	  	String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 		   Map<String, Object> urlVariables = new HashMap<>();
 		   urlVariables.put("id",id);
 		   ResponseEntity<String> responseEntity = restTemplate
@@ -74,7 +74,7 @@ public class BusinessTypeViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/bt/businessType/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -109,7 +109,7 @@ public class BusinessTypeViewController extends BaseController {
 		}
 
     BusinessType type =resolveBeanProperties(StringUtils.isEmpty(businessType.getId()),businessType);
-    String apiBaseUrl = moduleLinkConfiguration.getLink("bt");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
 	 	restTemplate.postForObject(apiBaseUrl+"/bt/businessType/api/save",type,String.class);
 		addMessage(redirectAttributes, "保存工商行业类型成功");
@@ -121,7 +121,7 @@ public class BusinessTypeViewController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(BusinessTypeEntity businessType, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = moduleLinkConfiguration.getLink("bt");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
 
   	BusinessType type = new BusinessType();
     BeanUtils.copyProperties(businessType, type);
