@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.knt.rd</groupId>
-  <artifactId>enterprise-operations-management</artifactId>
+  <artifactId>ra-operations-management</artifactId>
   <version>1.0.0</version>
   <packaging>war</packaging>
 
-  <name>enterprise-operations-management</name>
+  <name>ra-operations-management</name>
 
   <!-- 项目属性 -->
   <properties>
