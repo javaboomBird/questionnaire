@@ -87,6 +87,8 @@
 					<form:option value="" label=""/>
 					<form:options items="${"$"}{fns:getDictList('${c.dictType}')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
+			<#elseif c.showType == "dynamicSelect">
+        <sys:dynamicselect url="${c.url}" id="${c.javaFieldId}" name="${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
 			<#elseif c.showType == "checkbox">
 				<form:checkboxes path="${c.javaFieldId}" items="${"$"}{fns:getDictList('${c.dictType}')}" itemLabel="label" itemValue="value" htmlEscape="false" class="<#if c.isNull != "1">required</#if>"/>
 			<#elseif c.showType == "radiobox">

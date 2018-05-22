@@ -60,7 +60,7 @@ public class ${ClassName}ViewController extends BaseController {
 
 		${ClassName}Entity entity = new ${ClassName}Entity();
 		if (StringUtils.isNotBlank(id)){
-	  	String apiBaseUrl = modelLinkConfiguration.getLink("${moduleName}");
+	  	String apiBaseUrl = moduleLinkConfiguration.getLink("${moduleName}");
 		   Map<String, Object> urlVariables = new HashMap<>();
 		   urlVariables.put("id",id);
 		   ResponseEntity<String> responseEntity = restTemplate
@@ -85,7 +85,7 @@ public class ${ClassName}ViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = modelLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/${urlPrefix}/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -120,7 +120,7 @@ public class ${ClassName}ViewController extends BaseController {
 		}
 
     ${ClassName} type =resolveBeanProperties(StringUtils.isEmpty(${className}.getId()),${className});
-    String apiBaseUrl = modelLinkConfiguration.getLink("${moduleName}");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("${moduleName}");
 
 	 	restTemplate.postForObject(apiBaseUrl+"/${urlPrefix}/api/save",type,String.class);
 		addMessage(redirectAttributes, "保存${functionNameSimple}成功");
@@ -132,7 +132,7 @@ public class ${ClassName}ViewController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(${ClassName}Entity ${className}, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = modelLinkConfiguration.getLink("${moduleName}");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("${moduleName}");
 
   	${ClassName} type = new ${ClassName}();
     BeanUtils.copyProperties(${className}, type);

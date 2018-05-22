@@ -48,6 +48,7 @@ public class BatchInsertPlugin extends PluginAdapter {
       IntrospectedTable introspectedTable) {
     if (!PluginCommon.codeHasCreateMethod(interfaze, METHOD_NAME)) {
       addBatchInsertMethod(interfaze, introspectedTable);
+      return true;
     }
     return super.clientGenerated(interfaze, topLevelClass, introspectedTable);
   }
@@ -59,6 +60,7 @@ public class BatchInsertPlugin extends PluginAdapter {
   public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
     if (!PluginCommon.xmlHasCreateMethod(document, METHOD_NAME)) {
       addBatchInsertSelectiveXml(document, introspectedTable);
+      return true;
     }
     return super.sqlMapDocumentGenerated(document, introspectedTable);
   }

@@ -31,6 +31,7 @@ public class QueryObjectPlugin extends PluginAdapter {
 
     if (!PluginCommon.codeHasCreateMethod(interfaze, METHOD_NAME)) {
       addSelectMethod(interfaze, introspectedTable);
+      return true;
     }
     return super.clientGenerated(interfaze, topLevelClass, introspectedTable);
   }
@@ -73,7 +74,8 @@ public class QueryObjectPlugin extends PluginAdapter {
   @Override
   public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
     if (!PluginCommon.xmlHasCreateMethod(document, METHOD_NAME)) {
-        addSelectMethodInXml(document, introspectedTable);
+      addSelectMethodInXml(document, introspectedTable);
+      return true;
     }
     return super.sqlMapDocumentGenerated(document, introspectedTable);
   }

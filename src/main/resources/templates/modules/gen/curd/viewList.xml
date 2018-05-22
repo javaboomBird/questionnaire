@@ -66,6 +66,8 @@
 				<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
 					title="区域" url="/sys/area/treeData" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
 			</#if>
+			<#elseif c.showType == "dynamicSelect">
+        <sys:dynamicselect url="${c.url}" id="${c.javaFieldId}" name="${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
 			</li>
 			</#if>
 		</#list>

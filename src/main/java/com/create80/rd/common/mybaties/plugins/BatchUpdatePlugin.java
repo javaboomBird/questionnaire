@@ -46,6 +46,7 @@ public class BatchUpdatePlugin extends PluginAdapter {
       IntrospectedTable introspectedTable) {
     if (!PluginCommon.codeHasCreateMethod(interfaze, METHOD_NAME)) {
       addBatchUpdateMethod(interfaze, introspectedTable);
+      return true;
     }
     return super.clientGenerated(interfaze, topLevelClass, introspectedTable);
   }
@@ -57,6 +58,7 @@ public class BatchUpdatePlugin extends PluginAdapter {
   public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
     if (!PluginCommon.xmlHasCreateMethod(document, METHOD_NAME)) {
       addBatchUpdateXml(document, introspectedTable);
+      return true;
     }
     return super.sqlMapDocumentGenerated(document, introspectedTable);
   }
