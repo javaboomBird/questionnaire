@@ -6,16 +6,12 @@ package com.create80.rd.modules.customer.it.web;
 import com.create80.rd.modules.customer.it.entity.IndustryTypeEntity;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.InvocationTargetException;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.ResponseEntity;
 
 import com.create80.rd.common.utils.JsonUtils;
 import com.create80.rd.modules.sys.entity.User;
@@ -35,7 +30,6 @@ import com.create80.rd.common.persistence.Page;
 import com.create80.rd.common.web.BaseController;
 import com.create80.rd.common.utils.StringUtils;
 import com.create80.rd.common.utils.page.PageInfo;
-import com.create80.rd.modules.customer.it.entity.IndustryTypeEntity;
 import com.create80.rd.modules.customer.it.api.model.IndustryType;
 
 /**
@@ -55,7 +49,7 @@ public class IndustryTypeViewController extends BaseController {
 
 		IndustryTypeEntity entity = new IndustryTypeEntity();
 		if (StringUtils.isNotBlank(id)){
-	  	String apiBaseUrl = modelLinkConfiguration.getLink("it");
+	  	String apiBaseUrl = moduleLinkConfiguration.getLink("it");
 		   Map<String, Object> urlVariables = new HashMap<>();
 		   urlVariables.put("id",id);
 		   ResponseEntity<String> responseEntity = restTemplate
@@ -80,7 +74,7 @@ public class IndustryTypeViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = modelLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/it/industryType/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -115,7 +109,7 @@ public class IndustryTypeViewController extends BaseController {
 		}
 
     IndustryType type =resolveBeanProperties(StringUtils.isEmpty(industryType.getId()),industryType);
-    String apiBaseUrl = modelLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
 
 	 	restTemplate.postForObject(apiBaseUrl+"/it/industryType/api/save",type,String.class);
 		addMessage(redirectAttributes, "保存污染行业类型成功");
@@ -127,7 +121,7 @@ public class IndustryTypeViewController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(IndustryTypeEntity industryType, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = modelLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
 
   	IndustryType type = new IndustryType();
     BeanUtils.copyProperties(industryType, type);

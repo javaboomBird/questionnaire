@@ -18,11 +18,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 @Component
-public class ModelLinkConfiguration {
+public class ModuleLinkConfiguration {
 
   protected Logger logger = LoggerFactory.getLogger(getClass());
 
-  @Value("classpath:modelLinks.json")
+  @Value("classpath:moduleLinks.json")
   Resource modelLinkResource;
   private Map<String, String> modelLinkMap = new HashMap<String, String>();
 

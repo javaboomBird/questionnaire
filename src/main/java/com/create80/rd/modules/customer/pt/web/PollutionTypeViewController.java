@@ -6,16 +6,12 @@ package com.create80.rd.modules.customer.pt.web;
 import com.create80.rd.modules.customer.pt.entity.PollutionTypeEntity;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.InvocationTargetException;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.ResponseEntity;
 
 import com.create80.rd.common.utils.JsonUtils;
 import com.create80.rd.modules.sys.entity.User;
@@ -35,7 +30,6 @@ import com.create80.rd.common.persistence.Page;
 import com.create80.rd.common.web.BaseController;
 import com.create80.rd.common.utils.StringUtils;
 import com.create80.rd.common.utils.page.PageInfo;
-import com.create80.rd.modules.customer.pt.entity.PollutionTypeEntity;
 import com.create80.rd.modules.customer.pt.api.model.PollutionType;
 
 /**
@@ -56,7 +50,7 @@ public class PollutionTypeViewController extends BaseController {
 
     PollutionTypeEntity entity = new PollutionTypeEntity();
     if (StringUtils.isNotBlank(id)) {
-      String apiBaseUrl = modelLinkConfiguration.getLink("pt");
+      String apiBaseUrl = moduleLinkConfiguration.getLink("pt");
       Map<String, Object> urlVariables = new HashMap<>();
       urlVariables.put("id", id);
       ResponseEntity<String> responseEntity = restTemplate
@@ -81,7 +75,7 @@ public class PollutionTypeViewController extends BaseController {
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
 
-    String apiBaseUrl = modelLinkConfiguration.getLink("it");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("it");
     ResponseEntity<String> pageResponseEntity = restTemplate
         .postForEntity(
             apiBaseUrl + "/pt/pollutionType/api/list?pageNum={pageNum}&&pageSize={pageSize}",
@@ -116,7 +110,7 @@ public class PollutionTypeViewController extends BaseController {
 
     PollutionType type = resolveBeanProperties(StringUtils.isEmpty(pollutionType.getId()),
         pollutionType);
-    String apiBaseUrl = modelLinkConfiguration.getLink("pt");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("pt");
 
     restTemplate.postForObject(apiBaseUrl + "/pt/pollutionType/api/save", type, String.class);
     addMessage(redirectAttributes, "保存排污类型管理成功");
@@ -128,7 +122,7 @@ public class PollutionTypeViewController extends BaseController {
   @RequestMapping(value = "delete")
   public String delete(PollutionTypeEntity pollutionType, RedirectAttributes redirectAttributes) {
 
-    String apiBaseUrl = modelLinkConfiguration.getLink("pt");
+    String apiBaseUrl = moduleLinkConfiguration.getLink("pt");
 
     PollutionType type = new PollutionType();
     BeanUtils.copyProperties(pollutionType, type);

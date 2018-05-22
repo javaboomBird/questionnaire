@@ -4,10 +4,9 @@
 package com.create80.rd.common.web;
 
 import com.create80.rd.common.beanvalidator.BeanValidators;
-import com.create80.rd.common.config.ModelLinkConfiguration;
+import com.create80.rd.common.config.ModuleLinkConfiguration;
 import com.create80.rd.common.mapper.JsonMapper;
 import com.create80.rd.common.utils.DateUtils;
-import com.create80.rd.common.config.ModelLinkConfiguration;
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.util.Date;
@@ -30,10 +29,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.create80.rd.common.beanvalidator.BeanValidators;
-import com.create80.rd.common.mapper.JsonMapper;
-import com.create80.rd.common.utils.DateUtils;
 
 /**
  * 控制器支持类
@@ -75,7 +70,7 @@ public abstract class BaseController {
 	 * 模块配置链接配置对象
 	 */
 	@Autowired
-	protected ModelLinkConfiguration modelLinkConfiguration;
+	protected ModuleLinkConfiguration moduleLinkConfiguration;
 
 	/**
 	 * 服务端参数有效性验证
