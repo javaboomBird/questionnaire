@@ -14,8 +14,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knt.rd.common.persistence.Page;
-import com.knt.rd.common.service.CrudService;
+import com.create80.rd.common.persistence.Page;
+import com.create80.rd.common.service.CrudService;
 import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Dao;
 

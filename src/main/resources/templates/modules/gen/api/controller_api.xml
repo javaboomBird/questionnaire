@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
-import com.knt.rd.common.utils.JsonUtils;
+import com.create80.rd.common.utils.JsonUtils;
 import com.github.pagehelper.PageInfo;
 
 import ${packageName}.${moduleName}.api.model<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};

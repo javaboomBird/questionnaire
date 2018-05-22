@@ -13,7 +13,7 @@ package ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModule
 import ${i};
 </#list>
 
-import com.knt.rd.common.persistence.TreeEntity;
+import com.create80.rd.common.persistence.TreeEntity;
 
 /**
  * ${functionName}Entity

@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knt.rd.common.persistence.Page;
-import com.knt.rd.common.service.CrudService;
-import com.knt.rd.common.utils.StringUtils;
+import com.create80.rd.common.persistence.Page;
+import com.create80.rd.common.service.CrudService;
+import com.create80.rd.common.utils.StringUtils;
 import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Dao;
 <#list table.childList as c>

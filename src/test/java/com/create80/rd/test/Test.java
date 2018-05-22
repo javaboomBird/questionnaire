@@ -1,4 +1,4 @@
-package com.knt.rd.test;
+package com.create80.rd.test;
 
 public class Test {
 

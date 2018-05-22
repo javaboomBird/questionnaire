@@ -32,15 +32,15 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 
-import com.knt.rd.modules.sys.entity.User;
-import com.knt.rd.modules.sys.utils.UserUtils;
-import com.knt.rd.common.config.Global;
-import com.knt.rd.common.persistence.Page;
-import com.knt.rd.common.web.BaseController;
-import com.knt.rd.common.utils.StringUtils;
-import com.knt.rd.common.utils.JsonUtils;
-import com.knt.rd.common.utils.DateUtils;
-import com.knt.rd.common.utils.page.PageInfo;
+import com.create80.rd.modules.sys.entity.User;
+import com.create80.rd.modules.sys.utils.UserUtils;
+import com.create80.rd.common.config.Global;
+import com.create80.rd.common.persistence.Page;
+import com.create80.rd.common.web.BaseController;
+import com.create80.rd.common.utils.StringUtils;
+import com.create80.rd.common.utils.JsonUtils;
+import com.create80.rd.common.utils.DateUtils;
+import com.create80.rd.common.utils.page.PageInfo;
 
 import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Entity;
 import ${packageName}.${moduleName}.api.model<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};

@@ -42,12 +42,12 @@
 
   <!-- 类型别名 -->
   <typeAliases>
-    <typeAlias alias="Page" type="com.knt.rd.common.persistence.Page"/><!--分页  -->
+    <typeAlias alias="Page" type="com.create80.rd.common.persistence.Page"/><!--分页  -->
   </typeAliases>
 
   <!-- 插件配置 -->
   <plugins>
-    <plugin interceptor="com.knt.rd.common.persistence.interceptor.PaginationInterceptor"/>
+    <plugin interceptor="com.create80.rd.common.persistence.interceptor.PaginationInterceptor"/>
   </plugins>
 
 </configuration>

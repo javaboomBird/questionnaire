@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2016  All rights reserved.
  */
-package com.knt.rd.tools;
+package com.create80.rd.tools;
 
 import java.io.BufferedReader;
 import java.io.File;
