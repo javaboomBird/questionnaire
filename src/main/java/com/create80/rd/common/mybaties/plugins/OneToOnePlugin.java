@@ -63,6 +63,9 @@ public class OneToOnePlugin extends PluginAdapter {
     List<String> createFieldNameList = new ArrayList<>();
 
     for (OneToOne oto : tableConfigurationExtend.getOneToOneList()) {
+      if (oto.isNoJoinField()) {
+        continue;
+      }
       String tableName = oto.getMappingTable();
       TableConfiguration tc = PluginCommon.getMapTc(tableName, context);
       if (tc != null) {
@@ -146,6 +149,9 @@ public class OneToOnePlugin extends PluginAdapter {
     List<String> createFieldNameList = new ArrayList<>();
 
     for (OneToOne oto : tableConfigurationExtend.getOneToOneList()) {
+      if (oto.isNoJoinField()) {
+        continue;
+      }
       String tableName = oto.getMappingTable();
       TableConfiguration tc = PluginCommon.getMapTc(tableName, context);
       List<IntrospectedTable> tables = null;
@@ -219,7 +225,6 @@ public class OneToOnePlugin extends PluginAdapter {
     }
     return super.sqlMapDocumentGenerated(document, introspectedTable);
   }
-
 
 
   /**
