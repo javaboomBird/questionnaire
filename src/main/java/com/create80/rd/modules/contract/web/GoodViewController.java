@@ -33,7 +33,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 合同商品管理Controller
- *
  * @author lzp
  * @version 2018-05-23
  */
@@ -70,6 +69,7 @@ public class GoodViewController extends BaseController {
     Good type = JsonUtils
         .toSimpleObject(JsonUtils.toJson(good), Good.class);
 
+
     Map<String, Object> urlVariables = new HashMap<>();
     urlVariables.put("pageNum", page.getPageNo());
     urlVariables.put("pageSize", page.getPageSize());
@@ -82,6 +82,7 @@ public class GoodViewController extends BaseController {
 
     PageInfo<Good> goodPageInfo = JsonUtils
         .fromJson(pageResponseEntity.getBody(), PageInfo.class, Good.class);
+
 
     page.setCount(goodPageInfo.getTotal());
     page.setPageNo(goodPageInfo.getPageNum());
