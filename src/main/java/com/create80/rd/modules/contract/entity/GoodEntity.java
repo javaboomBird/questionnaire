@@ -10,7 +10,6 @@ import org.hibernate.validator.constraints.Length;
 
 /**
  * 合同商品管理Entity
- *
  * @author lzp
  * @version 2018-05-23
  */
