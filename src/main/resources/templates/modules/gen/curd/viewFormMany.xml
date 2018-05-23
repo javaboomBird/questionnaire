@@ -88,7 +88,7 @@
 					<form:options items="${"$"}{fns:getDictList('${c.dictType}')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			<#elseif c.showType == "dynamicSelect">
-        <sys:dynamicselect url="${c.url}" id="${c.javaFieldId}" name="${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
+        <sys:dynamicselect url="${c.url}" cssClass="input-medium <#if c.isNull != "1">required</#if>" id="${c.javaFieldId}" name="${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
 			<#elseif c.showType == "checkbox">
 				<form:checkboxes path="${c.javaFieldId}" items="${"$"}{fns:getDictList('${c.dictType}')}" itemLabel="label" itemValue="value" htmlEscape="false" class="<#if c.isNull != "1">required</#if>"/>
 			<#elseif c.showType == "radiobox">
@@ -160,7 +160,7 @@
 									</c:forEach>
 								</select>
 							<#elseif c.showType == "dynamicSelect">
-                 <sys:dynamicselect url="${c.url}" id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
+                 <sys:dynamicselect url="${c.url}" cssClass="input-medium <#if c.isNull != "1">required</#if>" id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
 							<#elseif c.showType == "checkbox">
 								<c:forEach items="${"$"}{fns:getDictList('${c.dictType}')}" var="dict" varStatus="dictStatus">
 									<span><input id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}${"$"}{dictStatus.index}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" type="checkbox" value="${"$"}{dict.value}" data-value="{{row.${c.javaFieldId}}}"><label for="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}${"$"}{dictStatus.index}">${"$"}{dict.label}</label></span>
