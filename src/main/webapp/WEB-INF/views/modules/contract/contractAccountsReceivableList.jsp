@@ -46,6 +46,7 @@
                 id="contractId"
                 name="contractId"
                 valueProperty="id"
+                cssClass="input-medium"
                 textProperty="projectName"/>            </li>
         <li><label>应收款名称：</label>
                 <form:input path="name" htmlEscape="false" maxlength="64" class="input-medium"/>

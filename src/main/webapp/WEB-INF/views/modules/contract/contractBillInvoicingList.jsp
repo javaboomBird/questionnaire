@@ -45,6 +45,7 @@
                 url="http://127.0.0.1:8082/contract/contract/api/getAll"
                 id="contractId"
                 name="contractId"
+                cssClass="input-medium"
                 valueProperty="id"
                 textProperty="projectName"/>            </li>
         <li><label>应开票名称：</label>

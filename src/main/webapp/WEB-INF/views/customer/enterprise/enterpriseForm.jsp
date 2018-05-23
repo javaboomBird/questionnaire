@@ -229,7 +229,7 @@
 								<input id="enterpriseBusinessTypeRelationList{{idx}}_delFlag" name="enterpriseBusinessTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="http://127.0.0.1:8081/bt/businessType/api/getAll" id="enterpriseBusinessTypeRelationList{{idx}}_businessTypeId" name="enterpriseBusinessTypeRelationList[{{idx}}].businessTypeId" valueProperty="id" textProperty="businessTypeName" />
+                 <sys:dynamicselect  cssClass="input-medium"  url="http://127.0.0.1:8081/bt/businessType/api/getAll" id="enterpriseBusinessTypeRelationList{{idx}}_businessTypeId" name="enterpriseBusinessTypeRelationList[{{idx}}].businessTypeId" valueProperty="id" textProperty="businessTypeName" />
 							</td>
 							<td>
 								<textarea id="enterpriseBusinessTypeRelationList{{idx}}_remarks" name="enterpriseBusinessTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -276,7 +276,7 @@
 								<input id="enterpriseIndustryTypeRelationList{{idx}}_delFlag" name="enterpriseIndustryTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="http://127.0.0.1:8081/it/industryType/api/getAll" id="enterpriseIndustryTypeRelationList{{idx}}_industryTypeId" name="enterpriseIndustryTypeRelationList[{{idx}}].industryTypeId" valueProperty="id" textProperty="industryTypeName" />
+                 <sys:dynamicselect cssClass="input-medium" url="http://127.0.0.1:8081/it/industryType/api/getAll" id="enterpriseIndustryTypeRelationList{{idx}}_industryTypeId" name="enterpriseIndustryTypeRelationList[{{idx}}].industryTypeId" valueProperty="id" textProperty="industryTypeName" />
 							</td>
 							<td>
 								<textarea id="enterpriseIndustryTypeRelationList{{idx}}_remarks" name="enterpriseIndustryTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -323,7 +323,7 @@
 								<input id="enterprisePollutionTypeRelationList{{idx}}_delFlag" name="enterprisePollutionTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="http://127.0.0.1:8081/pt/pollutionType/api/getAll" id="enterprisePollutionTypeRelationList{{idx}}_pollutionTypeId" name="enterprisePollutionTypeRelationList[{{idx}}].pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
+                 <sys:dynamicselect  cssClass="input-medium" url="http://127.0.0.1:8081/pt/pollutionType/api/getAll" id="enterprisePollutionTypeRelationList{{idx}}_pollutionTypeId" name="enterprisePollutionTypeRelationList[{{idx}}].pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
 							</td>
 							<td>
 								<textarea id="enterprisePollutionTypeRelationList{{idx}}_remarks" name="enterprisePollutionTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
