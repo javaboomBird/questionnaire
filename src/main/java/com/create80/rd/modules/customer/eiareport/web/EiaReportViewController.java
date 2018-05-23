@@ -50,7 +50,7 @@ public class EiaReportViewController extends BaseController {
 
 	@Autowired
   private RestTemplate restTemplate;
-	
+
 	@ModelAttribute
 	public EiaReportEntity get(@RequestParam(required=false) String id) {
 
@@ -67,7 +67,7 @@ public class EiaReportViewController extends BaseController {
     }
     return entity;
 	}
-	
+
 	@RequiresPermissions("eiareport:eiaReport:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(EiaReportEntity eiaReport, HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -122,7 +122,7 @@ public class EiaReportViewController extends BaseController {
 
 		return "redirect:"+Global.getAdminPath()+"/eiareport/eiaReport/?repage";
 	}
-	
+
 	@RequiresPermissions("eiareport:eiaReport:edit")
 	@RequestMapping(value = "delete")
 	public String delete(EiaReportEntity eiaReport, RedirectAttributes redirectAttributes) {

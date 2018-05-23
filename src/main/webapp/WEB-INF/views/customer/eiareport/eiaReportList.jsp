@@ -49,13 +49,13 @@
 		<c:forEach items="${page.list}" var="eiaReport">
 			<tr>
 				<td><a href="${ctx}/eiareport/eiaReport/form?id=${eiaReport.id}">
-					${eiaReport.enterpriseId}
+					${eiaReport.enterprise.enterpriseName}
 				</a></td>
 				<td>
 					${eiaReport.expendedDevice}
 				</td>
 				<td>
-					${eiaReport.pollutionTypeId}
+					${eiaReport.pollutionType.pollutionTypeName}
 				</td>
 				<td>
 					${fns:getDictLabel(eiaReport.pollutionPermitStatus, 'pollution_permit_status', '')}

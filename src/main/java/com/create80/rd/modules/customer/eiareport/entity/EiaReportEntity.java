@@ -3,6 +3,9 @@
  */
 package com.create80.rd.modules.customer.eiareport.entity;
 
+
+import com.create80.rd.modules.customer.enterprise.entity.EnterpriseEntity;
+import com.create80.rd.modules.customer.pt.entity.PollutionTypeEntity;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,8 +32,15 @@ public class EiaReportEntity extends DataEntity<EiaReportEntity> {
 	private String pollutionTypeId;		// 排污类型
 	private String pollutionPermitStatus;		// 排污许可状况
 	private String reportFile;		// 环评报告文件
+	private String enterpriseName;
+	private String pollutionTypeName;
+
 	private List<EiaReportPicEntity> eiaReportPicList = Lists.newArrayList();		// 子表列表
 	private List<EiaReportWasteEntity> eiaReportWasteList = Lists.newArrayList();		// 子表列表
+
+	private EnterpriseEntity enterprise;
+
+	private PollutionTypeEntity pollutionType;
 	
 	public EiaReportEntity() {
 		super();
@@ -143,5 +153,38 @@ public class EiaReportEntity extends DataEntity<EiaReportEntity> {
 
 	public void setEiaReportWasteList(List<EiaReportWasteEntity> eiaReportWasteList) {
 		this.eiaReportWasteList = eiaReportWasteList;
+	}
+
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
+	}
+
+	public String getPollutionTypeName() {
+		return pollutionTypeName;
+	}
+
+	public void setPollutionTypeName(String pollutionTypeName) {
+		this.pollutionTypeName = pollutionTypeName;
+	}
+
+	public EnterpriseEntity getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(EnterpriseEntity enterprise) {
+		this.enterprise = enterprise;
+	}
+
+	public PollutionTypeEntity getPollutionType() {
+		return pollutionType;
+	}
+
+	public void setPollutionType(
+			PollutionTypeEntity pollutionType) {
+		this.pollutionType = pollutionType;
 	}
 }
