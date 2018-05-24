@@ -67,7 +67,7 @@
 		<div class="control-group">
 			<label class="control-label">企业：</label>
 			<div class="controls">
-        <sys:dynamicselect cssClass="input-medium" url="http://127.0.0.1:8081/enterprise/enterprise/api/getAll" id="enterpriseId" name="enterpriseId" valueProperty="id" textProperty="enterpriseName" />
+        <sys:dynamicselect url="http://127.0.0.1:8081/enterprise/enterprise/api/getAll" cssClass="input-medium required" id="enterpriseId" name="enterpriseId" valueProperty="id" textProperty="enterpriseName" />
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
@@ -123,7 +123,7 @@
 		<div class="control-group">
 			<label class="control-label">排污类型：</label>
 			<div class="controls">
-        <sys:dynamicselect cssClass="input-medium" url="http://127.0.0.1:8081/pt/pollutionType/api/getAll" id="pollutionTypeId" name="pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
+        <sys:dynamicselect url="http://127.0.0.1:8081/pt/pollutionType/api/getAll" cssClass="input-medium " id="pollutionTypeId" name="pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
 			</div>
 		</div>
 		<div class="control-group">

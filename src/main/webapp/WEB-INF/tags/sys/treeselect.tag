@@ -25,6 +25,7 @@
 <%@ attribute name="dataMsgRequired" type="java.lang.String" required="false" description=""%>
 <div class="input-append">
 	<input id="${id}Id" name="${name}" class="${cssClass}" type="hidden" value="${value}"/>
+	<input id="${id}IdName" name="${id}Id" class="${cssClass}" type="hidden" value="${value}"/>
 	<input id="${id}Name" name="${labelName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${labelValue}" data-msg-required="${dataMsgRequired}"
 		class="${cssClass}" style="${cssStyle}"/><a id="${id}Button" href="javascript:" class="btn ${disabled} ${hideBtn ? 'hide' : ''}" style="${smallBtn?'padding:4px 2px;':''}">&nbsp;<i class="icon-search"></i>&nbsp;</a>&nbsp;&nbsp;
 </div>
@@ -69,6 +70,7 @@
 						break; // 如果为非复选框选择，则返回第一个选择  </c:if>
 					}
 					$("#${id}Id").val(ids.join(",").replace(/u_/ig,""));
+                    $("#${id}IdName").val(ids.join(",").replace(/u_/ig,""));
 					$("#${id}Name").val(names.join(","));
 				}//<c:if test="${allowClear}">
 				else if (v=="clear"){

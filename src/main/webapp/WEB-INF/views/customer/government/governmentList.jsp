@@ -27,7 +27,6 @@
 		<ul class="ul-form">
 			<li><label>政府名称：</label>
 				<form:input path="governmentName" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -37,9 +36,11 @@
 		<thead>
 			<tr>
 				<th>政府名称</th>
+				<th>统一社会信用代码</th>
+				<th>地址</th>
+				<th>注册邮编</th>
 				<th>更新时间</th>
 				<th>备注</th>
-				<th>区域ID</th>
 				<shiro:hasPermission name="government:government:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -50,13 +51,19 @@
 					${government.governmentName}
 				</a></td>
 				<td>
+					${government.uscCode}
+				</td>
+				<td>
+					${government.address}
+				</td>
+				<td>
+					${government.registeredPostcode}
+				</td>
+				<td>
 					<fmt:formatDate value="${government.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${government.remarks}
-				</td>
-				<td>
-					${government.area.name}
 				</td>
 				<shiro:hasPermission name="government:government:edit"><td>
     				<a href="${ctx}/government/government/form?id=${government.id}">修改</a>

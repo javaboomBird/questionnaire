@@ -10,15 +10,15 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 环评报告信息管理Entity
  * @author yzx
- * @version 2018-05-22
+ * @version 2018-05-24
  */
 public class EiaReportPicEntity extends DataEntity<EiaReportPicEntity> {
 	
 	private static final long serialVersionUID = 1L;
 	private EiaReportEntity eiaReportEntity;		// 环评报告 父类
-	private String type;		// 图片类型
-	private String name;		// 图片名
-	private String filePath;		// 图片保存路径
+	      private String type;		// 图片类型
+	      private String name;		// 图片名
+	      private String filePath;		// 图片保存路径
 	
 	public EiaReportPicEntity() {
 		super();
@@ -32,7 +32,7 @@ public class EiaReportPicEntity extends DataEntity<EiaReportPicEntity> {
 		this.eiaReportEntity = eiaReportEntity;
 	}
 
-	@Length(min=1, max=64, message="环评报告长度必须介于 1 和 64 之间")
+	     @Length(min=1, max=64, message="环评报告长度必须介于 1 和 64 之间")
 	public EiaReportEntity getEiaReportEntity() {
 		return eiaReportEntity;
 	}
@@ -40,8 +40,7 @@ public class EiaReportPicEntity extends DataEntity<EiaReportPicEntity> {
 	public void setEiaReportEntity(EiaReportEntity eiaReportEntity) {
 		this.eiaReportEntity = eiaReportEntity;
 	}
-	
-	@Length(min=0, max=32, message="图片类型长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="图片类型长度必须介于 0 和 32 之间")
 	public String getType() {
 		return type;
 	}
@@ -50,7 +49,7 @@ public class EiaReportPicEntity extends DataEntity<EiaReportPicEntity> {
 		this.type = type;
 	}
 	
-	@Length(min=0, max=64, message="图片名长度必须介于 0 和 64 之间")
+	     @Length(min=0, max=64, message="图片名长度必须介于 0 和 64 之间")
 	public String getName() {
 		return name;
 	}
@@ -59,7 +58,7 @@ public class EiaReportPicEntity extends DataEntity<EiaReportPicEntity> {
 		this.name = name;
 	}
 	
-	@Length(min=0, max=256, message="图片保存路径长度必须介于 0 和 256 之间")
+	     @Length(min=0, max=256, message="图片保存路径长度必须介于 0 和 256 之间")
 	public String getFilePath() {
 		return filePath;
 	}

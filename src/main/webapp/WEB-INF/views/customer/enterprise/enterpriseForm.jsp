@@ -229,7 +229,7 @@
 								<input id="enterpriseBusinessTypeRelationList{{idx}}_delFlag" name="enterpriseBusinessTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect  cssClass="input-medium"  url="http://127.0.0.1:8081/bt/businessType/api/getAll" id="enterpriseBusinessTypeRelationList{{idx}}_businessTypeId" name="enterpriseBusinessTypeRelationList[{{idx}}].businessTypeId" valueProperty="id" textProperty="businessTypeName" />
+                 <sys:dynamicselect url="http://127.0.0.1:8081/bt/businessType/api/getAll" cssClass="input-medium " id="enterpriseBusinessTypeRelationList{{idx}}_businessTypeId" name="enterpriseBusinessTypeRelationList[{{idx}}].businessTypeId" valueProperty="id" textProperty="businessTypeName" />
 							</td>
 							<td>
 								<textarea id="enterpriseBusinessTypeRelationList{{idx}}_remarks" name="enterpriseBusinessTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -276,7 +276,7 @@
 								<input id="enterpriseIndustryTypeRelationList{{idx}}_delFlag" name="enterpriseIndustryTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect cssClass="input-medium" url="http://127.0.0.1:8081/it/industryType/api/getAll" id="enterpriseIndustryTypeRelationList{{idx}}_industryTypeId" name="enterpriseIndustryTypeRelationList[{{idx}}].industryTypeId" valueProperty="id" textProperty="industryTypeName" />
+                 <sys:dynamicselect url="http://127.0.0.1:8081/it/industryType/api/getAll" cssClass="input-medium " id="enterpriseIndustryTypeRelationList{{idx}}_industryTypeId" name="enterpriseIndustryTypeRelationList[{{idx}}].industryTypeId" valueProperty="id" textProperty="industryTypeName" />
 							</td>
 							<td>
 								<textarea id="enterpriseIndustryTypeRelationList{{idx}}_remarks" name="enterpriseIndustryTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -293,6 +293,54 @@
 							for (var i=0; i<data.length; i++){
 								addRow('#enterpriseIndustryTypeRelationList', enterpriseIndustryTypeRelationRowIdx, enterpriseIndustryTypeRelationTpl, data[i]);
 								enterpriseIndustryTypeRelationRowIdx = enterpriseIndustryTypeRelationRowIdx + 1;
+							}
+						});
+					</script>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">企业图片表：</label>
+				<div class="controls">
+					<table id="contentTable_enterprisePic" class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th class="hide"></th>
+								<th>图片路径</th>
+								<th>备注</th>
+								<shiro:hasPermission name="enterprise:enterprise:edit"><th width="10">&nbsp;</th></shiro:hasPermission>
+							</tr>
+						</thead>
+						<tbody id="enterprisePicList">
+						</tbody>
+						<shiro:hasPermission name="enterprise:enterprise:edit"><tfoot>
+							<tr><td colspan="4"><a href="javascript:" onclick="addRow('#enterprisePicList', enterprisePicRowIdx, enterprisePicTpl);enterprisePicRowIdx = enterprisePicRowIdx + 1;" class="btn">新增</a></td></tr>
+						</tfoot></shiro:hasPermission>
+					</table>
+					<script type="text/template" id="enterprisePicTpl">//<!--
+						<tr id="enterprisePicList{{idx}}">
+							<td class="hide">
+								<input id="enterprisePicList{{idx}}_id" name="enterprisePicList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
+								<input id="enterprisePicList{{idx}}_delFlag" name="enterprisePicList[{{idx}}].delFlag" type="hidden" value="0"/>
+							</td>
+							<td>
+								<input id="enterprisePicList{{idx}}_filePath" name="enterprisePicList[{{idx}}].filePath" type="hidden" value="{{row.filePath}}" maxlength="256"/>
+								<sys:ckfinder input="enterprisePicList{{idx}}_filePath" type="files" uploadPath="/enterprise/enterprise" selectMultiple="true"/>
+							</td>
+							<td>
+								<textarea id="enterprisePicList{{idx}}_remarks" name="enterprisePicList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
+							</td>
+							<shiro:hasPermission name="enterprise:enterprise:edit"><td class="text-center" width="10">
+								{{#delBtn}}<span class="close" onclick="delRow(this, '#enterprisePicList{{idx}}')" title="删除">&times;</span>{{/delBtn}}
+							</td></shiro:hasPermission>
+						</tr>//-->
+					</script>
+					<script type="text/javascript">
+						var enterprisePicRowIdx = 0, enterprisePicTpl = $("#enterprisePicTpl").html().replace(/(\/\/\<!\-\-)|(\/\/\-\->)/g,"");
+						$(document).ready(function() {
+							var data = ${fns:toJson(enterprise.enterprisePicList)};
+							for (var i=0; i<data.length; i++){
+								addRow('#enterprisePicList', enterprisePicRowIdx, enterprisePicTpl, data[i]);
+								enterprisePicRowIdx = enterprisePicRowIdx + 1;
 							}
 						});
 					</script>
@@ -323,7 +371,7 @@
 								<input id="enterprisePollutionTypeRelationList{{idx}}_delFlag" name="enterprisePollutionTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect  cssClass="input-medium" url="http://127.0.0.1:8081/pt/pollutionType/api/getAll" id="enterprisePollutionTypeRelationList{{idx}}_pollutionTypeId" name="enterprisePollutionTypeRelationList[{{idx}}].pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
+                 <sys:dynamicselect url="http://127.0.0.1:8081/pt/pollutionType/api/getAll" cssClass="input-medium " id="enterprisePollutionTypeRelationList{{idx}}_pollutionTypeId" name="enterprisePollutionTypeRelationList[{{idx}}].pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
 							</td>
 							<td>
 								<textarea id="enterprisePollutionTypeRelationList{{idx}}_remarks" name="enterprisePollutionTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>

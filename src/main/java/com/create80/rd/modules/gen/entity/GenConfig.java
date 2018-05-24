@@ -51,8 +51,8 @@ public class GenConfig implements Serializable {
 
   /**
    * 获取根据配置java类型对应的表
+   *
    * @param javaType java类型 在config.xml配置
-   * @return
    */
   public String getJavaTypeTableName(String javaType) {
     if (javaTypeList.size() <= 0 || javaTypeList == null || StringUtils.isEmpty(javaType)) {
@@ -91,4 +91,16 @@ public class GenConfig implements Serializable {
     this.showTypeList = showTypeList;
   }
 
+  public String getService(String labelName) {
+    if (javaTypeList.size() <= 0 || javaTypeList == null || StringUtils.isEmpty(labelName)) {
+      return "";
+    }
+    String result = null;
+    for (Dict dict : javaTypeList) {
+      if (labelName.equalsIgnoreCase(dict.getLabel())) {
+        result = dict.getService();
+      }
+    }
+    return StringUtils.isEmpty(result) ? "" : result;
+  }
 }

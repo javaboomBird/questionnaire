@@ -4,6 +4,8 @@
 package com.create80.rd.modules.gen.entity;
 
 import com.create80.rd.common.config.Global;
+import com.create80.rd.modules.gen.util.GenUtils;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
@@ -213,6 +215,23 @@ public class GenTable extends DataEntity<GenTable> {
       }
     }
     return false;
+  }
+
+  public List<String> getImportServiceNames() {
+    List<String> serviceNames = new ArrayList<>();
+    columnList.stream().filter(e -> e.getIsNeedCreateBaseField()).forEach(genTableColumn -> {
+      serviceNames.add(genTableColumn.getSimpleJavaField());
+    });
+    return serviceNames;
+  }
+
+  public List<String> getServiceImports() {
+    List<String> imports = new ArrayList<>();
+    GenConfig genConfig = GenUtils.getConfig();
+    getImportServiceNames().stream().forEach(name -> {
+      imports.add(genConfig.getService(name));
+    });
+    return imports;
   }
 }
 

@@ -39,10 +39,11 @@ import com.create80.rd.common.utils.page.PageInfo;
 import com.create80.rd.modules.customer.eiareport.entity.EiaReportEntity;
 import com.create80.rd.modules.customer.eiareport.api.model.EiaReport;
 
+
 /**
  * 环评报告信息管理Controller
  * @author yzx
- * @version 2018-05-22
+ * @version 2018-05-24
  */
 @Controller
 @RequestMapping(value = "${adminPath}/eiareport/eiaReport")
@@ -51,6 +52,7 @@ public class EiaReportViewController extends BaseController {
 	@Autowired
   private RestTemplate restTemplate;
 
+	
 	@ModelAttribute
 	public EiaReportEntity get(@RequestParam(required=false) String id) {
 
@@ -63,11 +65,12 @@ public class EiaReportViewController extends BaseController {
           .getForEntity(apiBaseUrl + "/eiareport/eiaReport/api/{id}", String.class,
               urlVariables);
 
-      return JsonUtils.toSimpleObject(responseEntity.getBody(), EiaReportEntity.class);
+      entity= JsonUtils.toSimpleObject(responseEntity.getBody(), EiaReportEntity.class);
+
     }
     return entity;
 	}
-
+	
 	@RequiresPermissions("eiareport:eiaReport:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(EiaReportEntity eiaReport, HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -122,7 +125,7 @@ public class EiaReportViewController extends BaseController {
 
 		return "redirect:"+Global.getAdminPath()+"/eiareport/eiaReport/?repage";
 	}
-
+	
 	@RequiresPermissions("eiareport:eiaReport:edit")
 	@RequestMapping(value = "delete")
 	public String delete(EiaReportEntity eiaReport, RedirectAttributes redirectAttributes) {

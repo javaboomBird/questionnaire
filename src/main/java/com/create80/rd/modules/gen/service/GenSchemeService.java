@@ -19,6 +19,7 @@ import com.create80.rd.modules.gen.entity.GenTable;
 import com.create80.rd.modules.gen.entity.GenTableColumn;
 import com.create80.rd.modules.gen.entity.GenTemplate;
 import com.create80.rd.modules.gen.util.GenUtils;
+import com.create80.rd.modules.sys.entity.Dict;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -120,7 +121,6 @@ public class GenSchemeService extends BaseService {
       genTable.setChildList(genTableList);
     }
 
-
     // 生成子表模板代码
     for (GenTable childTable : genTable.getChildList()) {
       childTable.setParent(genTable);
@@ -156,16 +156,22 @@ public class GenSchemeService extends BaseService {
             genTable.getColumnList());
         //获取子列表
         List<GenTable> childGenTableList = genTable.getChildList();
+        //
+        List<String> noGenTables = getFilterTables();
         //创建1对1表配置
         oneToOneTableColumnList.stream().forEach(genTableColumn -> {
-          codeGenerator.addTableConfiguration(
-              codeGenerator.createTableConfiguration(genTableColumn.getJavaTypeTable()
-                  , StringUtils.substringAfterLast(genTableColumn.getJavaType(), "."), false));
+          if (!noGenTables.contains(genTableColumn.getJavaTypeTable())) {
+            codeGenerator.addTableConfiguration(
+                codeGenerator.createTableConfiguration(genTableColumn.getJavaTypeTable()
+                    , StringUtils.substringAfterLast(genTableColumn.getJavaType(), "."), false));
+          }
         });
         //创建子表配置
         childGenTableList.stream().forEach(table -> {
-          codeGenerator.addTableConfiguration(codeGenerator
-              .createTableConfiguration(table.getName(), table.getClassName(), false));
+          if (!noGenTables.contains(table.getName())) {
+            codeGenerator.addTableConfiguration(codeGenerator
+                .createTableConfiguration(table.getName(), table.getClassName(), false));
+          }
         });
 
         //获取1对1的字段定义
@@ -216,7 +222,7 @@ public class GenSchemeService extends BaseService {
     List<OneToOne> result = new ArrayList<>();
     //
     List<String> filterList = new ArrayList<>();
-    List<String> noJoinFieldList = new ArrayList<>();
+    List<String> noJoinFieldList = getFilterTables();
 
     genTableColumnList.stream().forEach(column -> {
       String javaTypeTable = column.getJavaTypeTable();
@@ -237,6 +243,20 @@ public class GenSchemeService extends BaseService {
         oneToOne.setNoJoinField(true);
       }
     });
+
+    return result;
+  }
+
+  /**
+   * 获取生成代码不关联的表
+   */
+  private List<String> getFilterTables() {
+
+    List<String> result = new ArrayList<>();
+    GenUtils.getConfig().getJavaTypeList().stream().filter(e -> StringUtils.isNotEmpty(e.getType()))
+        .forEach(dict -> {
+          result.add(dict.getType());
+        });
 
     return result;
   }

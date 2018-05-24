@@ -27,7 +27,6 @@
 		<ul class="ul-form">
 			<li><label>企业名称：</label>
 				<form:input path="enterpriseName" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>

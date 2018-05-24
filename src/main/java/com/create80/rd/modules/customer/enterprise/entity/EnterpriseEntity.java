@@ -16,33 +16,35 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 企业信息管理Entity
  * @author yzx
- * @version 2018-05-21
+ * @version 2018-05-24
  */
 public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 	
 	private static final long serialVersionUID = 1L;
-	private String enterpriseName;		// 企业名称
-	private String lat;		// 纬度
-	private String lng;		// 经度
-	private String uscCode;		// 信用代码
-	private String legalPerson;		// 法人
-	private String registeredCapital;		// 注册资本
-	private Date registeredDate;		// 注册日期
-	private String registeredAddress;		// 注册地址
-	private String registeredPostcode;		// 注册邮编
-	private Area area;		// 区域
-	private String businessScope;		// 经营范围
-	private String businessPhone;		// 办公电话
-	private String businessFax;		// fax 号码
-	private String bankAccount;		// 银行账户名称
-	private String bankNumber;		// 银行账户卡号
-	private String bankName;		// 开户行名称
-	private String taxNumber;		// 税号
-	private String taxPhone;		// 开票电话
-	private String recyclingType;		// 回用类型
-	private String statusType;		// 企业状态
+	      private String enterpriseName;		// 企业名称
+	      private String lat;		// 纬度
+	      private String lng;		// 经度
+	      private String uscCode;		// 信用代码
+	      private String legalPerson;		// 法人
+	      private String registeredCapital;		// 注册资本
+	      private Date registeredDate;		// 注册日期
+	      private String registeredAddress;		// 注册地址
+	      private String registeredPostcode;		// 注册邮编
+			  private String areaId;
+			  private Area area;		// 区域
+	      private String businessScope;		// 经营范围
+	      private String businessPhone;		// 办公电话
+	      private String businessFax;		// fax 号码
+	      private String bankAccount;		// 银行账户名称
+	      private String bankNumber;		// 银行账户卡号
+	      private String bankName;		// 开户行名称
+	      private String taxNumber;		// 税号
+	      private String taxPhone;		// 开票电话
+	      private String recyclingType;		// 回用类型
+	      private String statusType;		// 企业状态
 	private List<EnterpriseBusinessTypeRelationEntity> enterpriseBusinessTypeRelationList = Lists.newArrayList();		// 子表列表
 	private List<EnterpriseIndustryTypeRelationEntity> enterpriseIndustryTypeRelationList = Lists.newArrayList();		// 子表列表
+	private List<EnterprisePicEntity> enterprisePicList = Lists.newArrayList();		// 子表列表
 	private List<EnterprisePollutionTypeRelationEntity> enterprisePollutionTypeRelationList = Lists.newArrayList();		// 子表列表
 	
 	public EnterpriseEntity() {
@@ -53,7 +55,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		super(id);
 	}
 
-	@Length(min=1, max=64, message="企业名称长度必须介于 1 和 64 之间")
+	     @Length(min=1, max=64, message="企业名称长度必须介于 1 和 64 之间")
 	public String getEnterpriseName() {
 		return enterpriseName;
 	}
@@ -78,7 +80,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.lng = lng;
 	}
 	
-	@Length(min=0, max=32, message="信用代码长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="信用代码长度必须介于 0 和 32 之间")
 	public String getUscCode() {
 		return uscCode;
 	}
@@ -87,7 +89,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.uscCode = uscCode;
 	}
 	
-	@Length(min=0, max=32, message="法人长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="法人长度必须介于 0 和 32 之间")
 	public String getLegalPerson() {
 		return legalPerson;
 	}
@@ -104,7 +106,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.registeredCapital = registeredCapital;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getRegisteredDate() {
 		return registeredDate;
 	}
@@ -113,7 +115,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.registeredDate = registeredDate;
 	}
 	
-	@Length(min=0, max=128, message="注册地址长度必须介于 0 和 128 之间")
+	     @Length(min=0, max=128, message="注册地址长度必须介于 0 和 128 之间")
 	public String getRegisteredAddress() {
 		return registeredAddress;
 	}
@@ -130,16 +132,25 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.registeredPostcode = registeredPostcode;
 	}
 	
-	@NotNull(message="区域不能为空")
-	public Area getArea() {
-		return area;
-	}
+	     @NotNull(message="区域不能为空")
 
-	public void setArea(Area area) {
-		this.area = area;
-	}
-	
-	@Length(min=0, max=512, message="经营范围长度必须介于 0 和 512 之间")
+
+	     public String getAreaId(){
+	       return areaId;
+	     }
+
+	     public void setAreaId(String areaId){
+	     this.areaId = areaId;
+	     }
+
+	    public Area getArea() {
+	    	return area;
+     	}
+
+	   public void setArea(Area area) {
+		   this.area = area;
+   	}
+	     @Length(min=0, max=512, message="经营范围长度必须介于 0 和 512 之间")
 	public String getBusinessScope() {
 		return businessScope;
 	}
@@ -148,7 +159,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.businessScope = businessScope;
 	}
 	
-	@Length(min=0, max=32, message="办公电话长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="办公电话长度必须介于 0 和 32 之间")
 	public String getBusinessPhone() {
 		return businessPhone;
 	}
@@ -157,7 +168,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.businessPhone = businessPhone;
 	}
 	
-	@Length(min=0, max=32, message="fax 号码长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="fax 号码长度必须介于 0 和 32 之间")
 	public String getBusinessFax() {
 		return businessFax;
 	}
@@ -166,7 +177,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.businessFax = businessFax;
 	}
 	
-	@Length(min=0, max=64, message="银行账户名称长度必须介于 0 和 64 之间")
+	     @Length(min=0, max=64, message="银行账户名称长度必须介于 0 和 64 之间")
 	public String getBankAccount() {
 		return bankAccount;
 	}
@@ -175,7 +186,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.bankAccount = bankAccount;
 	}
 	
-	@Length(min=0, max=32, message="银行账户卡号长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="银行账户卡号长度必须介于 0 和 32 之间")
 	public String getBankNumber() {
 		return bankNumber;
 	}
@@ -184,7 +195,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.bankNumber = bankNumber;
 	}
 	
-	@Length(min=0, max=32, message="开户行名称长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="开户行名称长度必须介于 0 和 32 之间")
 	public String getBankName() {
 		return bankName;
 	}
@@ -193,7 +204,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.bankName = bankName;
 	}
 	
-	@Length(min=1, max=32, message="税号长度必须介于 1 和 32 之间")
+	     @Length(min=1, max=32, message="税号长度必须介于 1 和 32 之间")
 	public String getTaxNumber() {
 		return taxNumber;
 	}
@@ -202,7 +213,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.taxNumber = taxNumber;
 	}
 	
-	@Length(min=0, max=32, message="开票电话长度必须介于 0 和 32 之间")
+	     @Length(min=0, max=32, message="开票电话长度必须介于 0 和 32 之间")
 	public String getTaxPhone() {
 		return taxPhone;
 	}
@@ -211,7 +222,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.taxPhone = taxPhone;
 	}
 	
-	@Length(min=1, max=1, message="回用类型长度必须介于 1 和 1 之间")
+	     @Length(min=1, max=1, message="回用类型长度必须介于 1 和 1 之间")
 	public String getRecyclingType() {
 		return recyclingType;
 	}
@@ -220,7 +231,7 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 		this.recyclingType = recyclingType;
 	}
 	
-	@Length(min=1, max=1, message="企业状态长度必须介于 1 和 1 之间")
+	     @Length(min=1, max=1, message="企业状态长度必须介于 1 和 1 之间")
 	public String getStatusType() {
 		return statusType;
 	}
@@ -242,6 +253,13 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
 
 	public void setEnterpriseIndustryTypeRelationList(List<EnterpriseIndustryTypeRelationEntity> enterpriseIndustryTypeRelationList) {
 		this.enterpriseIndustryTypeRelationList = enterpriseIndustryTypeRelationList;
+	}
+	public List<EnterprisePicEntity> getEnterprisePicList() {
+		return enterprisePicList;
+	}
+
+	public void setEnterprisePicList(List<EnterprisePicEntity> enterprisePicList) {
+		this.enterprisePicList = enterprisePicList;
 	}
 	public List<EnterprisePollutionTypeRelationEntity> getEnterprisePollutionTypeRelationList() {
 		return enterprisePollutionTypeRelationList;

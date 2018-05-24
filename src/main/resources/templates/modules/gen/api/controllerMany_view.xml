@@ -45,6 +45,10 @@ import com.create80.rd.common.utils.page.PageInfo;
 import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Entity;
 import ${packageName}.${moduleName}.api.model<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 
+<#list table.serviceImports as import>
+   import ${import};
+ </#list>
+
 /**
  * ${functionName}Controller
  * @author ${functionAuthor}
@@ -56,6 +60,11 @@ public class ${ClassName}ViewController extends BaseController {
 
 	@Autowired
   private RestTemplate restTemplate;
+
+  <#list table.importServiceNames as service>
+  @Autowired
+   private ${service?cap_first}Service ${service?uncap_first}Service;
+  </#list>
 	
 	@ModelAttribute
 	public ${ClassName}Entity get(@RequestParam(required=false) String id) {
@@ -69,7 +78,11 @@ public class ${ClassName}ViewController extends BaseController {
           .getForEntity(apiBaseUrl + "/${urlPrefix}/api/{id}", String.class,
               urlVariables);
 
-      return JsonUtils.toSimpleObject(responseEntity.getBody(), ${ClassName}Entity.class);
+      entity= JsonUtils.toSimpleObject(responseEntity.getBody(), ${ClassName}Entity.class);
+
+       <#list table.importServiceNames as service>
+        entity.set${service?cap_first}(${service?uncap_first}Service.get(entity.get${service?cap_first}Id()));
+       </#list>
     }
     return entity;
 	}
