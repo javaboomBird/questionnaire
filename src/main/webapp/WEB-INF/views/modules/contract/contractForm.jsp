@@ -484,7 +484,7 @@
 								<input id="contractGoodList{{idx}}_delFlag" name="contractGoodList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect cssClass="input-medium" url="http://127.0.0.1:8082/contract/good/api/getAll" id="contractGoodList{{idx}}_goodId" name="contractGoodList[{{idx}}].goodId" valueProperty="id" textProperty="name" />
+                 <sys:dynamicselect cssClass="input-medium" url="http://192.168.1.191:10082/contract/good/api/getAll" id="contractGoodList{{idx}}_goodId" name="contractGoodList[{{idx}}].goodId" valueProperty="id" textProperty="name" />
 							</td>
 							<td>
 								<input id="contractGoodList{{idx}}_sellingPrice" name="contractGoodList[{{idx}}].sellingPrice" type="text" value="{{row.sellingPrice}}" class="input-small  number"/>
