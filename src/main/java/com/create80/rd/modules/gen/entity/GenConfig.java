@@ -91,13 +91,13 @@ public class GenConfig implements Serializable {
     this.showTypeList = showTypeList;
   }
 
-  public String getService(String labelName) {
-    if (javaTypeList.size() <= 0 || javaTypeList == null || StringUtils.isEmpty(labelName)) {
+  public String getService(String javaType) {
+    if (javaTypeList.size() <= 0 || javaTypeList == null || StringUtils.isEmpty(javaType)) {
       return "";
     }
     String result = null;
     for (Dict dict : javaTypeList) {
-      if (labelName.equalsIgnoreCase(dict.getLabel())) {
+      if (javaType.equalsIgnoreCase(dict.getValue())) {
         result = dict.getService();
       }
     }

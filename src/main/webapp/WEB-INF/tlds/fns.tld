@@ -152,6 +152,14 @@
     <function-signature>java.util.List getDataList(java.lang.String,java.lang.String,java.lang.String)</function-signature>
     <example>${fns:getDataList(url,valueProperty,textProperty)}</example>
   </function>
+
+  <function>
+    <description>获取各个模块的请求链接地址</description>
+    <name>getModuleLink</name>
+    <function-class>com.create80.rd.common.config.ModuleLinkUtils</function-class>
+    <function-signature>java.lang.String getModuleLink(java.lang.String)</function-signature>
+    <example>${fns:getModuleLink(moduleName)}</example>
+  </function>
   
   <!-- Encodes -->
   <function>

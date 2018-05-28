@@ -61,9 +61,9 @@ public class ${ClassName}ViewController extends BaseController {
 	@Autowired
   private RestTemplate restTemplate;
 
-  <#list table.importServiceNames as service>
+  <#list table.importServiceNames?keys as key>
   @Autowired
-   private ${service?cap_first}Service ${service?uncap_first}Service;
+   private ${table.importServiceNames[key]?cap_first}Service ${table.importServiceNames[key]?uncap_first}Service;
   </#list>
 	
 	@ModelAttribute
@@ -80,8 +80,8 @@ public class ${ClassName}ViewController extends BaseController {
 
       entity= JsonUtils.toSimpleObject(responseEntity.getBody(), ${ClassName}Entity.class);
 
-       <#list table.importServiceNames as service>
-        entity.set${service?cap_first}(${service?uncap_first}Service.get(entity.get${service?cap_first}Id()));
+       <#list table.importServiceNames?keys as key>
+        entity.set${key?cap_first}(${table.importServiceNames[key]?uncap_first}Service.get(entity.get${key?cap_first}Id()));
        </#list>
     }
     return entity;

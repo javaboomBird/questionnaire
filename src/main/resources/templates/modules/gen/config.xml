@@ -55,7 +55,7 @@
 		<dict value="Integer" label="Integer"/>
 		<dict value="Double" label="Double"/>
 		<dict value="java.util.Date" label="Date"/>
-		<dict value="com.create80.rd.modules.sys.entity.User"   type="sys_user"    label="User" />
+		<dict value="com.create80.rd.modules.sys.entity.User"   type="sys_user"    label="User" service="com.create80.rd.modules.sys.service.UserService"/>
 		<dict value="com.create80.rd.modules.sys.entity.Office" type="sys_office" label="Office" service="com.create80.rd.modules.sys.service.OfficeService"/>
 		<dict value="com.create80.rd.modules.sys.entity.Area"   type="sys_area"     label="Area" service="com.create80.rd.modules.sys.service.AreaService"/>
 		<!--<dict value="This" label="ThisObj" description="生成当前对象"/>-->

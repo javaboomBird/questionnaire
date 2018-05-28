@@ -5,10 +5,12 @@
 <%@ attribute name="name" type="java.lang.String" required="true" %>
 <%@ attribute name="valueProperty" type="java.lang.String" required="true" %>
 <%@ attribute name="textProperty" type="java.lang.String" required="true" %>
-<%@ attribute name="cssClass" type="java.lang.String" required="false" description="css"%>
+<%@ attribute name="cssClass" type="java.lang.String" required="false" description="css" %>
 <select id="${id}" name="${name}" class="${cssClass}">
     <c:if test="${not empty url}">
-        <c:forEach items="${fns:getDataList(url,valueProperty , textProperty)}" var='data'>
+        <c:forEach
+                items="${fns:getDataList(url,valueProperty , textProperty)}"
+                var='data'>
             <option value='${data.value}'>${data.text}</option>
         </c:forEach>
     </c:if>
