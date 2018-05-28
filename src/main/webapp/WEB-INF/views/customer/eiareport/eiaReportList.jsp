@@ -26,7 +26,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>企业：</label>
-        <sys:dynamicselect url="${customer}/pt/pollutionType/api/getAll" cssClass="input-medium"  id="pollutionTypeId" name="pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
+        <sys:dynamicselect url="{customer}/pt/pollutionType/api/getAll" cssClass="input-medium"  id="pollutionTypeId" name="pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
