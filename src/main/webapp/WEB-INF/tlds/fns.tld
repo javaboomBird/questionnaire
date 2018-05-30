@@ -149,7 +149,7 @@
     <description>远程获取List对象列表</description>
     <name>getDataList</name>
     <function-class>com.create80.rd.common.utils.RemoteDataUtils</function-class>
-    <function-signature>java.util.List getDataList(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+    <function-signature>java.util.Map getDataList(java.lang.String,java.lang.String,java.lang.String)</function-signature>
     <example>${fns:getDataList(url,valueProperty,textProperty)}</example>
   </function>
 

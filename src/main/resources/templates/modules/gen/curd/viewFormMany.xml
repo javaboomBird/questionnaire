@@ -98,13 +98,13 @@
 					value="<fmt:formatDate value="${"$"}{${className}.${c.javaFieldId}}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			<#elseif c.showType == "userselect">
-				<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
+				<sys:treeselect id="${c.simpleJavaField}"  property="${c.simpleJavaField}Id" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="<#if c.isNull != "1">required</#if>" allowClear="true" notAllowSelectParent="true"/>
 			<#elseif c.showType == "officeselect">
-				<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
+				<sys:treeselect id="${c.simpleJavaField}" property="${c.simpleJavaField}Id" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
 					title="部门" url="/sys/office/treeData?type=2" cssClass="<#if c.isNull != "1">required</#if>" allowClear="true" notAllowSelectParent="true"/>
 			<#elseif c.showType == "areaselect">
-				<sys:treeselect id="${c.simpleJavaField}" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
+				<sys:treeselect id="${c.simpleJavaField}" property="${c.simpleJavaField}Id" name="${c.javaFieldId}" value="${"$"}{${className}.${c.javaFieldId}}" labelName="${c.javaFieldName}" labelValue="${"$"}{${className}.${c.javaFieldName}}"
 					title="区域" url="/sys/area/treeData" cssClass="<#if c.isNull != "1">required</#if>" allowClear="true" notAllowSelectParent="true"/>
 			<#elseif c.showType == "fileselect">
 				<form:hidden id="${c.simpleJavaField}" path="${c.javaFieldId}" htmlEscape="false"<#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="input-xlarge"/>
@@ -160,7 +160,12 @@
 									</c:forEach>
 								</select>
 							<#elseif c.showType == "dynamicSelect">
-                 <sys:dynamicselect url="${c.url}" cssClass="input-medium <#if c.isNull != "1">required</#if>" id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" valueProperty="id" textProperty="${c.textValue}" />
+							<select id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" data-value="{{row.${c.javaFieldId}}}" class="input-small <#if c.isNull != "1">required</#if>">
+									<option value=""></option>
+									<c:forEach items="${"$"}{fns:getDataList('${c.url}','id','${c.textValue}')}" var="m">
+										<option value="${"$"}{m.key}">${"$"}{m.value}</option>
+									</c:forEach>
+								</select>
 							<#elseif c.showType == "checkbox">
 								<c:forEach items="${"$"}{fns:getDictList('${c.dictType}')}" var="dict" varStatus="dictStatus">
 									<span><input id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}${"$"}{dictStatus.index}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" type="checkbox" value="${"$"}{dict.value}" data-value="{{row.${c.javaFieldId}}}"><label for="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}${"$"}{dictStatus.index}">${"$"}{dict.label}</label></span>
@@ -173,13 +178,13 @@
 								<input id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate <#if c.isNull != "1">required</#if>"
 									value="{{row.${c.javaFieldId}}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 							<#elseif c.showType == "userselect">
-								<sys:treeselect id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" value="{{row.${c.javaFieldId}}}" labelName="${child.className?uncap_first}List{{idx}}.${c.javaFieldName}" labelValue="{{row.${c.javaFieldName}}}"
+								<sys:treeselect id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" property="${child.className?uncap_first}List[{{idx}}].${c.simpleJavaField}Id" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" value="{{row.${c.javaFieldId}}}" labelName="${child.className?uncap_first}List{{idx}}.${c.javaFieldName}" labelValue="{{row.${c.javaFieldName}}}"
 									title="用户" url="/sys/office/treeData?type=3" cssClass="<#if c.isNull != "1">required</#if>" allowClear="true" notAllowSelectParent="true"/>
 							<#elseif c.showType == "officeselect">
-								<sys:treeselect id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" value="{{row.${c.javaFieldId}}}" labelName="${child.className?uncap_first}List{{idx}}.${c.javaFieldName}" labelValue="{{row.${c.javaFieldName}}}"
+								<sys:treeselect id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" property="${child.className?uncap_first}List[{{idx}}].${c.simpleJavaField}Id"  name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" value="{{row.${c.javaFieldId}}}" labelName="${child.className?uncap_first}List{{idx}}.${c.javaFieldName}" labelValue="{{row.${c.javaFieldName}}}"
 									title="部门" url="/sys/office/treeData?type=2" cssClass="<#if c.isNull != "1">required</#if>" allowClear="true" notAllowSelectParent="true"/>
 							<#elseif c.showType == "areaselect">
-								<sys:treeselect id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" value="{{row.${c.javaFieldId}}}" labelName="${child.className?uncap_first}List{{idx}}.${c.javaFieldName}" labelValue="{{row.${c.javaFieldName}}}"
+								<sys:treeselect id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" property="${child.className?uncap_first}List[{{idx}}].${c.simpleJavaField}Id"  name="${child.className?uncap_first}List[{{idx}}].${c.javaFieldId}" value="{{row.${c.javaFieldId}}}" labelName="${child.className?uncap_first}List{{idx}}.${c.javaFieldName}" labelValue="{{row.${c.javaFieldName}}}"
 									title="区域" url="/sys/area/treeData" cssClass="<#if c.isNull != "1">required</#if>" allowClear="true" notAllowSelectParent="true"/>
 							<#elseif c.showType == "fileselect">
 								<input id="${child.className?uncap_first}List{{idx}}_${c.simpleJavaField}" name="${child.className?uncap_first}List[{{idx}}].${c.simpleJavaField}" type="hidden" value="{{row.${c.javaFieldId}}}"<#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if>/>

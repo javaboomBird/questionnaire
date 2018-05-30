@@ -156,15 +156,15 @@ public class LoginController extends BaseController{
 		}
 		
 		// 如果是手机登录，则返回JSON字符串
-		if (principal.isMobileLogin()){
-			if (request.getParameter("login") != null){
-				return renderString(response, principal);
-			}
-			if (request.getParameter("index") != null){
-				return "modules/sys/sysIndex";
-			}
-			return "redirect:" + adminPath + "/login";
-		}
+//		if (principal.isMobileLogin()){
+//			if (request.getParameter("login") != null){
+//				return renderString(response, principal);
+//			}
+//			if (request.getParameter("index") != null){
+//				return "modules/sys/sysIndex";
+//			}
+//			return "redirect:" + adminPath + "/login";
+//		}
 		
 //		// 登录成功后，获取上次登录的当前站点ID
 //		UserUtils.putCache("siteId", StringUtils.toLong(CookieUtils.getCookie(request, "siteId")));

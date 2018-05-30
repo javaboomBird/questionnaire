@@ -17,7 +17,7 @@ import com.create80.rd.common.persistence.DataEntity;
  * 项目管理Entity
  *
  * @author yzx
- * @version 2018-05-28
+ * @version 2018-05-30
  */
 public class ProjectEntity extends DataEntity<ProjectEntity> {
 

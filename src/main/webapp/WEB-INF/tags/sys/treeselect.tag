@@ -23,9 +23,10 @@
 <%@ attribute name="hideBtn" type="java.lang.Boolean" required="false" description="是否显示按钮"%>
 <%@ attribute name="disabled" type="java.lang.String" required="false" description="是否限制选择，如果限制，设置为disabled"%>
 <%@ attribute name="dataMsgRequired" type="java.lang.String" required="false" description=""%>
+<%@ attribute name="property" type="java.lang.String" required="false" description=""%>
 <div class="input-append">
 	<input id="${id}Id" name="${name}" class="${cssClass}" type="hidden" value="${value}"/>
-	<input id="${id}IdName" name="${id}Id" class="${cssClass}" type="hidden" value="${value}"/>
+	<input id="${id}IdName" name="${property}" class="${cssClass}" type="hidden" value="${value}"/>
 	<input id="${id}Name" name="${labelName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${labelValue}" data-msg-required="${dataMsgRequired}"
 		class="${cssClass}" style="${cssStyle}"/><a id="${id}Button" href="javascript:" class="btn ${disabled} ${hideBtn ? 'hide' : ''}" style="${smallBtn?'padding:4px 2px;':''}">&nbsp;<i class="icon-search"></i>&nbsp;</a>&nbsp;&nbsp;
 </div>

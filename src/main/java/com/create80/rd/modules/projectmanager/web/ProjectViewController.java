@@ -45,7 +45,7 @@ import com.create80.rd.modules.sys.service.UserService;
  * 项目管理Controller
  *
  * @author yzx
- * @version 2018-05-28
+ * @version 2018-05-30
  */
 @Controller
 @RequestMapping(value = "${adminPath}/projectmanager/project")

@@ -63,7 +63,7 @@
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="enterprise" action="${ctx}/enterprise/enterprise/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
+		<sys:message content="${message}"/>
 		<div class="control-group">
 			<label class="control-label">企业名称：</label>
 			<div class="controls">
@@ -229,7 +229,12 @@
 								<input id="enterpriseBusinessTypeRelationList{{idx}}_delFlag" name="enterpriseBusinessTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="{customer}/bt/businessType/api/getAll" cssClass="input-medium " id="enterpriseBusinessTypeRelationList{{idx}}_businessTypeId" name="enterpriseBusinessTypeRelationList[{{idx}}].businessTypeId" valueProperty="id" textProperty="businessTypeName" />
+							<select id="enterpriseBusinessTypeRelationList{{idx}}_businessTypeId" name="enterpriseBusinessTypeRelationList[{{idx}}].businessTypeId" data-value="{{row.businessTypeId}}" class="input-small required">
+									<option value="">请选择</option>
+									<c:forEach items="${fns:getDataList('{customer}/bt/businessType/api/getAll','id' , 'businessTypeName')}" var="m">
+										<option value="${m.key}">${m.value}</option>
+									</c:forEach>
+							</select>
 							</td>
 							<td>
 								<textarea id="enterpriseBusinessTypeRelationList{{idx}}_remarks" name="enterpriseBusinessTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -276,7 +281,12 @@
 								<input id="enterpriseIndustryTypeRelationList{{idx}}_delFlag" name="enterpriseIndustryTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="{customer}/it/industryType/api/getAll" cssClass="input-medium " id="enterpriseIndustryTypeRelationList{{idx}}_industryTypeId" name="enterpriseIndustryTypeRelationList[{{idx}}].industryTypeId" valueProperty="id" textProperty="industryTypeName" />
+								<select id="enterpriseIndustryTypeRelationList{{idx}}_industryTypeId" name="enterpriseIndustryTypeRelationList[{{idx}}].industryTypeId" data-value="{{row.industryTypeId}}" class="input-small required">
+									<option value="">请选择</option>
+									<c:forEach items="${fns:getDataList('{customer}/it/industryType/api/getAll','id' , 'industryTypeName')}" var="m">
+										<option value="${m.key}">${m.value}</option>
+									</c:forEach>
+								</select>
 							</td>
 							<td>
 								<textarea id="enterpriseIndustryTypeRelationList{{idx}}_remarks" name="enterpriseIndustryTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -371,7 +381,12 @@
 								<input id="enterprisePollutionTypeRelationList{{idx}}_delFlag" name="enterprisePollutionTypeRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="{customer}/pt/pollutionType/api/getAll" cssClass="input-medium " id="enterprisePollutionTypeRelationList{{idx}}_pollutionTypeId" name="enterprisePollutionTypeRelationList[{{idx}}].pollutionTypeId" valueProperty="id" textProperty="pollutionTypeName" />
+							<select id="enterprisePollutionTypeRelationList{{idx}}_pollutionTypeId" name="enterprisePollutionTypeRelationList[{{idx}}].pollutionTypeId" data-value="{{row.pollutionTypeId}}" class="input-small required">
+									<option value="">请选择</option>
+									<c:forEach items="${fns:getDataList('{customer}/pt/pollutionType/api/getAll','id' , 'pollutionTypeName')}" var="m">
+										<option value="${m.key}">${m.value}</option>
+									</c:forEach>
+								</select>
 							</td>
 							<td>
 								<textarea id="enterprisePollutionTypeRelationList{{idx}}_remarks" name="enterprisePollutionTypeRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>

@@ -13,10 +13,10 @@ public class RemoteDataUtils {
 
   private static RestTemplate restTemplate = new RestTemplate();
 
-  public static List<Map<String, Object>> getDataList(String url, String valueProperty,
+  public static Map<String, Object> getDataList(String url, String valueProperty,
       String textProperty) {
     if (StringUtils.isEmpty(url)) {
-      return new ArrayList<>();
+      return new HashMap<>();
     }
     if (StringUtils.isEmpty(valueProperty)) {
       valueProperty = "value";
@@ -32,18 +32,18 @@ public class RemoteDataUtils {
     List<Map> mapList = JsonUtils.toListObject(responseEntity.getBody(), Map.class);
 
     //transfer data to Map
-    List<Map<String, Object>> result = new ArrayList<>();
+    Map<String, Object> result = new HashMap<>();
     for (Map data : mapList) {
-      Map<String, Object> valueMap = new HashMap<>();
-      valueMap.put("value", data.get(valueProperty));
-      valueMap.put("text", data.get(textProperty));
-      result.add(valueMap);
+//      valueMap.put("value", data.get(valueProperty));
+//      valueMap.put("text", data.get(textProperty));
+      result.put(String.valueOf(data.get(valueProperty)), data.get(textProperty));
     }
     return result;
   }
 
   /**
    * 重写组装url
+   *
    * @param url 请求url
    */
   private static String rewritingUrl(String url) {

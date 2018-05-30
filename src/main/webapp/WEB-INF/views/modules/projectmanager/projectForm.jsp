@@ -105,7 +105,7 @@
 		<div class="control-group">
 			<label class="control-label">项目经理：</label>
 			<div class="controls">
-				<sys:treeselect id="manager" name="manager.id" value="${project.manager.id}" labelName="manager.name" labelValue="${project.manager.name}"
+				<sys:treeselect id="manager"  property="managerId" name="manager.id" value="${project.manager.id}" labelName="manager.name" labelValue="${project.manager.name}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
@@ -179,7 +179,12 @@
 								<input id="projectContactRelationList{{idx}}_delFlag" name="projectContactRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-                 <sys:dynamicselect url="{contract}/contract/contract/api/getAll" cssClass="input-medium required" id="projectContactRelationList{{idx}}_contactId" name="projectContactRelationList[{{idx}}].contactId" valueProperty="id" textProperty="majorContractId" />
+							<select id="projectContactRelationList{{idx}}_contactId" name="projectContactRelationList[{{idx}}].contactId" data-value="{{row.contactId}}" class="input-small required">
+									<option value=""></option>
+									<c:forEach items="${fns:getDataList('{contract}/contract/contract/api/getAll','id','majorContractId')}" var="m">
+										<option value="${m.key}">${m.value}</option>
+									</c:forEach>
+								</select>
 							</td>
 							<td>
 								<textarea id="projectContactRelationList{{idx}}_remarks" name="projectContactRelationList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
@@ -227,7 +232,7 @@
 								<input id="projectMemberList{{idx}}_delFlag" name="projectMemberList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-								<sys:treeselect id="projectMemberList{{idx}}_member" name="projectMemberList[{{idx}}].member.id" value="{{row.member.id}}" labelName="projectMemberList{{idx}}.member.name" labelValue="{{row.member.name}}"
+								<sys:treeselect id="projectMemberList{{idx}}_member" property="projectMemberList[{{idx}}].memberId" name="projectMemberList[{{idx}}].member.id" value="{{row.member.id}}" labelName="projectMemberList{{idx}}.member.name" labelValue="{{row.member.name}}"
 									title="用户" url="/sys/office/treeData?type=3" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
 							</td>
 							<td>
