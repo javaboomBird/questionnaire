@@ -145,7 +145,7 @@
 		<div class="control-group">
 			<label class="control-label">进度：</label>
 			<div class="controls">
-				<form:input path="progress" htmlEscape="false" maxlength="10" class="input-xlarge "/>
+				<input name="progress" value="${project.progress==null?0:project.progress}"  maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

@@ -192,6 +192,12 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label">实际工时：</label>
+        <div class="controls">
+            <form:input path="actualTime" htmlEscape="false" class="input-xlarge  number"/>
+        </div>
+    </div>
+    <div class="control-group">
         <label class="control-label">计划开始时间：</label>
         <div class="controls">
             <input name="planStartTime" type="text" readonly="readonly" maxlength="20"
@@ -230,7 +236,7 @@
     <div class="control-group">
         <label class="control-label">进度：</label>
         <div class="controls">
-            <form:input path="progress" htmlEscape="false" maxlength="10" class="input-xlarge "/>
+            <input name="progress"  value="${projectTask.progress==null?0:projectTask.progress}"   maxlength="10"  class="input-xlarge "/>
         </div>
     </div>
     <div class="control-group">

@@ -10,13 +10,15 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 项目模板Entity
  * @author yzx
- * @version 2018-05-30
+ * @version 2018-05-31
  */
 public class ProjectTemplateEntity extends DataEntity<ProjectTemplateEntity> {
 	
 	private static final long serialVersionUID = 1L;
 	      private String projectId;		// 项目
 	      private String templateName;		// 模板名称
+	      private String template;		// template
+	      private String applyNum;		// 应用模板次数
 	
 	public ProjectTemplateEntity() {
 		super();
@@ -42,6 +44,22 @@ public class ProjectTemplateEntity extends DataEntity<ProjectTemplateEntity> {
 
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
+	}
+	
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+	
+	public String getApplyNum() {
+		return applyNum;
+	}
+
+	public void setApplyNum(String applyNum) {
+		this.applyNum = applyNum;
 	}
 	
 }

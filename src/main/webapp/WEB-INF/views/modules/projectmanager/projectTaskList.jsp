@@ -29,7 +29,7 @@
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
     <ul class="ul-form">
-        <li><label>项目：${projectId}</label>
+        <li><label>项目名称：${projectId}</label>
             <sys:dynamicselect url="{projectmanager}/projectmanager/project/api/getAll"
                                cssClass="input-medium required" id="projectId" name="projectId"
                                valueProperty="id" textProperty="projectName"/>
@@ -46,9 +46,10 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>项目</th>
-        <th>阶段</th>
+        <th>项目名称</th>
+        <th>阶段名称</th>
         <th>任务名称</th>
+        <th>任务进度</th>
         <th>任务状态</th>
         <th>更新时间</th>
         <shiro:hasPermission name="projectmanager:projectTask:edit">
@@ -69,6 +70,9 @@
             </td>
             <td>
                     ${projectTask.taskName}
+            </td>
+            <td>
+                    ${projectTask.progress}
             </td>
             <td>
                     ${fns:getDictLabel(projectTask.taskStatus, 'project_status', '')}

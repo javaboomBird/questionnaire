@@ -63,6 +63,7 @@
             <td>
                     ${projectTemplate.remarks}
             </td>
+
             <shiro:hasPermission name="projectmanager:projectTemplate:edit">
                 <td>
                     <a href="${ctx}/projectmanager/projectTemplate/apply?id=${projectTemplate.id}"

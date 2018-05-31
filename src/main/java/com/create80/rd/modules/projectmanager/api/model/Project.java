@@ -111,7 +111,7 @@ public class Project implements Serializable {
      *
      * @mbg.generated Wed May 30 13:34:31 CST 2018
      */
-    private String progress;
+    private String progress="0";
 
     /**
      *

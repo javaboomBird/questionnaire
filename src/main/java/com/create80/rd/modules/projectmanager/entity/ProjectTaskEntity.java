@@ -34,6 +34,7 @@ public class ProjectTaskEntity extends DataEntity<ProjectTaskEntity> {
   private Date actualStartTime;    // 实际开始时间
   private Date actualEndTime;    // 实际结束时间
   private String progress;    // 进度
+  private Double actualTime;		// 实际工时
   private List<ProjectTaskMemberEntity> projectTaskMemberList = Lists.newArrayList();    // 子表列表
 
   private ProjectEntity project;
@@ -184,5 +185,13 @@ public class ProjectTaskEntity extends DataEntity<ProjectTaskEntity> {
 
   public void setStage(ProjectStageEntity stage) {
     this.stage = stage;
+  }
+
+  public Double getActualTime() {
+    return actualTime;
+  }
+
+  public void setActualTime(Double actualTime) {
+    this.actualTime = actualTime;
   }
 }

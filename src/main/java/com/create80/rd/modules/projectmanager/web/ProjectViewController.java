@@ -3,6 +3,7 @@
  */
 package com.create80.rd.modules.projectmanager.web;
 
+import com.create80.rd.modules.projectmanager.entity.ProjectMemberEntity;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -72,6 +73,12 @@ public class ProjectViewController extends BaseController {
       entity = JsonUtils.toSimpleObject(responseEntity.getBody(), ProjectEntity.class);
 
       entity.setManager(userService.get(entity.getManagerId()));
+    }
+    List<ProjectMemberEntity> projectMemberEntityList = entity.getProjectMemberList();
+    if (projectMemberEntityList != null && projectMemberEntityList.size() > 0) {
+      projectMemberEntityList.stream().forEach(projectMemberEntity -> {
+        projectMemberEntity.setMember(userService.get(projectMemberEntity.getMemberId()));
+      });
     }
     return entity;
   }
