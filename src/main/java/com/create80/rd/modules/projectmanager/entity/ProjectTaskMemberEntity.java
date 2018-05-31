@@ -11,52 +11,53 @@ import com.create80.rd.common.persistence.DataEntity;
 
 /**
  * 项目任务信息管理Entity
+ *
  * @author yzx
  * @version 2018-05-29
  */
 public class ProjectTaskMemberEntity extends DataEntity<ProjectTaskMemberEntity> {
-	
-	private static final long serialVersionUID = 1L;
-	private ProjectTaskEntity projectTaskEntity;		// 任务 父类
-			  private String memberId;
-			  private User member;		// 成员
-	
-	public ProjectTaskMemberEntity() {
-		super();
-	}
 
-	public ProjectTaskMemberEntity(String id){
-		super(id);
-	}
+  private static final long serialVersionUID = 1L;
+  private ProjectTaskEntity projectTaskEntity;    // 任务 父类
+  private String memberId;
+  private User member;    // 成员
 
-	public ProjectTaskMemberEntity(ProjectTaskEntity projectTaskEntity){
-		this.projectTaskEntity = projectTaskEntity;
-	}
+  public ProjectTaskMemberEntity() {
+    super();
+  }
 
-	     @Length(min=1, max=64, message="任务长度必须介于 1 和 64 之间")
-	public ProjectTaskEntity getProjectTaskEntity() {
-		return projectTaskEntity;
-	}
+  public ProjectTaskMemberEntity(String id) {
+    super(id);
+  }
 
-	public void setProjectTaskEntity(ProjectTaskEntity projectTaskEntity) {
-		this.projectTaskEntity = projectTaskEntity;
-	}
-	     @NotNull(message="成员不能为空")
+  public ProjectTaskMemberEntity(ProjectTaskEntity projectTaskEntity) {
+    this.projectTaskEntity = projectTaskEntity;
+  }
 
+  @Length(min = 1, max = 64, message = "任务长度必须介于 1 和 64 之间")
+  public ProjectTaskEntity getProjectTaskEntity() {
+    return projectTaskEntity;
+  }
 
-	     public String getMemberId(){
-	       return memberId;
-	     }
+  public void setProjectTaskEntity(ProjectTaskEntity projectTaskEntity) {
+    this.projectTaskEntity = projectTaskEntity;
+  }
 
-	     public void setMemberId(String memberId){
-	     this.memberId = memberId;
-	     }
+  @NotNull(message = "成员不能为空")
 
-	    public User getMember() {
-	    	return member;
-     	}
+  public String getMemberId() {
+    return memberId;
+  }
 
-	   public void setMember(User member) {
-		   this.member = member;
-   	}
+  public void setMemberId(String memberId) {
+    this.memberId = memberId;
+  }
+
+  public User getMember() {
+    return member;
+  }
+
+  public void setMember(User member) {
+    this.member = member;
+  }
 }

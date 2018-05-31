@@ -13,47 +13,58 @@ import com.create80.rd.common.persistence.DataEntity;
 
 /**
  * 分组管理Entity
+ *
  * @author yzx
- * @version 2018-05-23
+ * @version 2018-05-31
  */
 public class SysGroupEntity extends DataEntity<SysGroupEntity> {
-	
-	private static final long serialVersionUID = 1L;
-	private Office office;		// 组织
-	private String groupName;		// 组名
-	private List<SysUserGroupEntity> sysUserGroupList = Lists.newArrayList();		// 子表列表
-	
-	public SysGroupEntity() {
-		super();
-	}
 
-	public SysGroupEntity(String id){
-		super(id);
-	}
+  private static final long serialVersionUID = 1L;
+  private String officeId;
+  private Office office;    // 组织
+  private String groupName;    // 组名
+  private List<SysUserGroupEntity> sysUserGroupList = Lists.newArrayList();    // 子表列表
 
-	@NotNull(message="组织不能为空")
-	public Office getOffice() {
-		return office;
-	}
+  public SysGroupEntity() {
+    super();
+  }
 
-	public void setOffice(Office office) {
-		this.office = office;
-	}
-	
-	@Length(min=0, max=32, message="组名长度必须介于 0 和 32 之间")
-	public String getGroupName() {
-		return groupName;
-	}
+  public SysGroupEntity(String id) {
+    super(id);
+  }
 
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
-	
-	public List<SysUserGroupEntity> getSysUserGroupList() {
-		return sysUserGroupList;
-	}
+  @NotNull(message = "组织不能为空")
 
-	public void setSysUserGroupList(List<SysUserGroupEntity> sysUserGroupList) {
-		this.sysUserGroupList = sysUserGroupList;
-	}
+  public String getOfficeId() {
+    return officeId;
+  }
+
+  public void setOfficeId(String officeId) {
+    this.officeId = officeId;
+  }
+
+  public Office getOffice() {
+    return office;
+  }
+
+  public void setOffice(Office office) {
+    this.office = office;
+  }
+
+  @Length(min = 0, max = 32, message = "组名长度必须介于 0 和 32 之间")
+  public String getGroupName() {
+    return groupName;
+  }
+
+  public void setGroupName(String groupName) {
+    this.groupName = groupName;
+  }
+
+  public List<SysUserGroupEntity> getSysUserGroupList() {
+    return sysUserGroupList;
+  }
+
+  public void setSysUserGroupList(List<SysUserGroupEntity> sysUserGroupList) {
+    this.sysUserGroupList = sysUserGroupList;
+  }
 }

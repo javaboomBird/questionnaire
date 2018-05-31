@@ -10,42 +10,52 @@ import com.create80.rd.common.persistence.DataEntity;
 
 /**
  * 分组管理Entity
+ *
  * @author yzx
- * @version 2018-05-23
+ * @version 2018-05-31
  */
 public class SysUserGroupEntity extends DataEntity<SysUserGroupEntity> {
-	
-	private static final long serialVersionUID = 1L;
-	private SysGroupEntity sysGroupEntity;		// 分组ID 父类
-	private User user;		// 用户ID
-	
-	public SysUserGroupEntity() {
-		super();
-	}
 
-	public SysUserGroupEntity(String id){
-		super(id);
-	}
+  private static final long serialVersionUID = 1L;
+  private SysGroupEntity sysGroupEntity;    // 分组 父类
+  private String userId;
+  private User user;    // 用户
 
-	public SysUserGroupEntity(SysGroupEntity sysGroupEntity){
-		this.sysGroupEntity = sysGroupEntity;
-	}
+  public SysUserGroupEntity() {
+    super();
+  }
 
-	@Length(min=1, max=64, message="分组ID长度必须介于 1 和 64 之间")
-	public SysGroupEntity getSysGroupEntity() {
-		return sysGroupEntity;
-	}
+  public SysUserGroupEntity(String id) {
+    super(id);
+  }
 
-	public void setSysGroupEntity(SysGroupEntity sysGroupEntity) {
-		this.sysGroupEntity = sysGroupEntity;
-	}
-	
-	public User getUser() {
-		return user;
-	}
+  public SysUserGroupEntity(SysGroupEntity sysGroupEntity) {
+    this.sysGroupEntity = sysGroupEntity;
+  }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
+  @Length(min = 1, max = 64, message = "分组长度必须介于 1 和 64 之间")
+  public SysGroupEntity getSysGroupEntity() {
+    return sysGroupEntity;
+  }
+
+  public void setSysGroupEntity(SysGroupEntity sysGroupEntity) {
+    this.sysGroupEntity = sysGroupEntity;
+  }
+
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 }

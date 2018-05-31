@@ -67,7 +67,7 @@
 		<div class="control-group">
 			<label class="control-label">组织：</label>
 			<div class="controls">
-				<sys:treeselect id="office" name="office.id" value="${sysGroup.office.id}" labelName="office.name" labelValue="${sysGroup.office.name}"
+				<sys:treeselect id="office" property="officeId" name="office.id" value="${sysGroup.office.id}" labelName="office.name" labelValue="${sysGroup.office.name}"
 					title="部门" url="/sys/office/treeData?type=2" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
@@ -85,7 +85,7 @@
 			</div>
 		</div>
 			<div class="control-group">
-				<label class="control-label">分组用户：</label>
+				<label class="control-label">分组用户表：</label>
 				<div class="controls">
 					<table id="contentTable_sysUserGroup" class="table table-striped table-bordered table-condensed">
 						<thead>
@@ -109,7 +109,7 @@
 								<input id="sysUserGroupList{{idx}}_delFlag" name="sysUserGroupList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-								<sys:treeselect id="sysUserGroupList{{idx}}_user" name="sysUserGroupList[{{idx}}].user.id" value="{{row.user.id}}" labelName="sysUserGroupList{{idx}}.user.name" labelValue="{{row.user.name}}"
+								<sys:treeselect id="sysUserGroupList{{idx}}_user" property="sysUserGroupList[{{idx}}].userId" name="sysUserGroupList[{{idx}}].user.id" value="{{row.user.id}}" labelName="sysUserGroupList{{idx}}.user.name" labelValue="{{row.user.name}}"
 									title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true"/>
 							</td>
 							<td>

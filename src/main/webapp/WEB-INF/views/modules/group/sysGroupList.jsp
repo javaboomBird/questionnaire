@@ -26,10 +26,12 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>组织：</label>
-				<sys:treeselect id="office" name="office.id" value="${sysGroup.office.id}" labelName="office.name" labelValue="${sysGroup.office.name}"
+				<sys:treeselect id="office"  property="officeId" name="office.id" value="${sysGroup.office.id}" labelName="office.name" labelValue="${sysGroup.office.name}"
 					title="部门" url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
+			</li>
 			<li><label>组名：</label>
 				<form:input path="groupName" htmlEscape="false" maxlength="32" class="input-medium"/>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
