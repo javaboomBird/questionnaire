@@ -67,13 +67,7 @@
 		<div class="control-group">
 			<label class="control-label">合同 id：</label>
 			<div class="controls">
-        <sys:dynamicselect url="http://127.0.0.1:8082/contract/contract/api/getAll" cssClass="input-medium " id="contractId" name="contractId" valueProperty="id" textProperty="projectName" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">应收款序号：</label>
-			<div class="controls">
-				<form:input path="sn" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+        <sys:dynamicselect url="{contract}/contract/contract/api/getAll" cssClass="input-medium " id="contractId" name="contractId" valueProperty="id" textProperty="projectName" />
 			</div>
 		</div>
 		<div class="control-group">
@@ -130,7 +124,6 @@
 						<thead>
 							<tr>
 								<th class="hide"></th>
-								<th>已收款序号</th>
 								<th>已收款名称</th>
 								<th>已收账款</th>
 								<th>已收账款百分比</th>
@@ -143,7 +136,7 @@
 						<tbody id="contractAccountsReceivedList">
 						</tbody>
 						<shiro:hasPermission name="contract:contractAccountsReceivable:edit"><tfoot>
-							<tr><td colspan="9"><a href="javascript:" onclick="addRow('#contractAccountsReceivedList', contractAccountsReceivedRowIdx, contractAccountsReceivedTpl);contractAccountsReceivedRowIdx = contractAccountsReceivedRowIdx + 1;" class="btn">新增</a></td></tr>
+							<tr><td colspan="8"><a href="javascript:" onclick="addRow('#contractAccountsReceivedList', contractAccountsReceivedRowIdx, contractAccountsReceivedTpl);contractAccountsReceivedRowIdx = contractAccountsReceivedRowIdx + 1;" class="btn">新增</a></td></tr>
 						</tfoot></shiro:hasPermission>
 					</table>
 					<script type="text/template" id="contractAccountsReceivedTpl">//<!--
@@ -151,9 +144,6 @@
 							<td class="hide">
 								<input id="contractAccountsReceivedList{{idx}}_id" name="contractAccountsReceivedList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
 								<input id="contractAccountsReceivedList{{idx}}_delFlag" name="contractAccountsReceivedList[{{idx}}].delFlag" type="hidden" value="0"/>
-							</td>
-							<td>
-								<input id="contractAccountsReceivedList{{idx}}_sn" name="contractAccountsReceivedList[{{idx}}].sn" type="text" value="{{row.sn}}" maxlength="64" class="input-small "/>
 							</td>
 							<td>
 								<input id="contractAccountsReceivedList{{idx}}_name" name="contractAccountsReceivedList[{{idx}}].name" type="text" value="{{row.name}}" maxlength="64" class="input-small "/>

@@ -10,7 +10,7 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 合同管理Entity
  * @author lzp
- * @version 2018-05-30
+ * @version 2018-05-31
  */
 public class ContractAttachmentEntity extends DataEntity<ContractAttachmentEntity> {
 	

@@ -14,7 +14,7 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 合同管理Entity
  * @author lzp
- * @version 2018-05-30
+ * @version 2018-05-31
  */
 public class ContractEntity extends DataEntity<ContractEntity> {
 	
@@ -57,7 +57,7 @@ public class ContractEntity extends DataEntity<ContractEntity> {
 		super(id);
 	}
 
-	     @Length(min=0, max=64, message="项目编号长度必须介于 0 和 64 之间")
+	     @Length(min=1, max=64, message="项目编号长度必须介于 1 和 64 之间")
 	public String getProjectId() {
 		return projectId;
 	}

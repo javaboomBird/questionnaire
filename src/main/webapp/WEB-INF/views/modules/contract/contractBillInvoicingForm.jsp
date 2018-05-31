@@ -67,13 +67,7 @@
 		<div class="control-group">
 			<label class="control-label">合同 id：</label>
 			<div class="controls">
-        <sys:dynamicselect url="http://192.168.1.191:10082/contract/contract/api/getAll" cssClass="input-medium " id="contractId" name="contractId" valueProperty="id" textProperty="projectName" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">应开票序号：</label>
-			<div class="controls">
-				<form:input path="sn" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+        <sys:dynamicselect url="{contract}/contract/contract/api/getAll" cssClass="input-medium " id="contractId" name="contractId" valueProperty="id" textProperty="projectName" />
 			</div>
 		</div>
 		<div class="control-group">
@@ -115,7 +109,6 @@
 						<thead>
 							<tr>
 								<th class="hide"></th>
-								<th>已开票序号</th>
 								<th>已开票名称</th>
 								<th>已开票金额</th>
 								<th>已开票时间</th>
@@ -128,7 +121,7 @@
 						<tbody id="contractBillInvoicedList">
 						</tbody>
 						<shiro:hasPermission name="contract:contractBillInvoicing:edit"><tfoot>
-							<tr><td colspan="9"><a href="javascript:" onclick="addRow('#contractBillInvoicedList', contractBillInvoicedRowIdx, contractBillInvoicedTpl);contractBillInvoicedRowIdx = contractBillInvoicedRowIdx + 1;" class="btn">新增</a></td></tr>
+							<tr><td colspan="8"><a href="javascript:" onclick="addRow('#contractBillInvoicedList', contractBillInvoicedRowIdx, contractBillInvoicedTpl);contractBillInvoicedRowIdx = contractBillInvoicedRowIdx + 1;" class="btn">新增</a></td></tr>
 						</tfoot></shiro:hasPermission>
 					</table>
 					<script type="text/template" id="contractBillInvoicedTpl">//<!--
@@ -136,9 +129,6 @@
 							<td class="hide">
 								<input id="contractBillInvoicedList{{idx}}_id" name="contractBillInvoicedList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
 								<input id="contractBillInvoicedList{{idx}}_delFlag" name="contractBillInvoicedList[{{idx}}].delFlag" type="hidden" value="0"/>
-							</td>
-							<td>
-								<input id="contractBillInvoicedList{{idx}}_sn" name="contractBillInvoicedList[{{idx}}].sn" type="text" value="{{row.sn}}" maxlength="64" class="input-small "/>
 							</td>
 							<td>
 								<input id="contractBillInvoicedList{{idx}}_name" name="contractBillInvoicedList[{{idx}}].name" type="text" value="{{row.name}}" maxlength="64" class="input-small "/>

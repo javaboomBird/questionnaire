@@ -43,7 +43,7 @@ import com.create80.rd.modules.contract.api.model.Contract;
 /**
  * 合同管理Controller
  * @author lzp
- * @version 2018-05-30
+ * @version 2018-05-31
  */
 @Controller
 @RequestMapping(value = "${adminPath}/contract/contract")

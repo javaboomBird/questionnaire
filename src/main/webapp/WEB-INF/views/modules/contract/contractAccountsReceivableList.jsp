@@ -36,7 +36,6 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>应收款序号</th>
 				<th>应收款名称</th>
 				<th>应收账款</th>
 				<th>更新时间</th>
@@ -47,11 +46,8 @@
 		<c:forEach items="${page.list}" var="contractAccountsReceivable">
 			<tr>
 				<td><a href="${ctx}/contract/contractAccountsReceivable/form?id=${contractAccountsReceivable.id}">
-					${contractAccountsReceivable.sn}
-				</a></td>
-				<td>
 					${contractAccountsReceivable.name}
-				</td>
+				</a></td>
 				<td>
 					${contractAccountsReceivable.accountsReceivable}
 				</td>

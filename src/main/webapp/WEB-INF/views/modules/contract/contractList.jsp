@@ -36,7 +36,6 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>项目编号</th>
 				<th>合同项目名称</th>
 				<th>合同状态</th>
 				<th>合同类别</th>
@@ -54,11 +53,8 @@
 		<c:forEach items="${page.list}" var="contract">
 			<tr>
 				<td><a href="${ctx}/contract/contract/form?id=${contract.id}">
-					${contract.projectId}
-				</a></td>
-				<td>
 					${contract.projectName}
-				</td>
+				</a></td>
 				<td>
 					${fns:getDictLabel(contract.status, 'ecm_contract_status', '')}
 				</td>
