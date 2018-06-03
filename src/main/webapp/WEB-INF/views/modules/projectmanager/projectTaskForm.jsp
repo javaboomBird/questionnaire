@@ -170,7 +170,7 @@
         <div class="controls">
             <form:select path="taskStatus" class="input-xlarge ">
                 <form:option value="" label=""/>
-                <form:options items="${fns:getDictList('project_status')}" itemLabel="label"
+                <form:options items="${fns:getDictList('project_task_status')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
         </div>

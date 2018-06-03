@@ -75,7 +75,7 @@
                     ${projectTask.progress}
             </td>
             <td>
-                    ${fns:getDictLabel(projectTask.taskStatus, 'project_status', '')}
+                    ${fns:getDictLabel(projectTask.taskStatus, 'project_task_status', '')}
             </td>
             <td>
                 <fmt:formatDate value="${projectTask.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
