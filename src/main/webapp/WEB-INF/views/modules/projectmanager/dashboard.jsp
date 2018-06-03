@@ -5,7 +5,7 @@
     <title>项目管理驾驶舱</title>
     <meta name="decorator" content="default"/>
     <%--<link href="${ctxStatic}/bootstrap/2.3.1/dashboard/bootstrap-responsive.min.css" type="text/css"--%>
-          <%--rel="stylesheet"/>--%>
+    <%--rel="stylesheet"/>--%>
     <link href="${ctxStatic}/bootstrap/2.3.1/dashboard/styles.css" type="text/css"
           rel="stylesheet"/>
 
@@ -14,7 +14,6 @@
         .square {
             width: 100px;
             height: 100px;
-            background: #7fee1d;
             -moz-border-radius: 50px;
             -webkit-border-radius: 50px;
             border-radius: 50px;
@@ -45,9 +44,47 @@
                         <div class="span2" style="width: 100px">
                             <div class="span">
                                 <a href="${ctx}/projectmanager/project/list?projectStatus=${s.key}">
-                                    <div class="square">
-                                        <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
-                                    </div>
+                                    <c:choose>
+                                        <c:when test="${s.key=='1'}">
+                                            <div class="square" style="background: #7fee1d;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${s.key=='2'}">
+                                            <div class="square" style="background: #ee731c;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${s.key=='3'}">
+                                            <div class="square" style="background: #ee4012;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${s.key=='4'}">
+                                            <div class="square" style="background: #ee467f;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${s.key=='5'}">
+                                            <div class="square" style="background: #ee2929;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${s.key=='6'}">
+                                            <div class="square" style="background: #1635ee;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:when test="${s.key=='7'}">
+                                            <div class="square" style="background: #1fee5a;">
+                                                <span style="height:100px; line-height:100px; display:block; color:#FFF; text-align:center">${s.value}</span>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </a>
                             </div>
                             <div style="width:120px;text-align: center ">
@@ -115,7 +152,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${noCompleteTaskList}" var="task" varStatus="status">
+                                    <c:forEach items="${noCompleteTaskList}" var="task"
+                                               varStatus="status">
                                         <tr>
                                             <td>${status.index+1}</td>
                                             <td>${task.projectName}</td>
