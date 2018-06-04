@@ -1,5 +1,5 @@
 {
-  "customer": "http://192.168.1.191:10081/",
+  "customer": "http://192.168.1.191:12000/customer",
   "contract": "http://192.168.1.191:12000/contract",
   "group": "http://192.168.1.191:12000/userGroup",
   "projectmanager": "http://192.168.1.191:10086"
