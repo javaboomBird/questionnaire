@@ -91,7 +91,7 @@ public class ${ClassName}ViewController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(${ClassName}Entity ${className}, HttpServletRequest request, HttpServletResponse response, Model model) {
 
-     Page<${ClassName}> page = new Page<>(request, response);
+     Page<${ClassName}Entity> page = new Page<>(request, response);
     ${ClassName} type = JsonUtils
         .toSimpleObject(JsonUtils.toJson(${className}), ${ClassName}.class);
 
@@ -106,8 +106,8 @@ public class ${ClassName}ViewController extends BaseController {
             apiBaseUrl + "/${urlPrefix}/api/list?pageNum={pageNum}&&pageSize={pageSize}",
             type, String.class, urlVariables);
 
-    PageInfo<${ClassName}> ${className}PageInfo = JsonUtils
-        .fromJson(pageResponseEntity.getBody(), PageInfo.class, ${ClassName}.class);
+    PageInfo<${ClassName}Entity> ${className}PageInfo = JsonUtils
+        .fromJson(pageResponseEntity.getBody(), PageInfo.class, ${ClassName}Entity.class);
 
 
     page.setCount(${className}PageInfo.getTotal());

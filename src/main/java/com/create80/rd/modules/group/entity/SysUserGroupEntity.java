@@ -12,7 +12,7 @@ import com.create80.rd.common.persistence.DataEntity;
  * 分组管理Entity
  *
  * @author yzx
- * @version 2018-05-31
+ * @version 2018-06-08
  */
 public class SysUserGroupEntity extends DataEntity<SysUserGroupEntity> {
 
@@ -20,6 +20,7 @@ public class SysUserGroupEntity extends DataEntity<SysUserGroupEntity> {
   private SysGroupEntity sysGroupEntity;    // 分组 父类
   private String userId;
   private User user;    // 用户
+  private String groupRole;    // 小组角色
 
   public SysUserGroupEntity() {
     super();
@@ -58,4 +59,14 @@ public class SysUserGroupEntity extends DataEntity<SysUserGroupEntity> {
   public void setUser(User user) {
     this.user = user;
   }
+
+  @Length(min = 0, max = 1, message = "小组角色长度必须介于 0 和 1 之间")
+  public String getGroupRole() {
+    return groupRole;
+  }
+
+  public void setGroupRole(String groupRole) {
+    this.groupRole = groupRole;
+  }
+
 }

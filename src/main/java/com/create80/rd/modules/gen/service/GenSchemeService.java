@@ -98,6 +98,9 @@ public class GenSchemeService extends BaseService {
   private String generateCode(GenScheme genScheme) {
 
     StringBuilder result = new StringBuilder();
+    if (StringUtils.isEmpty(genScheme.getSubModuleName())) {
+      genScheme.setSubModuleName("");
+    }
 
     // 查询主表及字段列
     GenTable genTable = genTableDao.get(genScheme.getGenTable().getId());

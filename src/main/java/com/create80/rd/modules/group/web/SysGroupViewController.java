@@ -4,7 +4,6 @@
 package com.create80.rd.modules.group.web;
 
 import com.create80.rd.modules.group.entity.SysUserGroupEntity;
-import com.create80.rd.modules.sys.service.UserService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -47,7 +46,7 @@ import com.create80.rd.modules.sys.service.OfficeService;
  * 分组管理Controller
  *
  * @author yzx
- * @version 2018-05-31
+ * @version 2018-06-08
  */
 @Controller
 @RequestMapping(value = "${adminPath}/group/sysGroup")
@@ -58,9 +57,6 @@ public class SysGroupViewController extends BaseController {
 
   @Autowired
   private OfficeService officeService;
-
-  @Autowired
-  private UserService userService;
 
   @ModelAttribute
   public SysGroupEntity get(@RequestParam(required = false) String id) {
@@ -75,15 +71,14 @@ public class SysGroupViewController extends BaseController {
               urlVariables);
 
       entity = JsonUtils.toSimpleObject(responseEntity.getBody(), SysGroupEntity.class);
-
       entity.setOffice(officeService.get(entity.getOfficeId()));
-    }
 
-    List<SysUserGroupEntity> sysUserGroupEntityList = entity.getSysUserGroupList();
-    if (sysUserGroupEntityList != null && sysUserGroupEntityList.size() > 0) {
-      sysUserGroupEntityList.stream().forEach(sysUserGroupEntity -> {
-        sysUserGroupEntity.setUser(userService.get(sysUserGroupEntity.getUserId()));
-      });
+      List<SysUserGroupEntity> sysUserGroupEntityList = entity.getSysUserGroupList();
+      if (sysUserGroupEntityList != null && sysUserGroupEntityList.size() > 0) {
+        sysUserGroupEntityList.stream().forEach(sysUserGroupEntity -> {
+          sysUserGroupEntity.setUser(UserUtils.get(sysUserGroupEntity.getUserId()));
+        });
+      }
     }
     return entity;
   }
@@ -111,11 +106,12 @@ public class SysGroupViewController extends BaseController {
         .fromJson(pageResponseEntity.getBody(), PageInfo.class, SysGroupEntity.class);
 
     List<SysGroupEntity> sysGroupEntityList = sysGroupPageInfo.getList();
-    if (sysGroupEntityList != null && sysGroupEntityList.size() > 0) {
+    if (sysGroupEntityList != null) {
       sysGroupEntityList.stream().forEach(sysGroupEntity -> {
         sysGroupEntity.setOffice(officeService.get(sysGroupEntity.getOfficeId()));
       });
     }
+
     page.setCount(sysGroupPageInfo.getTotal());
     page.setPageNo(sysGroupPageInfo.getPageNum());
     page.setList(sysGroupEntityList);
