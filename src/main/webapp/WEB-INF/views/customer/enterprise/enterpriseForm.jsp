@@ -105,8 +105,8 @@
 			<label class="control-label">注册日期：</label>
 			<div class="controls">
 				<input name="registeredDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${enterprise.registeredDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${enterprise.registeredDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -124,7 +124,7 @@
 		<div class="control-group">
 			<label class="control-label">区域：</label>
 			<div class="controls">
-				<sys:treeselect id="area" name="area.id" value="${enterprise.area.id}" labelName="area.name" labelValue="${enterprise.area.name}"
+				<sys:treeselect id="area" property="areaId" name="area.id" value="${enterprise.area.id}" labelName="area.name" labelValue="${enterprise.area.name}"
 					title="区域" url="/sys/area/treeData" cssClass="required" allowClear="true" notAllowSelectParent="true"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>

@@ -154,7 +154,7 @@
 		<div class="control-group">
 			<label class="control-label">区域ID：</label>
 			<div class="controls">
-				<sys:treeselect id="area" name="area.id" value="${government.area.id}" labelName="area.name" labelValue="${government.area.name}"
+				<sys:treeselect id="area" property="areaId" name="area.id" value="${government.area.id}" labelName="area.name" labelValue="${government.area.name}"
 					title="区域" url="/sys/area/treeData" cssClass="" allowClear="true" notAllowSelectParent="true"/>
 			</div>
 		</div>
