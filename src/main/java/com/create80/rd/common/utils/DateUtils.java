@@ -23,7 +23,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 
   public static final String DEFAULT_TIME_PATTERNS = "yyyy-MM-dd HH:mm:ss";
-  public static final String DEFAULT_DATE_PATTERNS = "yyyy-MM-dd";
+  public static final String DEFAULT_DAY_PATTERNS = "yyyy-MM-dd";
 
   /**
    * 得到当前日期字符串 格式（yyyy-MM-dd）

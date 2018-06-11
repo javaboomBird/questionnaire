@@ -3,6 +3,7 @@ package com.create80.rd.common.filter;
 import com.create80.rd.common.utils.DateUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import javax.servlet.ServletRequest;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -16,10 +17,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ServletModelAttribu
 
 /**
  * 使用过滤器/拦截器把空字符串设置成null
+ *
  * @author yzx
  */
 public class EmptyStringToNullArgumentResolver extends
-    ServletModelAttributeMethodProcessor  {
+    ServletModelAttributeMethodProcessor {
 
 
   /**
@@ -33,10 +35,18 @@ public class EmptyStringToNullArgumentResolver extends
 
   @Override
   protected void bindRequestParameters(WebDataBinder binder, NativeWebRequest request) {
-    EmptyStringToNullRequestDataBinder toNullRequestDataBinderBinder = new EmptyStringToNullRequestDataBinder(binder.getTarget(), binder.getObjectName());
+    EmptyStringToNullRequestDataBinder toNullRequestDataBinderBinder = new EmptyStringToNullRequestDataBinder(
+        binder.getTarget(), binder.getObjectName());
 
-    toNullRequestDataBinderBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat(DateUtils.DEFAULT_TIME_PATTERNS), true));
-    toNullRequestDataBinderBinder.registerCustomEditor(Date.class,new CustomDateEditor(new SimpleDateFormat(DateUtils.DEFAULT_DATE_PATTERNS), true));
+    SimpleDateFormat timeDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_TIME_PATTERNS);
+    timeDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+    toNullRequestDataBinderBinder
+        .registerCustomEditor(Date.class, new CustomDateEditor(timeDateFormat, true));
+
+    SimpleDateFormat dayDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_DAY_PATTERNS);
+    dayDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+    toNullRequestDataBinderBinder
+        .registerCustomEditor(Date.class, new CustomDateEditor(dayDateFormat, true));
     ServletRequest servletRequest = request.getNativeRequest(ServletRequest.class);
     toNullRequestDataBinderBinder.bind(servletRequest);
   }

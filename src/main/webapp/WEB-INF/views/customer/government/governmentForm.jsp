@@ -165,7 +165,7 @@
 						<thead>
 							<tr>
 								<th class="hide"></th>
-								<th>联系人类型</th>
+								<%--<th>联系人类型</th>--%>
 								<th>联系人</th>
 								<th>职务</th>
 								<th>电话</th>
@@ -186,14 +186,14 @@
 								<input id="contactList{{idx}}_id" name="contactList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
 								<input id="contactList{{idx}}_delFlag" name="contactList[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
-							<td>
-								<select id="contactList{{idx}}_customerType" name="contactList[{{idx}}].customerType" data-value="{{row.customerType}}" class="input-small required">
-									<option value=""></option>
-									<c:forEach items="${fns:getDictList('customer_type')}" var="dict">
-										<option value="${dict.value}">${dict.label}</option>
-									</c:forEach>
-								</select>
-							</td>
+							<%--<td>--%>
+								<%--<select id="contactList{{idx}}_customerType" name="contactList[{{idx}}].customerType" data-value="{{row.customerType}}" class="input-small required">--%>
+									<%--<option value=""></option>--%>
+									<%--<c:forEach items="${fns:getDictList('customer_type')}" var="dict">--%>
+										<%--<option value="${dict.value}">${dict.label}</option>--%>
+									<%--</c:forEach>--%>
+								<%--</select>--%>
+							<%--</td>--%>
 							<td>
 								<input id="contactList{{idx}}_name" name="contactList[{{idx}}].name" type="text" value="{{row.name}}" maxlength="32" class="input-small "/>
 							</td>

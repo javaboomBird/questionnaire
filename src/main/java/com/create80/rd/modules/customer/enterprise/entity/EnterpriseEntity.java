@@ -3,6 +3,8 @@
  */
 package com.create80.rd.modules.customer.enterprise.entity;
 
+import com.create80.rd.modules.customer.government.entity.ContactEntity;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -43,6 +45,8 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
   private String taxPhone;    // 开票电话
   private String recyclingType;    // 回用类型
   private String statusType;    // 企业状态
+
+  private List<ContactEntity> contactList = Lists.newArrayList();    // 子表列表
   private List<EnterpriseBusinessTypeRelationEntity> enterpriseBusinessTypeRelationList = Lists
       .newArrayList();    // 子表列表
   private List<EnterpriseIndustryTypeRelationEntity> enterpriseIndustryTypeRelationList = Lists
@@ -277,5 +281,14 @@ public class EnterpriseEntity extends DataEntity<EnterpriseEntity> {
   public void setEnterprisePollutionTypeRelationList(
       List<EnterprisePollutionTypeRelationEntity> enterprisePollutionTypeRelationList) {
     this.enterprisePollutionTypeRelationList = enterprisePollutionTypeRelationList;
+  }
+
+  public List<ContactEntity> getContactList() {
+    return contactList;
+  }
+
+  public void setContactList(
+      List<ContactEntity> contactList) {
+    this.contactList = contactList;
   }
 }
