@@ -16,16 +16,14 @@ destroy-job:
       - '194'
   stage: destroy
   script:
-    - pwd
-    - cd $DEPLOY_HOME
-    - $DEPLOY_HOME/bin/shutdown.sh
+    - su -c '$DEPLOY_HOME/bin/shutdown.sh'
   allow_failure: true
 deploy-job:
   tags:
       - '194'
   stage: deploy
   script:
-    - $DEPLOY_HOME/bin/shutdown.sh
-    - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
-    - cp ra-operations-management.war $DEPLOY_HOME/webapp/
-    - $DEPLOY_HOME/bin/startup.sh
+    - su -c '$DEPLOY_HOME/bin/shutdown.sh'
+    - su -c 'rm -rf $DEPLOY_HOME/webapp/ra-operations-management*'
+    - su -c 'cp ra-operations-management.war $DEPLOY_HOME/webapp/'
+    - su -c '$DEPLOY_HOME/bin/startup.sh'
