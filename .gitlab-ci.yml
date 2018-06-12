@@ -20,8 +20,10 @@ destroy-job:
   allow_failure: true
 deploy-job:
   tags:
-      - 194
+    - 194
   stage: deploy
+  only:
+    - master
   script:
     - $DEPLOY_HOME/bin/shutdown.sh
     - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
