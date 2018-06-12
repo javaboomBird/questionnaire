@@ -1,23 +1,29 @@
 variables:
-  DEPLOY_HOME: /root/apache-tomcat-7.0.88
-  APPLICATION_NAME: ra-operations-management
+  SERVICE_NAME: ra-service-user-group
 stages:
   - build
   - destroy
   - deploy
-
-job 1:
+build-job:
+  tags:
+      - swarm
   stage: build
   script:
-    - mvn clean install
+    - docker-compose build --force-rm
+    - docker login -u admin -p admin123 192.168.1.182:9002
+    - docker push 192.168.1.182:9002/$SERVICE_NAME:latest
+destroy-job:
   tags:
-    - 194
-
-job 3:
+      - swarm
   stage: destroy
-  script: make test
-
-job 4:
+  script:
+    - docker stack rm $SERVICE_NAME
+  allow_failure: true
+deploy-job:
+  tags:
+    - swarm
   stage: deploy
-  script: make deploy
-
+  only:
+    - master
+  script:
+    - env $(cat .env | xargs) docker stack deploy -c docker-compose.yml --with-registry-auth $SERVICE_NAME
