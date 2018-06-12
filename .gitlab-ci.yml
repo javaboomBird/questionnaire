@@ -3,29 +3,9 @@ variables:
   APPLICATION_NAME: ra-operations-management
 stages:
   - build
-  - destroy
-  - deploy
 build-job:
   tags:
       - 194
   stage: build
   script:
     - mvn clean install
-destroy-job:
-  tags:
-      - 194
-  stage: destroy
-  script:
-    - $DEPLOY_HOME/bin/shutdown.sh
-  allow_failure: true
-deploy-job:
-  tags:
-    - 194
-  stage: deploy
-  only:
-    - master
-  script:
-    - $DEPLOY_HOME/bin/shutdown.sh
-    - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
-    - cp ra-operations-management.war $DEPLOY_HOME/webapp/
-    - $DEPLOY_HOME/bin/startup.sh
