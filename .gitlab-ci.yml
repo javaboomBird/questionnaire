@@ -7,9 +7,11 @@ stages:
   - deploy
 
 job 1:
-  stage: build
   tags:
-    - 194
+      - 194
+  stage: build
+  script:
+    - mvn clean install
 
 job 3:
   stage: destroy
