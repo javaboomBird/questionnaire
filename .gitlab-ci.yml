@@ -16,7 +16,7 @@ destroy-job:
       - '194'
   stage: destroy
   script:
-    - su -c '$DEPLOY_HOME/bin/shutdown.sh'
+    - expect su -c '$DEPLOY_HOME/bin/shutdown.sh' {send '123456'}
   allow_failure: true
 deploy-job:
   tags:
