@@ -10,6 +10,8 @@ job 1:
   stage: build
   script:
     - mvn clean install
+  tags:
+    - 194
 
 job 3:
   stage: destroy
