@@ -8,7 +8,8 @@ stages:
 
 job 1:
   stage: build
-  script: make build dependencies
+  tags: 
+    - 194
 
 job 3:
   stage: destroy
