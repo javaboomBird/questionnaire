@@ -10,7 +10,7 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 合同商品管理Entity
  * @author lzp
- * @version 2018-05-31
+ * @version 2018-06-12
  */
 public class GoodPicEntity extends DataEntity<GoodPicEntity> {
 	

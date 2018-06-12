@@ -38,6 +38,7 @@
 			<tr>
 				<th>商品编号</th>
 				<th>商品名称</th>
+				<th>商品单位</th>
 				<th>商品型号</th>
 				<th>商品类型</th>
 				<th>生产厂商</th>
@@ -58,6 +59,9 @@
 				</a></td>
 				<td>
 					${good.name}
+				</td>
+				<td>
+					${good.unit}
 				</td>
 				<td>
 					${good.model}

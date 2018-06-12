@@ -14,7 +14,7 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 合同管理Entity
  * @author lzp
- * @version 2018-05-31
+ * @version 2018-06-12
  */
 public class ContractEntity extends DataEntity<ContractEntity> {
 	
@@ -28,10 +28,10 @@ public class ContractEntity extends DataEntity<ContractEntity> {
 	      private String type;		// 合同类别
 	      private String level;		// 合同级别
 	      private Double contractTotalPrice;		// 合同总价
-	      private Double projectTotalPrice;		// 总价
+	      private Double projectTotalPrice;		// 工程总价
 	      private Double maintainTotalPrice;		// 维护总价
-	      private Date signingDate;		// 签订时间
-	      private Date validDate;		// 生效时间
+	      private Date signingDate;		// 签订日期
+	      private Date validDate;		// 生效日期
 	      private String firstParty;		// 甲方
 	      private String firstPartyContact;		// 甲方联系人
 	      private String firstPartyContactPhone;		// 甲方联系人电话
@@ -43,8 +43,8 @@ public class ContractEntity extends DataEntity<ContractEntity> {
 	      private String thirdPartyContactPhone;		// 丙方联系人电话
 	      private String deliveryPlace;		// 交付地点
 	      private String serviceTerm;		// 服务期限
-	      private Date serviceStartDate;		// 服务开始时间
-	      private Date serviceEndDate;		// 服务结束时间
+	      private Date serviceStartDate;		// 服务开始日期
+	      private Date serviceEndDate;		// 服务结束日期
 	      private String agent;		// 经办人
 	private List<ContractAttachmentEntity> contractAttachmentList = Lists.newArrayList();		// 子表列表
 	private List<ContractGoodEntity> contractGoodList = Lists.newArrayList();		// 子表列表

@@ -43,7 +43,7 @@ import com.create80.rd.modules.contract.api.model.Contract;
 /**
  * 合同管理Controller
  * @author lzp
- * @version 2018-05-31
+ * @version 2018-06-12
  */
 @Controller
 @RequestMapping(value = "${adminPath}/contract/contract")
@@ -75,7 +75,7 @@ public class ContractViewController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(ContractEntity contract, HttpServletRequest request, HttpServletResponse response, Model model) {
 
-     Page<Contract> page = new Page<>(request, response);
+     Page<ContractEntity> page = new Page<>(request, response);
     Contract type = JsonUtils
         .toSimpleObject(JsonUtils.toJson(contract), Contract.class);
 
@@ -90,8 +90,8 @@ public class ContractViewController extends BaseController {
             apiBaseUrl + "/contract/contract/api/list?pageNum={pageNum}&&pageSize={pageSize}",
             type, String.class, urlVariables);
 
-    PageInfo<Contract> contractPageInfo = JsonUtils
-        .fromJson(pageResponseEntity.getBody(), PageInfo.class, Contract.class);
+    PageInfo<ContractEntity> contractPageInfo = JsonUtils
+        .fromJson(pageResponseEntity.getBody(), PageInfo.class, ContractEntity.class);
 
 
     page.setCount(contractPageInfo.getTotal());

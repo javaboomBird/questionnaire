@@ -12,13 +12,14 @@ import com.create80.rd.common.persistence.DataEntity;
 /**
  * 合同商品管理Entity
  * @author lzp
- * @version 2018-05-31
+ * @version 2018-06-12
  */
 public class GoodEntity extends DataEntity<GoodEntity> {
 	
 	private static final long serialVersionUID = 1L;
 	      private String no;		// 商品编号
 	      private String name;		// 商品名称
+	      private String unit;		// 商品单位
 	      private String model;		// 商品型号
 	      private String type;		// 商品类型
 	      private String manufacturer;		// 生产厂商
@@ -52,6 +53,15 @@ public class GoodEntity extends DataEntity<GoodEntity> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	     @Length(min=0, max=32, message="商品单位长度必须介于 0 和 32 之间")
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 	
 	     @Length(min=0, max=128, message="商品型号长度必须介于 0 和 128 之间")

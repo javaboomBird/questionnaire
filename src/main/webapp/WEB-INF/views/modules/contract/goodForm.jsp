@@ -79,6 +79,12 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">商品单位：</label>
+			<div class="controls">
+				<form:input path="unit" htmlEscape="false" maxlength="32" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">商品型号：</label>
 			<div class="controls">
 				<form:input path="model" htmlEscape="false" maxlength="128" class="input-xlarge "/>

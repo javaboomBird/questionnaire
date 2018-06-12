@@ -113,7 +113,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">总价：</label>
+			<label class="control-label">工程总价：</label>
 			<div class="controls">
 				<form:input path="projectTotalPrice" htmlEscape="false" class="input-xlarge  number"/>
 			</div>
@@ -125,19 +125,19 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">签订时间：</label>
+			<label class="control-label">签订日期：</label>
 			<div class="controls">
 				<input name="signingDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${contract.signingDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${contract.signingDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">生效时间：</label>
+			<label class="control-label">生效日期：</label>
 			<div class="controls">
 				<input name="validDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${contract.validDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${contract.validDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -207,19 +207,19 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">服务开始时间：</label>
+			<label class="control-label">服务开始日期：</label>
 			<div class="controls">
 				<input name="serviceStartDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${contract.serviceStartDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${contract.serviceStartDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">服务结束时间：</label>
+			<label class="control-label">服务结束日期：</label>
 			<div class="controls">
 				<input name="serviceEndDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${contract.serviceEndDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${contract.serviceEndDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">

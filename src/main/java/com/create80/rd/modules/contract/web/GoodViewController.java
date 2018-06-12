@@ -43,7 +43,7 @@ import com.create80.rd.modules.contract.api.model.Good;
 /**
  * 合同商品管理Controller
  * @author lzp
- * @version 2018-05-31
+ * @version 2018-06-12
  */
 @Controller
 @RequestMapping(value = "${adminPath}/contract/good")
@@ -75,7 +75,7 @@ public class GoodViewController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(GoodEntity good, HttpServletRequest request, HttpServletResponse response, Model model) {
 
-     Page<Good> page = new Page<>(request, response);
+     Page<GoodEntity> page = new Page<>(request, response);
     Good type = JsonUtils
         .toSimpleObject(JsonUtils.toJson(good), Good.class);
 
@@ -90,8 +90,8 @@ public class GoodViewController extends BaseController {
             apiBaseUrl + "/contract/good/api/list?pageNum={pageNum}&&pageSize={pageSize}",
             type, String.class, urlVariables);
 
-    PageInfo<Good> goodPageInfo = JsonUtils
-        .fromJson(pageResponseEntity.getBody(), PageInfo.class, Good.class);
+    PageInfo<GoodEntity> goodPageInfo = JsonUtils
+        .fromJson(pageResponseEntity.getBody(), PageInfo.class, GoodEntity.class);
 
 
     page.setCount(goodPageInfo.getTotal());
