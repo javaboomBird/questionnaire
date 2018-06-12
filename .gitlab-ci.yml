@@ -7,20 +7,20 @@ stages:
   - deploy
 build-job:
   tags:
-      - 194
+      - '194'
   stage: build
   script:
     - mvn clean install
 destroy-job:
   tags:
-      - 194
+      - '194'
   stage: destroy
   script:
     - $DEPLOY_HOME/bin/shutdown.sh
   allow_failure: true
 deploy-job:
   tags:
-      - 194
+      - '194'
   stage: deploy
   script:
     - $DEPLOY_HOME/bin/shutdown.sh
