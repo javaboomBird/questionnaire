@@ -3,7 +3,7 @@ variables:
   APPLICATION_NAME: ra-operations-management
 stages:
   - build
-build-job:
+job1:
   tags:
     - 194
   stage: build
