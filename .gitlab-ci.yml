@@ -6,7 +6,7 @@ stages:
   - deploy
 build-job:
   tags:
-      - swarm
+      - 194
   stage: build
   script:
     - docker-compose build --force-rm
@@ -14,14 +14,14 @@ build-job:
     - docker push 192.168.1.182:9002/$SERVICE_NAME:latest
 destroy-job:
   tags:
-      - swarm
+      - 194
   stage: destroy
   script:
     - docker stack rm $SERVICE_NAME
   allow_failure: true
 deploy-job:
   tags:
-    - swarm
+    - 194
   stage: deploy
   only:
     - master
