@@ -7,8 +7,6 @@ stages:
   - deploy
 
 job 1:
-  tags:
-      - 194
   stage: build
   script:
     - mvn clean install
