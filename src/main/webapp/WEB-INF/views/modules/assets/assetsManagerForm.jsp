@@ -4,6 +4,7 @@
 <head>
     <title>资产管理管理</title>
     <meta name="decorator" content="default"/>
+    <%--<script type="text/javascript" src="${ctxStatic}/jquery-qrcode/jquery.print.jss"></script>--%>
     <script type="text/javascript">
     $(document).ready(function () {
       //$("#name").focus();
@@ -127,6 +128,7 @@
             </form:select>
             <span class="help-inline"><font color="red">*</font> </span>
         </div>
+
     </div>
 
     <div class="control-group">
@@ -241,7 +243,8 @@
             <div class="control-group" id="div_office_department">
                 <label class="control-label">资产使用部门：</label>
                 <div class="controls">
-                    <select id="assetsUseDepartment" name="assetsUseDepartment" class="input-xlarge required">
+                    <select id="assetsUseDepartment" name="assetsUseDepartment"
+                            class="input-xlarge required">
                         <option value="">请选择</option>
                         <c:forEach items="${allOfficeList}" var="office">
                             <c:if test="${assetsManager.assetsUseDepartment==office.id}">
@@ -299,7 +302,8 @@
         <div class="control-group" id="div_plate_number">
             <label class="control-label">车牌号：</label>
             <div class="controls">
-                <form:input path="plateNumber" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+                <form:input path="plateNumber" htmlEscape="false" maxlength="64"
+                            class="input-xlarge "/>
             </div>
         </div>
     </c:if>
@@ -307,11 +311,12 @@
         <div class="control-group" id="div_plate_number" style="display:none;">
             <label class="control-label">车牌号：</label>
             <div class="controls">
-                <form:input path="plateNumber" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+                <form:input path="plateNumber" htmlEscape="false" maxlength="64"
+                            class="input-xlarge "/>
             </div>
         </div>
     </c:if>
-   
+
     <div class="control-group">
         <label class="control-label">资产负责人：</label>
         <div class="controls">

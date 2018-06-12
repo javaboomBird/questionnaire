@@ -4,6 +4,8 @@
 <head>
     <title>资产管理管理</title>
     <meta name="decorator" content="default"/>
+    <script type="text/javascript" src="${ctxStatic}/jquery-qrcode/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/jquery-qrcode/jquery.print.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
 
@@ -14,6 +16,19 @@
       $("#pageSize").val(s);
       $("#searchForm").submit();
       return false;
+    }
+
+    /**
+     * 显示二维码界面
+     * @param managerId
+     */
+    function showQcode(managerId) {
+
+      $.jBox("iframe:${ctx}/assets/assetsManager/showQcode?id=" + managerId, {
+        title: '查看二维码', width: 1000,
+        height: 400,
+        buttons: { '关闭': true }
+      });
     }
     </script>
 </head>
@@ -101,16 +116,21 @@
                     ${assetsManager.manager.name}
             </td>
             <shiro:hasPermission name="assets:assetsManager:edit">
-                <td>
-                    <a href="${ctx}/assets/assetsManager/form?id=${assetsManager.id}">修改</a>
-                    <a href="${ctx}/assets/assetsManager/delete?id=${assetsManager.id}"
-                       onclick="return confirmx('确认要删除该资产管理吗？', this.href)">删除</a>
-                </td>
-            </shiro:hasPermission>
+            <td>
+                <a href="${ctx}/assets/assetsManager/form?id=${assetsManager.id}">修改</a>
+                <a href="${ctx}/assets/assetsManager/delete?id=${assetsManager.id}"
+                   onclick="return confirmx('确认要删除该资产管理吗？', this.href)">删除</a>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="assets:assetsManager:view">
+                    <a href="javascript:void(0);"
+                       onclick="showQcode('${assetsManager.id}');">查看二维码</a>
+                </shiro:hasPermission>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 <div class="pagination">${page}</div>
+
 </body>
 </html>
