@@ -5,7 +5,7 @@ stages:
   - build
 build-job:
   tags:
-      - 194
+    - 194
   stage: build
   script:
     - mvn clean install
