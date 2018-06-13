@@ -9,10 +9,10 @@ deploy-job:
   stage: deploy
   script:
     - mvn clean package
-    - ll target
+    - ls -l target
     - $DEPLOY_HOME/bin/shutdown.sh
     - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
-    - ll target
+    - ls -l target
     - cp target/ra-operations-management.war $DEPLOY_HOME/webapp/
-    - ll target
+    - ls -l target
     - $DEPLOY_HOME/bin/startup.sh
