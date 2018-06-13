@@ -1,5 +1,5 @@
 variables:
-  DEPLOY_HOME: /root/apache-tomcat-7.0.88
+  DEPLOY_HOME: /home/gitlab-runner/apache-tomcat-7.0.88
   APPLICATION_NAME: ra-operations-management
 stages:
   - build
