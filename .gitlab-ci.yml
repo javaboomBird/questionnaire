@@ -10,6 +10,6 @@ deploy-job:
   script:
     - mvn clean package
     - $DEPLOY_HOME/bin/shutdown.sh
-    - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
+    - rm -rf $DEPLOY_HOME/webapps/ra-operations-management*
     - cp target/ra-operations-management.war $DEPLOY_HOME/webapps/
     - $DEPLOY_HOME/bin/startup.sh
