@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>viewForm</name>
-	<filePath>src/main/webapp/WEB-INF/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
-	<fileName>${className}Form.jsp</fileName>
-	<content><![CDATA[
+  <name>viewForm</name>
+  <filePath>src/main/webapp/WEB-INF/views/${lastPackageName}/${moduleName}/${subModuleName}
+  </filePath>
+  <fileName>${className}Form.jsp</fileName>
+  <content><![CDATA[
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
@@ -36,6 +37,7 @@
 			}));
 			$(list+idx).find("select").each(function(){
 				$(this).val($(this).attr("data-value"));
+				$(this).select2();
 			});
 			$(list+idx).find("input[type='checkbox'], input[type='radio']").each(function(){
 				var ss = $(this).attr("data-value").split(',');
@@ -218,5 +220,5 @@
 	</form:form>
 </body>
 </html>]]>
-	</content>
+  </content>
 </template>
