@@ -10,7 +10,7 @@ build-job:
       - '194'
   stage: build
   script:
-    - mvn clean install
+    - mvn clean package
 destroy-job:
   tags:
       - '194'
@@ -25,5 +25,5 @@ deploy-job:
   script:
     - $DEPLOY_HOME/bin/shutdown.sh
     - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
-    - cp ra-operations-management.war $DEPLOY_HOME/webapp/
+    - cp target/ra-operations-management.war $DEPLOY_HOME/webapp/
     - $DEPLOY_HOME/bin/startup.sh
