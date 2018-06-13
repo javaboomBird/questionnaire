@@ -25,9 +25,43 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>合同项目名称：</label>
+            <li>
+                <label>项目名称：</label>
 				<form:input path="projectName" htmlEscape="false" maxlength="128" class="input-medium"/>
 			</li>
+            <li>
+                <label>合同状态: </label> <form:select
+                    path="status"
+                    class="input-medium"> <form:option
+                    value=""
+                    label="请选择"/> <form:options
+                    items="${fns:getDictList('ecm_contract_status')}"
+                    itemLabel="label"
+                    itemValue="value"
+                    htmlEscape="false"/> </form:select>
+            </li>
+            <li>
+                <label>合同类别: </label> <form:select
+                    path="type"
+                    class="input-medium"> <form:option
+                    value=""
+                    label="请选择"/> <form:options
+                    items="${fns:getDictList('ecm_contract_type')}"
+                    itemLabel="label"
+                    itemValue="value"
+                    htmlEscape="false"/> </form:select>
+            </li>
+            <li>
+                <label>合同级别: </label> <form:select
+                    path="level"
+                    class="input-medium"> <form:option
+                    value=""
+                    label="请选择"/> <form:options
+                    items="${fns:getDictList('ecm_contract_level')}"
+                    itemLabel="label"
+                    itemValue="value"
+                    htmlEscape="false"/> </form:select>
+            </li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
