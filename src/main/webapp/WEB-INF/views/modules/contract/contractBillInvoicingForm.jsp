@@ -65,7 +65,7 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">合同 id：</label>
+			<label class="control-label">合同名称：</label>
 			<div class="controls">
         <sys:dynamicselect url="{contract}/contract/contract/api/getAll" cssClass="input-medium " id="contractId" name="contractId" valueProperty="id" textProperty="projectName" />
 			</div>

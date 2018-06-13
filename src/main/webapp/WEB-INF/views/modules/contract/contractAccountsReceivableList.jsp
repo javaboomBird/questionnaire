@@ -25,6 +25,15 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li>
+				<label class="control-label">合同名称：</label> <sys:dynamicselect
+					url="{contract}/contract/contract/api/getAll"
+					cssClass="input-xlarge"
+					id="contractId"
+					name="contractId"
+					valueProperty="id"
+					textProperty="projectName"/>
+			</li>
 			<li><label>应收款名称：</label>
 				<form:input path="name" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
