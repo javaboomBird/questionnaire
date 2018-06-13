@@ -25,5 +25,5 @@ deploy-job:
   script:
     - $DEPLOY_HOME/bin/shutdown.sh
     - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
-    - cp target/ra-operations-management.war $DEPLOY_HOME/webapp/
+    - cp ./target/ra-operations-management.war $DEPLOY_HOME/webapp/
     - $DEPLOY_HOME/bin/startup.sh
