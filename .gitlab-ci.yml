@@ -1,6 +1,7 @@
 variables:
   DEPLOY_HOME: /home/gitlab-runner/apache-tomcat-7.0.88
   APPLICATION_NAME: ra-operations-management
+  TEMP_HOME: /home/gitlab-runner/tmp
 stages:
   - build
   - destroy
@@ -11,6 +12,8 @@ build-job:
   stage: build
   script:
     - mvn clean package
+    - mkdir -p /home/gitlab-runner/tmp
+    - cp target/ra-operations-management.war $TEMP_HOME
 destroy-job:
   tags:
       - '194'
@@ -25,6 +28,5 @@ deploy-job:
   script:
     - $DEPLOY_HOME/bin/shutdown.sh
     - rm -rf $DEPLOY_HOME/webapp/ra-operations-management*
-    - pwd
-    - cp target/ra-operations-management.war $DEPLOY_HOME/webapp/
+    - cp $TEMP_HOME/ra-operations-management.war $DEPLOY_HOME/webapp/
     - $DEPLOY_HOME/bin/startup.sh
