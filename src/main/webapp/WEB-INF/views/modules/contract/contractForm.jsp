@@ -49,12 +49,18 @@
           type: "GET",
           data: { "id": goodId },
           success: function (data) {
-            console.log(data);
             if (data != null) {
               $("#contractGoodList" + idx + "_sellingPrice").val(data.tagPrice)
             }
           }
         });
+      })
+      $(list + idx + "_sellingQuantity").change(function () {
+        var quantity = $(list + idx + "_sellingQuantity").val();
+        var singlePrice = $("#contractGoodList" + idx + "_sellingPrice").val();
+        console.log(quantity)
+        console.log(singlePrice)
+        $(list + idx + "_totalPrice").val(quantity * singlePrice);
       })
     }
 
