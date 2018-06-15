@@ -88,15 +88,6 @@ public class ProjectViewController extends BaseController {
   public String list(ProjectEntity project, HttpServletRequest request,
       HttpServletResponse response, Model model) {
 
-    if (StringUtils.isEmpty(project.getProjectName())) {
-      project.setProjectName(null);
-    }
-    if (StringUtils.isEmpty(project.getProjectCode())) {
-      project.setProjectCode(null);
-    }
-    if (StringUtils.isEmpty(project.getProjectStatus())) {
-      project.setProjectStatus(null);
-    }
     Page<Project> page = new Page<>(request, response);
     Project type = JsonUtils
         .toSimpleObject(JsonUtils.toJson(project), Project.class);
