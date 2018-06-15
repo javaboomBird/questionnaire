@@ -4,6 +4,8 @@
 package com.create80.rd.common.utils;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -22,8 +24,10 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
       "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
 
 
-  public static final String DEFAULT_TIME_PATTERNS = "yyyy-MM-dd HH:mm:ss";
-  public static final String DEFAULT_DAY_PATTERNS = "yyyy-MM-dd";
+  public static final String DEFAULT_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+  public static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";
+  public static final String DEFAULT_MONTH_PATTERN = "yyyy-MM";
+  public static final String DEFAULT_TIME_PATTERN = "HH:mm:ss";
 
   /**
    * 得到当前日期字符串 格式（yyyy-MM-dd）
@@ -129,7 +133,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
    * 获取过去的天数
    */
   public static long pastDays(Date date) {
-    long t = new Date().getTime() - date.getTime();
+    long t = System.currentTimeMillis() - date.getTime();
     return t / (24 * 60 * 60 * 1000);
   }
 
@@ -137,7 +141,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
    * 获取过去的小时
    */
   public static long pastHour(Date date) {
-    long t = new Date().getTime() - date.getTime();
+    long t = System.currentTimeMillis() - date.getTime();
     return t / (60 * 60 * 1000);
   }
 
@@ -145,8 +149,18 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
    * 获取过去的分钟
    */
   public static long pastMinutes(Date date) {
-    long t = new Date().getTime() - date.getTime();
+    long t = System.currentTimeMillis() - date.getTime();
     return t / (60 * 1000);
+  }
+
+  public static Date getFirstDayOfMonth(long time) {
+    //获取当前月第一天：
+    Calendar c = Calendar.getInstance();
+    c.setTimeInMillis(time);
+    c.add(Calendar.MONTH, 0);
+    //设置为1号,当前日期既为本月第一天
+    c.set(Calendar.DAY_OF_MONTH, 1);
+    return c.getTime();
   }
 
   /**
@@ -176,9 +190,6 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
    * @throws ParseException
    */
   public static void main(String[] args) throws ParseException {
-//		System.out.println(formatDate(parseDate("2010/3/6")));
-//		System.out.println(getDate("yyyy年MM月dd日 E"));
-//		long time = new Date().getTime()-parseDate("2012-11-19").getTime();
-//		System.out.println(time/(24*60*60*1000));
+    System.out.println(formatDate(getFirstDayOfMonth(System.currentTimeMillis())));
   }
 }
