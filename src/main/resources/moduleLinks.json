@@ -5,5 +5,5 @@
   "projectmanager": "http://192.168.1.191:12000/project",
   "assets": "http://192.168.1.191:12000/assets",
   "authentication":"http://192.168.1.191:12000/authentication",
-  "inspection":"http://127.0.0.1:8081/"
+  "inspection": "http://192.168.1.191:12000/inspection"
 }
