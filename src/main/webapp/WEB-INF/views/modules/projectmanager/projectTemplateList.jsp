@@ -57,7 +57,7 @@
                     ${projectTemplate.templateName}
             </td>
             <td><a href="${ctx}/projectmanager/projectTemplate/form?id=${projectTemplate.id}">
-                <fmt:formatDate value="${projectTemplate.updateDate}"
+                <fmt:formatDate value="${projectTemplate.updateTime}"
                                 pattern="yyyy-MM-dd HH:mm:ss"/>
             </a></td>
             <td>

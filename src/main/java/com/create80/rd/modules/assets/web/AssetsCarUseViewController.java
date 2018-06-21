@@ -149,11 +149,11 @@ public class AssetsCarUseViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), AssetsCarUse.class);
     Date now = new Date();
     if (isNewRecord) {
-      assetsCarUse.setCreateDate(now);
-      assetsCarUse.setCreateBy(user.getName());
+      assetsCarUse.setInsertTime(now);
+      assetsCarUse.setInsertBy(user.getName());
     }
     assetsCarUse.setUpdateBy(user.getName());
-    assetsCarUse.setUpdateDate(now);
+    assetsCarUse.setUpdateTime(now);
     return assetsCarUse;
   }
 

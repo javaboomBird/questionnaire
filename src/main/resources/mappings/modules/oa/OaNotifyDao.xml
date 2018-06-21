@@ -9,12 +9,12 @@
 		a.CONTENT AS "content",
 		a.FILES AS "files",
 		a.STATUS AS "status",
-		a.CREATE_BY AS "createBy.id",
-		a.CREATE_DATE AS "createDate",
+		a.INSERT_BY AS "insertBy.id",
+		a.INSERT_TIME AS "insertTime",
 		a.UPDATE_BY AS "updateBy.id",
-		a.UPDATE_DATE AS "updateDate",
+		a.UPDATE_TIME AS "updateTime",
 		a.REMARKS AS "remarks",
-		a.DEL_FLAG AS "delFlag",
+		a.is_deleted AS "isDeleted",
 	    b.read_num,
 	    b.un_read_num
 	</sql>
@@ -49,7 +49,7 @@
 		<if test="isSelf">
 			JOIN oa_notify_record r ON r.oa_notify_id = a.id AND r.user_id = #{currentUser.id}
 		</if>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="title != null and title != ''">
 			AND a.TITLE LIKE '%'||#{title}||'%'
 		</if>
@@ -62,7 +62,7 @@
 		<if test="isSelf">
 			AND a.STATUS = '1'
 		</if>
-		ORDER BY a.update_date DESC
+		ORDER BY a.update_time DESC
 	</select>
 	
 	<select id="findAllList" resultType="OaNotify">
@@ -70,8 +70,8 @@
 			<include refid="oaNotifyColumns"/>
 		FROM oa_notify a
 		<include refid="oaNotifyJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
-		ORDER BY a.update_date DESC
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
+		ORDER BY a.update_time DESC
 	</select>
 	
 	<select id="findCount" resultType="Long">
@@ -84,7 +84,7 @@
 					AND r.read_flag = #{readFlag}
 				</if>
 		</if>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="isSelf">
 			AND a.STATUS = '1'
 		</if>
@@ -98,12 +98,12 @@
 			CONTENT,
 			FILES,
 			STATUS,
-			CREATE_BY,
-			CREATE_DATE,
+			INSERT_BY,
+			INSERT_TIME,
 			UPDATE_BY,
-			UPDATE_DATE,
+			UPDATE_TIME,
 			REMARKS,
-			DEL_FLAG
+			is_deleted
 		) VALUES (
 			#{id},
 			#{type},
@@ -111,12 +111,12 @@
 			#{content},
 			#{files},
 			#{status},
-			#{createBy.id},
-			#{createDate},
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id},
-			#{updateDate},
+			#{updateTime},
 			#{remarks},
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -128,14 +128,14 @@
 			FILES = #{files},
 			STATUS = #{status},
 			UPDATE_BY = #{updateBy.id},
-			UPDATE_DATE = #{updateDate},
+			UPDATE_TIME = #{updateTime},
 			REMARKS = #{remarks}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
 		UPDATE oa_notify SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

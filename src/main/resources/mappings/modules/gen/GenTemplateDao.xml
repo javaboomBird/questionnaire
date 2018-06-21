@@ -23,14 +23,14 @@
 			<include refid="genTemplateColumns"/>
 		FROM gen_template a
 		<include refid="genTemplateJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="name != null and name != ''">
 			AND a.name LIKE '%'||#{name}||'%'
 		</if>
 		<if test="category != null and category != ''">
 			AND a.category LIKE '%'||#{category}||'%'
 		</if>
-		ORDER BY a.name, a.update_date DESC
+		ORDER BY a.name, a.update_time DESC
 	</select>
 	
 	<select id="findAllList" resultType="GenTemplate">
@@ -38,8 +38,8 @@
 			<include refid="genTemplateColumns"/>
 		FROM gen_template a
 		<include refid="genTemplateJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
-		ORDER BY a.name, a.update_date DESC
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
+		ORDER BY a.name, a.update_time DESC
 	</select>
 	
 	<insert id="insert">
@@ -50,12 +50,12 @@
 			file_path, 
 			file_name, 
 			content, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{name}, 
@@ -63,12 +63,12 @@
 			#{filePath},  
 			#{fileName},  
 			#{content},  
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -80,14 +80,14 @@
 			file_name = #{fileName},  
 			content = #{content},  
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
 		UPDATE gen_template SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

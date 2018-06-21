@@ -141,11 +141,11 @@ public class IndustryTypeViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source),  IndustryType.class);
     Date now = new Date();
     if (isNewRecord) {
-      industryType.setCreateDate(now);
-      industryType.setCreateBy(user.getName());
+      industryType.setInsertTime(now);
+      industryType.setInsertBy(user.getName());
     }
     industryType.setUpdateBy(user.getName());
-    industryType.setUpdateDate(now);
+    industryType.setUpdateTime(now);
     return industryType;
   }
 

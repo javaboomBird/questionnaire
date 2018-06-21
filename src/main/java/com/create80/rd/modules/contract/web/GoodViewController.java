@@ -149,11 +149,11 @@ public class GoodViewController extends BaseController {
     Good good = JsonUtils.toSimpleObject(JsonUtils.toJson(source), Good.class);
     Date now = DateUtils.getNow();
     if (isNewRecord) {
-      good.setCreateDate(now);
-      good.setCreateBy(user.getName());
+      good.setInsertTime(now);
+      good.setInsertBy(user.getName());
     }
     good.setUpdateBy(user.getName());
-    good.setUpdateDate(now);
+    good.setUpdateTime(now);
     return good;
   }
 

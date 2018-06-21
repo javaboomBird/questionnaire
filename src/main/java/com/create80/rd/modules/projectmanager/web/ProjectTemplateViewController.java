@@ -169,11 +169,11 @@ public class ProjectTemplateViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), ProjectTemplate.class);
     Date now = new Date();
     if (isNewRecord) {
-      projectTemplate.setCreateDate(now);
-      projectTemplate.setCreateBy(user.getName());
+      projectTemplate.setInsertTime(now);
+      projectTemplate.setInsertBy(user.getName());
     }
     projectTemplate.setUpdateBy(user.getName());
-    projectTemplate.setUpdateDate(now);
+    projectTemplate.setUpdateTime(now);
     return projectTemplate;
   }
 

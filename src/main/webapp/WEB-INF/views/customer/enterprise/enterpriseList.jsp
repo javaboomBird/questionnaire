@@ -48,7 +48,7 @@
 					${enterprise.enterpriseName}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${enterprise.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${enterprise.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${enterprise.remarks}

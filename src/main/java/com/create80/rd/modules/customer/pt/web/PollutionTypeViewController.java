@@ -142,11 +142,11 @@ public class PollutionTypeViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), PollutionType.class);
     Date now = new Date();
     if (isNewRecord) {
-      pollutionType.setCreateDate(now);
-      pollutionType.setCreateBy(user.getName());
+      pollutionType.setInsertTime(now);
+      pollutionType.setInsertBy(user.getName());
     }
     pollutionType.setUpdateBy(user.getName());
-    pollutionType.setUpdateDate(now);
+    pollutionType.setUpdateTime(now);
     return pollutionType;
   }
 

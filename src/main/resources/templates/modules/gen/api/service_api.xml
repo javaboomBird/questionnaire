@@ -28,7 +28,7 @@ import ${packageName}.${moduleName}.api.client<#if subModuleName != "">.${subMod
  * @version ${functionVersion}
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = true,rollbackFor = Exception.class)
 public class ${ClassName}Service {
 
    @Autowired
@@ -50,7 +50,7 @@ public class ${ClassName}Service {
      if (${className} == null) {
       ${className} = new ${ClassName}();
     }
-    ${className}.setDelFlag("0");
+    ${className}.setDelFlag("N");
     if (pageNum < 0 && pageSize < 0) {
       //查询全部
       PageHelper.startPage(pageNum, 0,true,null,true);
@@ -62,7 +62,7 @@ public class ${ClassName}Service {
 	}
 	
 
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public void save(${ClassName} ${className}) {
 		if (StringUtils.isNotEmpty(${className}.getId())) {
       ${className}Mapper.updateByPrimaryKey(${className});
@@ -72,9 +72,9 @@ public class ${ClassName}Service {
     }
 	}
 	
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public void delete(${ClassName} ${className}) {
-		${className}.setDelFlag("1");
+		${className}.setIsDeleted("Y");
     ${className}Mapper.updateByPrimaryKeySelective(${className});
 	}
 

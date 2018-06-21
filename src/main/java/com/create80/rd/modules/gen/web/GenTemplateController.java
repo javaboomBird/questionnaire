@@ -53,7 +53,7 @@ public class GenTemplateController extends BaseController {
 	public String list(GenTemplate genTemplate, HttpServletRequest request, HttpServletResponse response, Model model) {
 		User user = UserUtils.getUser();
 		if (!user.isAdmin()){
-			genTemplate.setCreateBy(user);
+			genTemplate.setInsertBy(user);
 		}
         Page<GenTemplate> page = genTemplateService.find(new Page<GenTemplate>(request, response), genTemplate); 
         model.addAttribute("page", page);

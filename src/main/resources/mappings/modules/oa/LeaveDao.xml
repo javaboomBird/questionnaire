@@ -4,14 +4,14 @@
 	
     <sql id="leaveColumns">
 		a.*,
-		u.id AS "createBy.id",
-		u.name AS "createBy.name",
-		o.id AS "createBy.office.id",
-		o.name AS "createBy.office.name"
+		u.id AS "insertBy.id",
+		u.name AS "insertBy.name",
+		o.id AS "insertBy.office.id",
+		o.name AS "insertBy.office.name"
 	</sql>
 	
 	<sql id="leaveJoins">
-		JOIN sys_user u ON u.id = a.create_by
+		JOIN sys_user u ON u.id = a.insert_by
 		JOIN sys_office o ON o.id = u.office_id
     </sql>
     
@@ -28,12 +28,12 @@
 			<include refid="leaveColumns"/>
 		FROM oa_leave a
 		<include refid="leaveJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="createDateStart != null">
-			AND a.create_date &gt;= #{createDateStart}
+			AND a.insert_time &gt;= #{createDateStart}
 		</if>
 		<if test="createDateEnd != null">
-			AND a.create_date &lt;= #{createDateEnd}
+			AND a.insert_time &lt;= #{createDateEnd}
 		</if>
 		<if test="leaveType != null and leaveType != ''">
 			AND a.leave_type = #{leaveType}
@@ -50,7 +50,7 @@
 			<include refid="leaveColumns"/>
 		FROM oa_leave a
 		<include refid="leaveJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		ORDER BY a.id DESC
 	</select>
 	
@@ -65,12 +65,12 @@
 			apply_time, 
 			reality_start_time, 
 			reality_end_time, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{processInstanceId}, 
@@ -78,15 +78,15 @@
 			#{endTime}, 
 			#{leaveType}, 
 			#{reason}, 
-			#{createDate}, 
+			#{insertTime},
 			#{realityStartTime}, 
 			#{realityEndTime}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -97,7 +97,7 @@
 			end_time = #{endTime}, 
 			reason = #{reason}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
@@ -107,7 +107,7 @@
 			reality_start_time = #{realityStartTime}, 
 			reality_end_time = #{realityEndTime}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
@@ -120,7 +120,7 @@
 	
 	<update id="delete">
 		UPDATE oa_leave SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

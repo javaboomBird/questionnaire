@@ -53,12 +53,12 @@
 			var delFlag = $(prefix+"_delFlag");
 			if (id.val() == ""){
 				$(obj).parent().parent().remove();
-			}else if(delFlag.val() == "0"){
-				delFlag.val("1");
+			}else if(delFlag.val() == "N"){
+				delFlag.val("Y");
 				$(obj).html("&divide;").attr("title", "撤销删除");
 				$(obj).parent().parent().addClass("error");
-			}else if(delFlag.val() == "1"){
-				delFlag.val("0");
+			}else if(delFlag.val() == "Y"){
+				delFlag.val("N");
 				$(obj).html("&times;").attr("title", "删除");
 				$(obj).parent().parent().removeClass("error");
 			}
@@ -145,7 +145,7 @@
 						<tr id="${child.className?uncap_first}List{{idx}}">
 							<td class="hide">
 								<input id="${child.className?uncap_first}List{{idx}}_id" name="${child.className?uncap_first}List[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="${child.className?uncap_first}List{{idx}}_delFlag" name="${child.className?uncap_first}List[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="${child.className?uncap_first}List{{idx}}_delFlag" name="${child.className?uncap_first}List[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<#list child.columnList as c>
 								<#if c.isEdit?? && c.isEdit == "1" && (c.isNotBaseField || c.simpleJavaField == 'remarks') && c.name != c.genTable.parentTableFk>

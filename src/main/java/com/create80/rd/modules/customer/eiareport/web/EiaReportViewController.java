@@ -149,11 +149,11 @@ public class EiaReportViewController extends BaseController {
     EiaReport eiaReport = JsonUtils.toSimpleObject(JsonUtils.toJson(source), EiaReport.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      eiaReport.setCreateDate(now);
-      eiaReport.setCreateBy(user.getName());
+      eiaReport.setInsertTime(now);
+      eiaReport.setInsertBy(user.getName());
     }
     eiaReport.setUpdateBy(user.getName());
-    eiaReport.setUpdateDate(now);
+    eiaReport.setUpdateTime(now);
     return eiaReport;
   }
 

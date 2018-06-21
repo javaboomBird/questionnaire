@@ -165,11 +165,11 @@ public class ${ClassName}ViewController extends BaseController {
     ${ClassName} ${className} = JsonUtils.toSimpleObject(JsonUtils.toJson(source), ${ClassName}.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      ${className}.setCreateDate(now);
-      ${className}.setCreateBy(user.getName());
+      ${className}.setInsertTime(now);
+      ${className}.setInsertBy(user.getName());
     }
     ${className}.setUpdateBy(user.getName());
-    ${className}.setUpdateDate(now);
+    ${className}.setUpdateTime(now);
     return ${className};
   }
 

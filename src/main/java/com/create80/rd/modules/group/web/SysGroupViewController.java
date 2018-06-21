@@ -167,11 +167,11 @@ public class SysGroupViewController extends BaseController {
     SysGroup sysGroup = JsonUtils.toSimpleObject(JsonUtils.toJson(source), SysGroup.class);
     Date now = DateUtils.getNow();
     if (isNewRecord) {
-      sysGroup.setCreateDate(now);
-      sysGroup.setCreateBy(user.getName());
+      sysGroup.setInsertTime(now);
+      sysGroup.setInsertBy(user.getName());
     }
     sysGroup.setUpdateBy(user.getName());
-    sysGroup.setUpdateDate(now);
+    sysGroup.setUpdateTime(now);
     return sysGroup;
   }
 

@@ -188,11 +188,11 @@ public class ProjectStageViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), ProjectStage.class);
     Date now = DateUtils.getNow();
     if (isNewRecord) {
-      projectStage.setCreateDate(now);
-      projectStage.setCreateBy(user.getName());
+      projectStage.setInsertTime(now);
+      projectStage.setInsertBy(user.getName());
     }
     projectStage.setUpdateBy(user.getName());
-    projectStage.setUpdateDate(now);
+    projectStage.setUpdateTime(now);
     return projectStage;
   }
 

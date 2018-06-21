@@ -141,11 +141,11 @@ public class BusinessTypeViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source),  BusinessType.class);
     Date now = new Date();
     if (isNewRecord) {
-      businessType.setCreateDate(now);
-      businessType.setCreateBy(user.getName());
+      businessType.setInsertTime(now);
+      businessType.setInsertBy(user.getName());
     }
     businessType.setUpdateBy(user.getName());
-    businessType.setUpdateDate(now);
+    businessType.setUpdateTime(now);
     return businessType;
   }
 

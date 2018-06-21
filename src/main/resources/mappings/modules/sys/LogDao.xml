@@ -5,20 +5,20 @@
 	<select id="findList" resultType="Log">
 		SELECT 
 			a.*,
-			u.id AS "createBy.id",
-			u.name AS "createBy.name",
-			c.name AS "createBy.company.name",
-			o.name AS "createBy.office.name"
+			u.id AS "insertBy.id",
+			u.name AS "insertBy.name",
+			c.name AS "insertBy.company.name",
+			o.name AS "insertBy.office.name"
 		FROM sys_log a
-		JOIN sys_user u ON u.id = a.create_by
+		JOIN sys_user u ON u.id = a.insert_by
 		JOIN sys_office c ON c.id = u.company_id
 		JOIN sys_office o ON o.id = u.office_id
-		WHERE a.create_date BETWEEN #{beginDate} AND #{endDate}
+		WHERE a.insert_time BETWEEN #{beginDate} AND #{endDate}
 		<if test="title != null and title != ''">
 			AND a.title LIKE '%'||#{title}||'%'
 		</if>
-		<if test="createBy != null and createBy.id != null and createBy.id != ''">
-			AND a.create_by = #{createBy.id}
+		<if test="insertBy != null and insertBy.id != null and insertBy.id != ''">
+			AND a.insert_by = #{insertBy.id}
 		</if>
 		<if test="requestUri != null and requestUri != ''">
 			AND a.request_uri LIKE '%'||#{requestUri}||'%'
@@ -26,7 +26,7 @@
 		<if test="exception != null and exception != ''">
 			AND a.type = #{TYPE_EXCEPTION}
 		</if>
-		ORDER BY a.create_date DESC
+		ORDER BY a.insert_time DESC
 	</select>
 	
 	<insert id="insert">
@@ -34,8 +34,8 @@
 			id, 
 			type, 
 			title,
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			remote_addr, 
 			user_agent, 
 			request_uri, 
@@ -46,8 +46,8 @@
 			#{id}, 
 			#{type}, 
 			#{title}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{remoteAddr}, 
 			#{userAgent}, 
 			#{requestUri}, 

@@ -57,7 +57,7 @@
 					${contractBillInvoicing.name}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${contractBillInvoicing.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${contractBillInvoicing.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="contract:contractBillInvoicing:edit"><td>
     				<a href="${ctx}/contract/contractBillInvoicing/form?id=${contractBillInvoicing.id}">修改</a>

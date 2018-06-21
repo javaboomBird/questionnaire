@@ -49,7 +49,7 @@
 					${pollutionType.pollutionTypeName}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${pollutionType.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${pollutionType.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${pollutionType.remarks}

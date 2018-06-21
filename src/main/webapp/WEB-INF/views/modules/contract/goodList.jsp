@@ -88,7 +88,7 @@
 					${good.remarks}
 				</td>
 				<td>
-					<fmt:formatDate value="${good.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${good.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="contract:good:edit"><td>
     				<a href="${ctx}/contract/good/form?id=${good.id}">修改</a>

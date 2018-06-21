@@ -45,12 +45,12 @@
 			var delFlag = $(prefix+"_delFlag");
 			if (id.val() == ""){
 				$(obj).parent().parent().remove();
-			}else if(delFlag.val() == "0"){
-				delFlag.val("1");
+			}else if(delFlag.val() == "N"){
+				delFlag.val("Y");
 				$(obj).html("&divide;").attr("title", "撤销删除");
 				$(obj).parent().parent().addClass("error");
-			}else if(delFlag.val() == "1"){
-				delFlag.val("0");
+			}else if(delFlag.val() == "Y"){
+				delFlag.val("N");
 				$(obj).html("&times;").attr("title", "删除");
 				$(obj).parent().parent().removeClass("error");
 			}
@@ -173,7 +173,7 @@
 						<tr id="eiaReportPicList{{idx}}">
 							<td class="hide">
 								<input id="eiaReportPicList{{idx}}_id" name="eiaReportPicList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="eiaReportPicList{{idx}}_delFlag" name="eiaReportPicList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="eiaReportPicList{{idx}}_delFlag" name="eiaReportPicList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<input id="eiaReportPicList{{idx}}_type" name="eiaReportPicList[{{idx}}].type" type="text" value="{{row.type}}" maxlength="32" class="input-small "/>
@@ -229,7 +229,7 @@
 						<tr id="eiaReportWasteList{{idx}}">
 							<td class="hide">
 								<input id="eiaReportWasteList{{idx}}_id" name="eiaReportWasteList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="eiaReportWasteList{{idx}}_delFlag" name="eiaReportWasteList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="eiaReportWasteList{{idx}}_delFlag" name="eiaReportWasteList[{{idx}}].delFlag" type="hidden" value="N"/>
 							</td>
 							<td>
 								<input id="eiaReportWasteList{{idx}}_type" name="eiaReportWasteList[{{idx}}].type" type="text" value="{{row.type}}" maxlength="32" class="input-small "/>

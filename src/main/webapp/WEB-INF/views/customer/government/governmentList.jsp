@@ -60,7 +60,7 @@
 					${government.registeredPostcode}
 				</td>
 				<td>
-					<fmt:formatDate value="${government.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${government.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${government.remarks}

@@ -19,11 +19,11 @@
 		a.fax, 
 		a.email, 
 		a.remarks,
-		a.create_by AS "createBy.id",
-		a.create_date,
+		a.insert_by AS "insertBy.id",
+		a.insert_time,
 		a.update_by AS "updateBy.id",
-		a.update_date,
-		a.del_flag,
+		a.update_time,
+		a.is_deleted,
 		a.useable AS useable,
 		a.primary_person AS "primaryPerson.id",
 		a.deputy_person AS "deputyPerson.id",
@@ -54,7 +54,7 @@
 			<include refid="officeColumns"/>
 		FROM sys_office a
 		<include refid="officeJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<!-- 数据范围过滤 -->
 		${sqlMap.dsf}
 		OR a.id = #{currentUser.office.id}
@@ -66,7 +66,7 @@
 			<include refid="officeColumns"/>
 		FROM sys_office a
 		<include refid="officeJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		ORDER BY a.code
 	</select>
 	
@@ -75,7 +75,7 @@
 			<include refid="officeColumns"/>
 		FROM sys_office a
 		<include refid="officeJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
 		ORDER BY a.code
 	</select>
 	
@@ -96,12 +96,12 @@
 			phone, 
 			fax, 
 			email, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
-			del_flag,
+			is_deleted,
 			useable,
 			primary_person,
 			deputy_person
@@ -121,12 +121,12 @@
 			#{phone}, 
 			#{fax}, 
 			#{email}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag},
+			#{isDeleted},
 			#{useable},
 			#{primaryPerson.id},
 			#{deputyPerson.id}
@@ -149,7 +149,7 @@
 			fax = #{fax}, 
 			email = #{email}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks},
 			useable=#{useable},
 			primary_person=#{primaryPerson.id},
@@ -166,7 +166,7 @@
 	
 	<update id="delete">
 		UPDATE sys_office SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id} OR parent_ids LIKE  '%,'||#{id}||',%'
 	</update>
 	

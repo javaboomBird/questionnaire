@@ -193,11 +193,11 @@ public class ProjectTaskViewController extends BaseController {
     ProjectTask projectTask = JsonUtils.toSimpleObject(JsonUtils.toJson(source), ProjectTask.class);
     Date now = DateUtils.getNow();
     if (isNewRecord) {
-      projectTask.setCreateDate(now);
-      projectTask.setCreateBy(user.getName());
+      projectTask.setInsertTime(now);
+      projectTask.setInsertBy(user.getName());
     }
     projectTask.setUpdateBy(user.getName());
-    projectTask.setUpdateDate(now);
+    projectTask.setUpdateTime(now);
     return projectTask;
   }
 

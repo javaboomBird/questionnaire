@@ -78,7 +78,7 @@
                     ${fns:getDictLabel(projectTask.taskStatus, 'project_task_status', '')}
             </td>
             <td>
-                <fmt:formatDate value="${projectTask.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                <fmt:formatDate value="${projectTask.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
             </td>
             <shiro:hasPermission name="projectmanager:projectTask:edit">
                 <td>

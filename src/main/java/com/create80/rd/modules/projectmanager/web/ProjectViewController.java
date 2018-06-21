@@ -161,11 +161,11 @@ public class ProjectViewController extends BaseController {
     Project project = JsonUtils.toSimpleObject(JsonUtils.toJson(source), Project.class);
     Date now = DateUtils.getNow();
     if (isNewRecord) {
-      project.setCreateDate(now);
-      project.setCreateBy(user.getName());
+      project.setInsertTime(now);
+      project.setInsertBy(user.getName());
     }
     project.setUpdateBy(user.getName());
-    project.setUpdateDate(now);
+    project.setUpdateTime(now);
     return project;
   }
 

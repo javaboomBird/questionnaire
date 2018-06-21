@@ -29,7 +29,7 @@
 			<include refid="genTableColumnColumns"/>
 		FROM gen_table_column a
 		<include refid="genTableColumnJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="name != null and name != ''">
 			AND a.name LIKE '%'||#{name}||'%'
 		</if>
@@ -44,7 +44,7 @@
 			<include refid="genTableColumnColumns"/>
 		FROM gen_table_column a
 		<include refid="genTableColumnJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		ORDER BY a.sort ASC
 	</select>
 	
@@ -68,14 +68,14 @@
 			show_type, 
 			dict_type, 
 			sort, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks,
 			url,
 			text_value,
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{genTable.id}, 
@@ -95,14 +95,14 @@
 			#{showType}, 
 			#{dictType}, 
 			#{sort}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks},
 			#{url},
 			#{textValue},
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -123,9 +123,9 @@
 			dict_type = #{dictType}, 
 			sort = #{sort}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks},
-			del_flag = #{delFlag},
+			is_deleted = #{isDeleted},
 			url=#{url},
 			text_value=#{textValue},
 			java_type_table=#{javaTypeTable}
@@ -134,13 +134,13 @@
 	
 	<update id="delete">
 		UPDATE gen_table_column SET 
-			del_flag = '1'
+			is_deleted = '1'
 		WHERE id = #{id}
 	</update>
 	
 	<update id="deleteByGenTableId">
 		UPDATE gen_table_column SET 
-			del_flag = '1'
+			is_deleted = '1'
 		WHERE gen_table_id = #{deleteByGenTableId}
 	</update>
 	

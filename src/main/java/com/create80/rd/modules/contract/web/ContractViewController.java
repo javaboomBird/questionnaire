@@ -149,11 +149,11 @@ public class ContractViewController extends BaseController {
     Contract contract = JsonUtils.toSimpleObject(JsonUtils.toJson(source), Contract.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      contract.setCreateDate(now);
-      contract.setCreateBy(user.getName());
+      contract.setInsertTime(now);
+      contract.setInsertBy(user.getName());
     }
     contract.setUpdateBy(user.getName());
-    contract.setUpdateDate(now);
+    contract.setUpdateTime(now);
     return contract;
   }
 

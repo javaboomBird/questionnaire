@@ -161,11 +161,11 @@ public class AssetsReplaceViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), AssetsReplace.class);
     Date now = new Date();
     if (isNewRecord) {
-      assetsReplace.setCreateDate(now);
-      assetsReplace.setCreateBy(user.getName());
+      assetsReplace.setInsertTime(now);
+      assetsReplace.setInsertBy(user.getName());
     }
     assetsReplace.setUpdateBy(user.getName());
-    assetsReplace.setUpdateDate(now);
+    assetsReplace.setUpdateTime(now);
     return assetsReplace;
   }
 

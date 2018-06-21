@@ -212,7 +212,7 @@ public class GenTable extends DataEntity<GenTable> {
    */
   public Boolean getDelFlagExists() {
     for (GenTableColumn c : columnList) {
-      if ("del_flag".equals(c.getName())) {
+      if ("is_deleted".equals(c.getName())) {
         return true;
       }
     }

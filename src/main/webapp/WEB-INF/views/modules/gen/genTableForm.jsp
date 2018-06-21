@@ -111,10 +111,10 @@
 								<th title="字段在表单中显示的类型">显示表单类型</th><th title="显示表单类型设置为“下拉框、复选框、点选框”时，需设置字典的类型">字典类型</th><th>远程URL</th><th>动态下拉框TEXT属性</th><th>排序</th></tr></thead>
 							<tbody>
 							<c:forEach items="${genTable.columnList}" var="column" varStatus="vs">
-								<tr${column.delFlag eq '1'?' class="error" title="已删除的列，保存之后消失！"':''}>
+								<tr${column.isDeleted eq 'Y'?' class="error" title="已删除的列，保存之后消失！"':''}>
 									<td nowrap>
 										<input type="hidden" name="columnList[${vs.index}].id" value="${column.id}"/>
-										<input type="hidden" name="columnList[${vs.index}].delFlag" value="${column.delFlag}"/>
+										<input type="hidden" name="columnList[${vs.index}].isDeleted" value="${column.isDeleted}"/>
 										<input type="hidden" name="columnList[${vs.index}].genTable.id" value="${column.genTable.id}"/>
 										<input type="hidden" name="columnList[${vs.index}].name" value="${column.name}"/>${column.name}
 									</td>

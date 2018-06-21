@@ -124,7 +124,7 @@ public class GenTableService extends BaseService {
             }
           }
           if (!b) {
-            e.setDelFlag(GenTableColumn.DEL_FLAG_DELETE);
+            e.setIsDeleted(GenTableColumn.DEL_FLAG_DELETE);
           }
         }
 

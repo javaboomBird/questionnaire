@@ -61,7 +61,7 @@ public class ${ClassName}ApiController  {
   @ResponseBody
   public List<${ClassName}> getAllList() {
     ${ClassName} ${className} = new ${ClassName}();
-    ${className}.setDelFlag("0");
+    ${className}.setIsDeleted("N");
     return ${className}Service.findList(-1, -1, ${className});
   }
 

@@ -48,12 +48,12 @@
       var delFlag = $(prefix + "_delFlag");
       if (id.val() == "") {
         $(obj).parent().parent().remove();
-      } else if (delFlag.val() == "0") {
-        delFlag.val("1");
+      } else if (delFlag.val() == "N") {
+        delFlag.val("Y");
         $(obj).html("&divide;").attr("title", "撤销删除");
         $(obj).parent().parent().addClass("error");
-      } else if (delFlag.val() == "1") {
-        delFlag.val("0");
+      } else if (delFlag.val() == "Y") {
+        delFlag.val("N");
         $(obj).html("&times;").attr("title", "删除");
         $(obj).parent().parent().removeClass("error");
       }
@@ -208,7 +208,7 @@
 						<tr id="projectContactRelationList{{idx}}">
 							<td class="hide">
 								<input id="projectContactRelationList{{idx}}_id" name="projectContactRelationList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="projectContactRelationList{{idx}}_delFlag" name="projectContactRelationList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="projectContactRelationList{{idx}}_delFlag" name="projectContactRelationList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 							<select id="projectContactRelationList{{idx}}_contactId" name="projectContactRelationList[{{idx}}].contactId" data-value="{{row.contactId}}" class="input-small required">
@@ -273,7 +273,7 @@
 						<tr id="projectMemberList{{idx}}">
 							<td class="hide">
 								<input id="projectMemberList{{idx}}_id" name="projectMemberList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="projectMemberList{{idx}}_delFlag" name="projectMemberList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="projectMemberList{{idx}}_delFlag" name="projectMemberList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<sys:treeselect id="projectMemberList{{idx}}_member" property="projectMemberList[{{idx}}].memberId" name="projectMemberList[{{idx}}].member.id" value="{{row.member.id}}" labelName="projectMemberList{{idx}}.member.name" labelValue="{{row.member.name}}"

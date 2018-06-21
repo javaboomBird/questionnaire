@@ -241,11 +241,11 @@ public class AssetsManagerViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), AssetsManager.class);
     Date now = DateUtils.getNow();
     if (isNewRecord) {
-      assetsManager.setCreateDate(now);
-      assetsManager.setCreateBy(user.getName());
+      assetsManager.setInsertTime(now);
+      assetsManager.setInsertBy(user.getName());
     }
     assetsManager.setUpdateBy(user.getName());
-    assetsManager.setUpdateDate(now);
+    assetsManager.setUpdateTime(now);
     return assetsManager;
   }
 

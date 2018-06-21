@@ -61,7 +61,7 @@
 					${contractAccountsReceivable.accountsReceivable}
 				</td>
 				<td>
-					<fmt:formatDate value="${contractAccountsReceivable.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${contractAccountsReceivable.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="contract:contractAccountsReceivable:edit"><td>
     				<a href="${ctx}/contract/contractAccountsReceivable/form?id=${contractAccountsReceivable.id}">修改</a>

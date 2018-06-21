@@ -270,7 +270,7 @@ public class GenSchemeService extends BaseService {
 
     childList.stream().forEach(table -> {
       OneToMany oneToMany = new OneToMany(table.getName(), "id", table.getParentTableFk());
-      oneToMany.setWhere("del_flag='0'");
+      oneToMany.setWhere("is_deleted='N'");
       oneToManyList.add(oneToMany);
     });
     return oneToManyList;

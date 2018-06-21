@@ -154,11 +154,11 @@ public class AssetsRepairViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), AssetsRepair.class);
     Date now = new Date();
     if (isNewRecord) {
-      assetsRepair.setCreateDate(now);
-      assetsRepair.setCreateBy(user.getName());
+      assetsRepair.setInsertTime(now);
+      assetsRepair.setInsertBy(user.getName());
     }
     assetsRepair.setUpdateBy(user.getName());
-    assetsRepair.setUpdateDate(now);
+    assetsRepair.setUpdateTime(now);
     return assetsRepair;
   }
 

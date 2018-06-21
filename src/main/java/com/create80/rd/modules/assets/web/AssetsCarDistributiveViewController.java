@@ -181,12 +181,21 @@ public class AssetsCarDistributiveViewController extends BaseController {
     if (StringUtils.isEmpty(groupId)) {
       return null;
     }
-    String groupApiBaseUrl = moduleLinkConfiguration.getLink("group");
-    Map<String, Object> paramMap = new HashMap<>();
-    paramMap.put("id", groupId);
-    ResponseEntity<String> responseEntity = restTemplate
-        .getForEntity(groupApiBaseUrl + "/group/sysGroup/api/{id}", String.class,
-            paramMap);
+    ResponseEntity<String> responseEntity = null;
+    try {
+      String groupApiBaseUrl = moduleLinkConfiguration.getLink("group");
+      Map<String, Object> paramMap = new HashMap<>();
+      paramMap.put("id", groupId);
+      responseEntity = restTemplate
+          .getForEntity(groupApiBaseUrl + "/group/sysGroup/api/{id}", String.class,
+              paramMap);
+    } catch (RestClientException e) {
+      e.printStackTrace();
+    }
+
+    if (responseEntity == null) {
+      return null;
+    }
 
     String responseEntityBody = responseEntity.getBody();
     return JsonUtils
@@ -246,11 +255,11 @@ public class AssetsCarDistributiveViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), AssetsCarDistributive.class);
     Date now = new Date();
     if (isNewRecord) {
-      assetsCarDistributive.setCreateDate(now);
-      assetsCarDistributive.setCreateBy(user.getName());
+      assetsCarDistributive.setInsertTime(now);
+      assetsCarDistributive.setInsertBy(user.getName());
     }
     assetsCarDistributive.setUpdateBy(user.getName());
-    assetsCarDistributive.setUpdateDate(now);
+    assetsCarDistributive.setUpdateTime(now);
     return assetsCarDistributive;
   }
 

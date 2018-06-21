@@ -100,12 +100,12 @@
       var delFlag = $(prefix + "_delFlag");
       if (id.val() == "") {
         $(obj).parent().parent().remove();
-      } else if (delFlag.val() == "0") {
-        delFlag.val("1");
+      } else if (delFlag.val() == "N") {
+        delFlag.val("Y");
         $(obj).html("&divide;").attr("title", "撤销删除");
         $(obj).parent().parent().addClass("error");
-      } else if (delFlag.val() == "1") {
-        delFlag.val("0");
+      } else if (delFlag.val() == "Y") {
+        delFlag.val("N");
         $(obj).html("&times;").attr("title", "删除");
         $(obj).parent().parent().removeClass("error");
       }
@@ -277,7 +277,7 @@
 						<tr id="projectTaskMemberList{{idx}}">
 							<td class="hide">
 								<input id="projectTaskMemberList{{idx}}_id" name="projectTaskMemberList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="projectTaskMemberList{{idx}}_delFlag" name="projectTaskMemberList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="projectTaskMemberList{{idx}}_delFlag" name="projectTaskMemberList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<sys:treeselect id="projectTaskMemberList{{idx}}_member" property="projectTaskMemberList[{{idx}}].memberId" name="projectTaskMemberList[{{idx}}].member.id" value="{{row.member.id}}" labelName="projectTaskMemberList{{idx}}.member.name" labelValue="{{row.member.name}}"

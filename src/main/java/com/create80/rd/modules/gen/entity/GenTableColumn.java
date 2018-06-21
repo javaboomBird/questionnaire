@@ -321,7 +321,7 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
         && !StringUtils.equals(getSimpleJavaField(), "createDate")
         && !StringUtils.equals(getSimpleJavaField(), "updateBy")
         && !StringUtils.equals(getSimpleJavaField(), "updateDate")
-        && !StringUtils.equals(getSimpleJavaField(), "delFlag");
+        && !StringUtils.equals(getSimpleJavaField(), "isDeleted");
   }
 
   public Boolean getIsNeedCreateBaseField() {

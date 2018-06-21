@@ -49,12 +49,12 @@
       var delFlag = $(prefix + "_delFlag");
       if (id.val() == "") {
         $(obj).parent().parent().remove();
-      } else if (delFlag.val() == "0") {
-        delFlag.val("1");
+      } else if (delFlag.val() == "N") {
+        delFlag.val("Y");
         $(obj).html("&divide;").attr("title", "撤销删除");
         $(obj).parent().parent().addClass("error");
-      } else if (delFlag.val() == "1") {
-        delFlag.val("0");
+      } else if (delFlag.val() == "Y") {
+        delFlag.val("N");
         $(obj).html("&times;").attr("title", "删除");
         $(obj).parent().parent().removeClass("error");
       }
@@ -259,7 +259,7 @@
 						<tr id="contactList{{idx}}">
 							<td class="hide">
 								<input id="contactList{{idx}}_id" name="contactList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="contactList{{idx}}_delFlag" name="contactList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="contactList{{idx}}_delFlag" name="contactList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<input id="contactList{{idx}}_name" name="contactList[{{idx}}].name" type="text" value="{{row.name}}" maxlength="32" class="input-small "/>

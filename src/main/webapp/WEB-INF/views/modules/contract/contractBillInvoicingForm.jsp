@@ -44,12 +44,12 @@
 			var delFlag = $(prefix+"_delFlag");
 			if (id.val() == ""){
 				$(obj).parent().parent().remove();
-			}else if(delFlag.val() == "0"){
-				delFlag.val("1");
+			}else if(delFlag.val() == "N"){
+				delFlag.val("Y");
 				$(obj).html("&divide;").attr("title", "撤销删除");
 				$(obj).parent().parent().addClass("error");
-			}else if(delFlag.val() == "1"){
-				delFlag.val("0");
+			}else if(delFlag.val() == "Y"){
+				delFlag.val("N");
 				$(obj).html("&times;").attr("title", "删除");
 				$(obj).parent().parent().removeClass("error");
 			}
@@ -128,7 +128,7 @@
 						<tr id="contractBillInvoicedList{{idx}}">
 							<td class="hide">
 								<input id="contractBillInvoicedList{{idx}}_id" name="contractBillInvoicedList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="contractBillInvoicedList{{idx}}_delFlag" name="contractBillInvoicedList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="contractBillInvoicedList{{idx}}_delFlag" name="contractBillInvoicedList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<input id="contractBillInvoicedList{{idx}}_name" name="contractBillInvoicedList[{{idx}}].name" type="text" value="{{row.name}}" maxlength="64" class="input-small "/>

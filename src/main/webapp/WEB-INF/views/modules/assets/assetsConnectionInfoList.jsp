@@ -64,7 +64,7 @@
 					${assetsConnectionInfo.targetApi}
 				</td>
 				<td>
-					<fmt:formatDate value="${assetsConnectionInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${assetsConnectionInfo.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${assetsConnectionInfo.remarks}

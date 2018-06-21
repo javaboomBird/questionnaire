@@ -49,7 +49,7 @@
 					${businessType.businessTypeName}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${businessType.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${businessType.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${businessType.remarks}

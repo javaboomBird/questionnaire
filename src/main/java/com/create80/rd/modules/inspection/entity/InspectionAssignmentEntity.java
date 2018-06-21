@@ -96,38 +96,5 @@ public class InspectionAssignmentEntity extends DataEntity<InspectionAssignmentE
     this.inspectionMonth = inspectionMonth;
   }
 
-  public Date getInsertTime() {
-    return insertTime;
-  }
-
-  public void setInsertTime(Date insertTime) {
-    this.insertTime = insertTime;
-  }
-
-  public Date getUpdateTime() {
-    return updateTime;
-  }
-
-  public void setUpdateTime(Date updateTime) {
-    this.updateTime = updateTime;
-  }
-
-  @Length(min = 0, max = 64, message = "insert_by长度必须介于 0 和 64 之间")
-  public String getInsertBy() {
-    return insertBy;
-  }
-
-  public void setInsertBy(String insertBy) {
-    this.insertBy = insertBy;
-  }
-
-
-  public String getIsDeleted() {
-    return isDeleted;
-  }
-
-  public void setIsDeleted(String isDeleted) {
-    this.isDeleted = isDeleted;
-  }
 
 }

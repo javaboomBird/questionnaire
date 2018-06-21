@@ -72,7 +72,7 @@
                     ${fns:getDictLabel(eiaReport.pollutionPermitStatus, 'pollution_permit_status', '')}
             </td>
             <td>
-                <fmt:formatDate value="${eiaReport.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                <fmt:formatDate value="${eiaReport.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
             </td>
             <td>
                     ${eiaReport.remarks}

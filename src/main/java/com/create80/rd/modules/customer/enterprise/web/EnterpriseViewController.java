@@ -153,11 +153,11 @@ public class EnterpriseViewController extends BaseController {
     Enterprise enterprise = JsonUtils.toSimpleObject(JsonUtils.toJson(source), Enterprise.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      enterprise.setCreateDate(now);
-      enterprise.setCreateBy(user.getName());
+      enterprise.setInsertTime(now);
+      enterprise.setInsertBy(user.getName());
     }
     enterprise.setUpdateBy(user.getName());
-    enterprise.setUpdateDate(now);
+    enterprise.setUpdateTime(now);
     return enterprise;
   }
 

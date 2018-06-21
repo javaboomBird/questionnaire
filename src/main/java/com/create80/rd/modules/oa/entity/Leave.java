@@ -129,13 +129,13 @@ public class Leave extends DataEntity<Leave> {
 	public void setRealityEndTime(Date realityEndTime) {
 		this.realityEndTime = realityEndTime;
 	}
-	
+
 	public User getUser() {
-		return createBy;
+		return insertBy;
 	}
-	
+
 	public void setUser(User user) {
-		this.createBy = user;
+		this.insertBy = user;
 	}
 
 	public Task getTask() {

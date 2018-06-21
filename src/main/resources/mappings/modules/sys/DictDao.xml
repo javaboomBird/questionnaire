@@ -13,29 +13,29 @@
 		SELECT 
 			* 
 		FROM sys_dict 
-		WHERE del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="type != null and type != ''">
 			AND type = #{type}
 		</if>
 		<if test="description != null and description != ''">
 			AND description LIKE '%'||#{description}||'%'
 		</if>
-		ORDER BY type, sort, update_date DESC
+		ORDER BY type, sort, update_time DESC
 	</select>
 	
 	<select id="findAllList" resultType="Dict">
 		SELECT 
 			* 
 		FROM sys_dict 
-		WHERE del_flag = #{DEL_FLAG_NORMAL} 
-		ORDER BY type, sort, update_date DESC
+		WHERE is_deleted = #{DEL_FLAG_NORMAL}
+		ORDER BY type, sort, update_time DESC
 	</select>
 	
 	<select id="findTypeList" resultType="string">
 		SELECT 
 			type 
 		FROM sys_dict 
-		WHERE del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE is_deleted = #{DEL_FLAG_NORMAL}
 		GROUP BY type
 		ORDER BY type
 	</select>
@@ -48,12 +48,12 @@
 			type, 
 			description, 
 			sort, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{value}, 
@@ -61,12 +61,12 @@
 			#{type}, 
 			#{description}, 
 			#{sort}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -78,14 +78,14 @@
 			description = #{description}, 
 			sort = #{sort}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
 		UPDATE sys_dict SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

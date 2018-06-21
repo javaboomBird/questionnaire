@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 public class RemoteDataUtils {
@@ -28,15 +29,20 @@ public class RemoteDataUtils {
     //如果url中有{moduleName},则根据moduleName去获取远程url
     url = rewritingUrl(url);
 
-    ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-    List<Map> mapList = JsonUtils.toListObject(responseEntity.getBody(), Map.class);
+    List<Map> mapList = null;
+    try {
+      ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+      mapList = JsonUtils.toListObject(responseEntity.getBody(), Map.class);
+    } catch (RestClientException e) {
+      e.printStackTrace();
+    }
 
     //transfer data to Map
     Map<String, Object> result = new HashMap<>();
-    for (Map data : mapList) {
-//      valueMap.put("value", data.get(valueProperty));
-//      valueMap.put("text", data.get(textProperty));
-      result.put(String.valueOf(data.get(valueProperty)), data.get(textProperty));
+    if (mapList != null) {
+      for (Map data : mapList) {
+        result.put(String.valueOf(data.get(valueProperty)), data.get(textProperty));
+      }
     }
     return result;
   }

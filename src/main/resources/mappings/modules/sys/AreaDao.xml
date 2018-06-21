@@ -11,11 +11,11 @@
 		a.sort,
 		a.type,
 		a.remarks,
-		a.create_by AS "createBy.id",
-		a.create_date,
+		a.insert_by AS "insertBy.id",
+		a.insert_time,
 		a.update_by AS "updateBy.id",
-		a.update_date,
-		a.del_flag,
+		a.update_time,
+		a.is_deleted,
 		p.name AS "parent.name"
 	</sql>
 	
@@ -36,7 +36,7 @@
 			<include refid="areaColumns"/>
 		FROM sys_area a
 		<include refid="areaJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<!-- 数据范围过滤 -->
 		${sqlMap.dsf}
 		OR a.id = #{currentUser.office.area.id}
@@ -48,7 +48,7 @@
 			<include refid="areaColumns"/>
 		FROM sys_area a
 		<include refid="areaJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		ORDER BY a.code
 	</select>
 	
@@ -58,7 +58,7 @@
 			a.parent_id AS "parent.id",
 			a.parent_ids
 		FROM sys_area a
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL} AND a.parent_ids LIKE #{parentIds}
 		ORDER BY a.code
 	</select>
 	
@@ -71,12 +71,12 @@
 			name, 
 			sort,
 			type, 
-			create_by, 
-			create_date, 
-			update_by, 
-			update_date, 
+			insert_by,
+			insert_time,
+			update_by,
+			update_time,
 			remarks, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{parent.id}, 
@@ -85,12 +85,12 @@
 			#{name}, 
 			#{sort}, 
 			#{type}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -103,7 +103,7 @@
 			sort = #{sort}, 
 			type = #{type}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
@@ -117,7 +117,7 @@
 	
 	<update id="delete">
 		UPDATE sys_area SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id} OR parent_ids LIKE 	'%,'||#{id}||',%'
 	</update>
 	

@@ -70,7 +70,7 @@
                     ${assetsReplace.replaceManager.name}
             </td>
             <td>
-                <fmt:formatDate value="${assetsReplace.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                <fmt:formatDate value="${assetsReplace.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
             </td>
             <td>
                     ${assetsReplace.remarks}

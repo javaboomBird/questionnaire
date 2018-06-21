@@ -149,11 +149,11 @@ public class ContractAccountsReceivableViewController extends BaseController {
     ContractAccountsReceivable contractAccountsReceivable = JsonUtils.toSimpleObject(JsonUtils.toJson(source), ContractAccountsReceivable.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      contractAccountsReceivable.setCreateDate(now);
-      contractAccountsReceivable.setCreateBy(user.getName());
+      contractAccountsReceivable.setInsertTime(now);
+      contractAccountsReceivable.setInsertBy(user.getName());
     }
     contractAccountsReceivable.setUpdateBy(user.getName());
-    contractAccountsReceivable.setUpdateDate(now);
+    contractAccountsReceivable.setUpdateTime(now);
     return contractAccountsReceivable;
   }
 

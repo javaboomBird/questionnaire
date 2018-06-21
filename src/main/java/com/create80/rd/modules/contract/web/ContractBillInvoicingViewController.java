@@ -149,11 +149,11 @@ public class ContractBillInvoicingViewController extends BaseController {
     ContractBillInvoicing contractBillInvoicing = JsonUtils.toSimpleObject(JsonUtils.toJson(source), ContractBillInvoicing.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      contractBillInvoicing.setCreateDate(now);
-      contractBillInvoicing.setCreateBy(user.getName());
+      contractBillInvoicing.setInsertTime(now);
+      contractBillInvoicing.setInsertBy(user.getName());
     }
     contractBillInvoicing.setUpdateBy(user.getName());
-    contractBillInvoicing.setUpdateDate(now);
+    contractBillInvoicing.setUpdateTime(now);
     return contractBillInvoicing;
   }
 

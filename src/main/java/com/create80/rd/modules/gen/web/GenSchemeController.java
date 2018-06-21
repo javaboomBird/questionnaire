@@ -61,7 +61,7 @@ public class GenSchemeController extends BaseController {
 	public String list(GenScheme genScheme, HttpServletRequest request, HttpServletResponse response, Model model) {
 		User user = UserUtils.getUser();
 		if (!user.isAdmin()){
-			genScheme.setCreateBy(user);
+			genScheme.setInsertBy(user);
 		}
         Page<GenScheme> page = genSchemeService.find(new Page<GenScheme>(request, response), genScheme); 
         model.addAttribute("page", page);

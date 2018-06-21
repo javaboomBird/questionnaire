@@ -24,12 +24,12 @@
 		u.name AS "user.name", 
 		o.id AS "office.id", 
 		o.name AS "office.name", 
-		a.create_by AS "createBy.id", 
-		a.create_date, 
+		a.insert_by AS "insertBy.id",
+		a.insert_time,
 		a.update_by AS "updateBy.id", 
-		a.update_date, 
+		a.update_time,
 		a.remarks, 
-		a.del_flag
+		a.is_deleted
 	</sql>
 	
 	<sql id="testAuditJoins">
@@ -58,11 +58,11 @@
 			<include refid="testAuditColumns"/>
 		FROM oa_test_audit a
 		<include refid="testAuditJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="user != null and user.id != null and user.id != ''">
 			AND u.id LIKE '%'||#{user.id}||'%'
 		</if>
-		ORDER BY a.update_date DESC
+		ORDER BY a.update_time DESC
 	</select>
 	
 	<select id="findAllList" resultType="TestAudit">
@@ -70,8 +70,8 @@
 			<include refid="testAuditColumns"/>
 		FROM oa_test_audit a
 		<include refid="testAuditJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
-		ORDER BY a.update_date DESC
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
+		ORDER BY a.update_time DESC
 	</select>
 	
 	<insert id="insert">
@@ -91,12 +91,12 @@
 			newc, 
 			add_num, 
 			exe_date,
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{user.id}, 
@@ -113,12 +113,12 @@
 			#{newc}, 
 			#{addNum}, 
 			#{exeDate},
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -139,7 +139,7 @@
 			add_num = #{addNum}, 
 			exe_date = #{exeDate},
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
@@ -148,7 +148,7 @@
 		UPDATE oa_test_audit SET 
 			proc_ins_id = #{procInsId},
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}
+			update_time = #{updateTime}
 		WHERE id = #{id}
 	</update>
 	
@@ -156,7 +156,7 @@
 		UPDATE oa_test_audit SET 
 			hr_text = #{hrText},
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}
+			update_time = #{updateTime}
 		WHERE id = #{id}
 	</update>
 	
@@ -164,7 +164,7 @@
 		UPDATE oa_test_audit SET 
 			lead_text = #{leadText},
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}
+			update_time = #{updateTime}
 		WHERE id = #{id}
 	</update>
 	
@@ -172,13 +172,13 @@
 		UPDATE oa_test_audit SET 
 			main_lead_text = #{mainLeadText},
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}
+			update_time = #{updateTime}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
 		UPDATE oa_test_audit SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

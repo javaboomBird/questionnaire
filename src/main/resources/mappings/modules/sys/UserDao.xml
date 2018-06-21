@@ -76,11 +76,11 @@
     a.remarks,
     a.login_flag,
     a.photo,
-    a.create_by AS "createBy.id",
-    a.create_date,
+    a.insert_by AS "insertBy.id",
+    a.insert_time,
     a.update_by AS "updateBy.id",
-    a.update_date,
-    a.del_flag,
+    a.update_time,
+    a.is_deleted,
     c.name AS "company.name",
     c.parent_id AS "company.parent.id",
     c.parent_ids AS "company.parentIds",
@@ -143,7 +143,7 @@
     FROM sys_user a
     <include refid="userJoins"/><!--
 		LEFT JOIN sys_role_office ro ON ro.role_id = r.id -->
-    WHERE a.login_name = #{loginName} AND a.del_flag = #{DEL_FLAG_NORMAL}
+    WHERE a.login_name = #{loginName} AND a.is_deleted = #{DEL_FLAG_NORMAL}
   </select>
 
   <!-- 分页查询用户信息 -->
@@ -155,7 +155,7 @@
     <if test="role != null and role.id != null and role.id != ''">
       JOIN sys_user_role ur ON ur.user_id = a.id AND ur.role_id = #{role.id}
     </if>
-    WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+    WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
     <if test="company != null and company.id != null and company.id != ''">
       AND (c.id = #{company.id} OR c.parent_ids LIKE '%,'||#{company.id}||',%')
     </if>
@@ -189,7 +189,7 @@
 		SELECT
 			a.id, a.name, a.login_name
 		FROM sys_user a
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 			AND a.office_id = #{office.id}
 		ORDER BY a.name
 	</select>
@@ -200,7 +200,7 @@
     <include refid="userColumns"/>
     FROM sys_user a
     <include refid="userJoins"/>
-    WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+    WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
     ORDER BY c.code, o.code, a.name
   </select>
 
@@ -209,7 +209,7 @@
 		SELECT
 			COUNT(1)
 		FROM sys_user a
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 	</select>
 
   <!-- 插入用户 -->
@@ -226,14 +226,14 @@
 			phone, 
 			mobile, 
 			user_type, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
 			login_flag, 
 			photo, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{company.id}, 
@@ -246,14 +246,14 @@
 			#{phone}, 
 			#{mobile}, 
 			#{userType}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
 			#{loginFlag}, 
 			#{photo}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 
@@ -271,7 +271,7 @@
 			mobile = #{mobile}, 
 			user_type = #{userType}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks},
 			login_flag = #{loginFlag},
 			photo = #{photo}
@@ -301,7 +301,7 @@
 			phone = #{phone}, 
 			mobile = #{mobile}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks},
 			photo = #{photo}
 		WHERE id = #{id}
@@ -325,7 +325,7 @@
   <!-- 逻辑删除用户 -->
   <update id="delete">
 		UPDATE sys_user SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 

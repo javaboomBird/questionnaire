@@ -114,7 +114,7 @@
 					${contract.remarks}
 				</td>
 				<td>
-					<fmt:formatDate value="${contract.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${contract.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="contract:contract:edit"><td>
     				<a href="${ctx}/contract/contract/form?id=${contract.id}">修改</a>

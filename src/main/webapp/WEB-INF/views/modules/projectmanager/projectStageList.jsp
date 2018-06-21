@@ -63,7 +63,7 @@
                         ${projectStage.progress}
                 </td>
 				<td>
-					<fmt:formatDate value="${projectStage.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${projectStage.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 
 				<shiro:hasPermission name="projectmanager:projectStage:edit"><td>

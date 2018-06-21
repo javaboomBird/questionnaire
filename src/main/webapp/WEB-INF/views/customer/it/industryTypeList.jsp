@@ -49,7 +49,7 @@
 					${industryType.industryTypeName}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${industryType.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${industryType.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${industryType.remarks}

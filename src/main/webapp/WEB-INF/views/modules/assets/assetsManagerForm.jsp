@@ -90,12 +90,12 @@
       var delFlag = $(prefix + "_delFlag");
       if (id.val() == "") {
         $(obj).parent().parent().remove();
-      } else if (delFlag.val() == "0") {
-        delFlag.val("1");
+      } else if (delFlag.val() == "N") {
+        delFlag.val("Y");
         $(obj).html("&divide;").attr("title", "撤销删除");
         $(obj).parent().parent().addClass("error");
-      } else if (delFlag.val() == "1") {
-        delFlag.val("0");
+      } else if (delFlag.val() == "Y") {
+        delFlag.val("N");
         $(obj).html("&times;").attr("title", "删除");
         $(obj).parent().parent().removeClass("error");
       }
@@ -376,7 +376,7 @@
 						<tr id="assetsImageList{{idx}}">
 							<td class="hide">
 								<input id="assetsImageList{{idx}}_id" name="assetsImageList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="assetsImageList{{idx}}_delFlag" name="assetsImageList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="assetsImageList{{idx}}_delFlag" name="assetsImageList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 	<input id="assetsImageList{{idx}}_path" name="assetsImageList[{{idx}}].path" type="hidden" value="{{row.path}}" maxlength="64"/>

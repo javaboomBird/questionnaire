@@ -23,7 +23,7 @@
 			<include refid="genTableColumns"/>
 		FROM gen_table a
 		<include refid="genTableJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<if test="name != null and name != ''">
 			AND a.name = #{name}
 		</if>
@@ -50,7 +50,7 @@
 			<include refid="genTableColumns"/>
 		FROM gen_table a
 		<include refid="genTableJoins"/>
-		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		WHERE a.is_deleted = #{DEL_FLAG_NORMAL}
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
@@ -69,12 +69,12 @@
 			class_name, 
 			parent_table, 
 			parent_table_fk, 
-			create_by, 
-			create_date, 
+			insert_by,
+			insert_time,
 			update_by, 
-			update_date, 
+			update_time,
 			remarks, 
-			del_flag
+			is_deleted
 		) VALUES (
 			#{id}, 
 			#{name}, 
@@ -82,12 +82,12 @@
 			#{className}, 
 			#{parentTable}, 
 			#{parentTableFk}, 
-			#{createBy.id}, 
-			#{createDate}, 
+			#{insertBy.id},
+			#{insertTime},
 			#{updateBy.id}, 
-			#{updateDate}, 
+			#{updateTime},
 			#{remarks}, 
-			#{delFlag}
+			#{isDeleted}
 		)
 	</insert>
 	
@@ -99,14 +99,14 @@
 			parent_table = #{parentTable}, 
 			parent_table_fk = #{parentTableFk}, 
 			update_by = #{updateBy.id}, 
-			update_date = #{updateDate}, 
+			update_time = #{updateTime},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
 		UPDATE gen_table SET 
-			del_flag = #{DEL_FLAG_DELETE}
+			is_deleted = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
 	

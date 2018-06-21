@@ -153,11 +153,11 @@ public class GovernmentViewController extends BaseController {
     Government government = JsonUtils.toSimpleObject(JsonUtils.toJson(source), Government.class);
     Date now = DateUtils.getNow();
      if (isNewRecord) {
-      government.setCreateDate(now);
-      government.setCreateBy(user.getName());
+      government.setInsertTime(now);
+      government.setInsertBy(user.getName());
     }
     government.setUpdateBy(user.getName());
-    government.setUpdateDate(now);
+    government.setUpdateTime(now);
     return government;
   }
 

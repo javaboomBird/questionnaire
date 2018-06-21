@@ -71,7 +71,7 @@
             </td>
             <td>
                 <a href="${ctx}/assets/assetsCarDistributive/form?id=${assetsCarDistributive.id}">
-                    <fmt:formatDate value="${assetsCarDistributive.updateDate}"
+                    <fmt:formatDate value="${assetsCarDistributive.updateTime}"
                                     pattern="yyyy-MM-dd HH:mm:ss"/>
                 </a>
             </td>

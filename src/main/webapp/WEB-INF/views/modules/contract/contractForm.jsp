@@ -70,12 +70,12 @@
       var delFlag = $(prefix + "_delFlag");
       if (id.val() == "") {
         $(obj).parent().parent().remove();
-      } else if (delFlag.val() == "0") {
-        delFlag.val("1");
+      } else if (delFlag.val() == "N") {
+        delFlag.val("Y");
         $(obj).html("&divide;").attr("title", "撤销删除");
         $(obj).parent().parent().addClass("error");
-      } else if (delFlag.val() == "1") {
-        delFlag.val("0");
+      } else if (delFlag.val() == "Y") {
+        delFlag.val("N");
         $(obj).html("&times;").attr("title", "删除");
         $(obj).parent().parent().removeClass("error");
       }
@@ -421,7 +421,7 @@
 						<tr id="contractAttachmentList{{idx}}">
 							<td class="hide">
 								<input id="contractAttachmentList{{idx}}_id" name="contractAttachmentList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="contractAttachmentList{{idx}}_delFlag" name="contractAttachmentList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="contractAttachmentList{{idx}}_delFlag" name="contractAttachmentList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<input id="contractAttachmentList{{idx}}_description" name="contractAttachmentList[{{idx}}].description" type="text" value="{{row.description}}" maxlength="128" class="input-small "/>
@@ -492,7 +492,7 @@
 						<tr id="contractGoodList{{idx}}">
 							<td class="hide">
 								<input id="contractGoodList{{idx}}_id" name="contractGoodList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="contractGoodList{{idx}}_delFlag" name="contractGoodList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="contractGoodList{{idx}}_delFlag" name="contractGoodList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 							<select id="contractGoodList{{idx}}_goodId" name="contractGoodList[{{idx}}].goodId" data-value="{{row.goodId}}" class="input-small ">

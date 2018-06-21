@@ -44,12 +44,12 @@
 			var delFlag = $(prefix+"_delFlag");
 			if (id.val() == ""){
 				$(obj).parent().parent().remove();
-			}else if(delFlag.val() == "0"){
-				delFlag.val("1");
+			}else if(delFlag.val() == "N"){
+				delFlag.val("Y");
 				$(obj).html("&divide;").attr("title", "撤销删除");
 				$(obj).parent().parent().addClass("error");
-			}else if(delFlag.val() == "1"){
-				delFlag.val("0");
+			}else if(delFlag.val() == "Y"){
+				delFlag.val("N");
 				$(obj).html("&times;").attr("title", "删除");
 				$(obj).parent().parent().removeClass("error");
 			}
@@ -106,7 +106,7 @@
 						<tr id="sysUserGroupList{{idx}}">
 							<td class="hide">
 								<input id="sysUserGroupList{{idx}}_id" name="sysUserGroupList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="sysUserGroupList{{idx}}_delFlag" name="sysUserGroupList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="sysUserGroupList{{idx}}_delFlag" name="sysUserGroupList[{{idx}}].isDeleted" type="hidden" value="N"/>
 							</td>
 							<td>
 								<sys:treeselect id="sysUserGroupList{{idx}}_user" name="sysUserGroupList[{{idx}}].user.id" value="{{row.user.id}}" labelName="sysUserGroupList{{idx}}.user.name" labelValue="{{row.user.name}}"

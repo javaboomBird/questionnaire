@@ -33,7 +33,7 @@ import ${packageName}.${moduleName}.api.client<#if subModuleName != "">.${subMod
  * @version ${functionVersion}
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = true,rollbackFor = Exception.class)
 public class ${ClassName}Service {
 
    @Autowired
@@ -53,7 +53,7 @@ public class ${ClassName}Service {
 		if (${className} == null) {
       ${className} = new ${ClassName}();
     }
-    ${className}.setDelFlag("0");
+    ${className}.setIsDeleted("N");
     if (pageNum < 0 && pageSize < 0) {
       //查询全部
       PageHelper.startPage(pageNum, 0,true,null,true);
@@ -64,7 +64,7 @@ public class ${ClassName}Service {
     return ${className}Mapper.selectBySelective(${className});
 	}
 	
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public void save(${ClassName} ${className}) {
 
      if (StringUtils.isNotEmpty(${className}.getId())) {
@@ -77,7 +77,7 @@ public class ${ClassName}Service {
       if (${c.className?uncap_first}List.size() > 0 && ${c.className?uncap_first}List != null) {
         List<${c.className?cap_first}> insertOrUpdate${c.className?cap_first} = new ArrayList<>();
         ${c.className?uncap_first}List.stream().forEach(${c.className?uncap_first} -> {
-          String delFlag = ${c.className?uncap_first}.getDelFlag();
+          String delFlag = ${c.className?uncap_first}.getIsDeleted();
           if ("0".equals(delFlag)) {
             ${c.className?uncap_first}.setId(uuid());
             ${c.className?uncap_first}.set${tuofeng(c.parentTableFk)}(${className}.getId());
@@ -106,10 +106,10 @@ public class ${ClassName}Service {
 
 	}
 	
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public void delete(${ClassName} ${className}) {
 
-	  ${className}.setDelFlag("1");
+	  ${className}.setIsDeleted("Y");
     ${className}Mapper.updateByPrimaryKeySelective(${className});
 
 	<#list table.childList as c>
@@ -130,7 +130,7 @@ public class ${ClassName}Service {
      List<${c.className?cap_first}> ${c.className?uncap_first}List = ${className}Mapper.selectByPrimaryKey(id).get${c.className?cap_first}List();
      if (${c.className?uncap_first}List != null && ${c.className?uncap_first}List.size() > 0) {
       ${c.className?uncap_first}List.stream().forEach(${c.className?uncap_first} -> {
-        ${c.className?uncap_first}.setDelFlag("1");
+        ${c.className?uncap_first}.setIsDeleted("Y");
       });
        ${c.className?uncap_first}Mapper.updateBatchByPrimaryKeySelective(${c.className?uncap_first}List);
       }

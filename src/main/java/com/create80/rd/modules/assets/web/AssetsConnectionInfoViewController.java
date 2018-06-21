@@ -62,9 +62,6 @@ public class AssetsConnectionInfoViewController extends BaseController {
   @Autowired
   private OfficeService officeService;
 
-  //临时存储
-  private final static List<String> localThreadOfficeCache = new ArrayList<>();
-  private final static List<String> localThreadEnterpriseCache = new ArrayList<>();
 
   @ModelAttribute
   public AssetsConnectionInfoEntity get(@RequestParam(required = false) String id, Model model) {
@@ -127,12 +124,17 @@ public class AssetsConnectionInfoViewController extends BaseController {
   @RequestMapping(value = "/getAssetsList")
   @ResponseBody
   public ResponseEntity<String> getAssetsList(
-      @RequestParam(value = "assetsEnterpriseId", required = true) String assetsEnterpriseId) {
+      @RequestParam(value = "assetsEnterpriseId", required = true) String assetsEnterpriseId
+  ) {
     List<Map<String, Object>> resultList = getAssetsManagerListByEnterpriseId(assetsEnterpriseId);
     String s = JsonUtils.toJson(resultList);
     return new ResponseEntity<>(s, HttpStatus.OK);
   }
 
+
+  /**
+   * 根据企业ID获取资产列表信息
+   */
   private List<Map<String, Object>> getAssetsManagerListByEnterpriseId(
       String assetsEnterpriseId) {
     List<Map<String, Object>> resultList = new ArrayList<>();
@@ -145,14 +147,9 @@ public class AssetsConnectionInfoViewController extends BaseController {
       String apiBaseUrl = moduleLinkConfiguration.getLink("assets");
       Map<String, Object> urlVariableMap = new HashMap<>();
       urlVariableMap.put("paramValue", assetsEnterpriseId);
-      if (localThreadEnterpriseCache.contains(assetsEnterpriseId)) {
-        urlVariableMap.put("param", "assetsUseUnit");
-      } else if (localThreadOfficeCache.contains(assetsEnterpriseId)) {
-        urlVariableMap.put("param", "assetsUseDepartment");
-      }
 
       ResponseEntity<String> responseEntity = restTemplate
-          .getForEntity(apiBaseUrl + "/assets/assetsManager/api/getAll?{param}={paramValue}",
+          .getForEntity(apiBaseUrl + "/assets/assetsManager/api/getAll?assetsUseUnit={paramValue}",
               String.class, urlVariableMap);
       assetsManagerEntityList = JsonUtils
           .toListObject(responseEntity.getBody(), AssetsManagerEntity.class);
@@ -199,7 +196,6 @@ public class AssetsConnectionInfoViewController extends BaseController {
     }
     if (enterpriseEntityList != null) {
       enterpriseEntityList.stream().forEach(enterpriseEntity -> {
-        localThreadEnterpriseCache.add(enterpriseEntity.getId());
         resultMap.put(enterpriseEntity.getId(), enterpriseEntity.getEnterpriseName());
       });
     }
@@ -213,6 +209,12 @@ public class AssetsConnectionInfoViewController extends BaseController {
   public String save(AssetsConnectionInfoEntity assetsConnectionInfo, Model model,
       RedirectAttributes redirectAttributes) {
     if (!beanValidator(model, assetsConnectionInfo)) {
+      return form(assetsConnectionInfo, model);
+    }
+
+    if (assetsConnectionInfo.getSourceAssetsId().equals(assetsConnectionInfo.getTargetAssetsId())) {
+      addMessage(model, "源资产和目标资产不能选同一个.");
+      assetsConnectionInfo = new AssetsConnectionInfoEntity();
       return form(assetsConnectionInfo, model);
     }
 
@@ -253,11 +255,11 @@ public class AssetsConnectionInfoViewController extends BaseController {
         .toSimpleObject(JsonUtils.toJson(source), AssetsConnectionInfo.class);
     Date now = new Date();
     if (isNewRecord) {
-      assetsConnectionInfo.setCreateDate(now);
-      assetsConnectionInfo.setCreateBy(user.getName());
+      assetsConnectionInfo.setInsertTime(now);
+      assetsConnectionInfo.setInsertBy(user.getName());
     }
     assetsConnectionInfo.setUpdateBy(user.getName());
-    assetsConnectionInfo.setUpdateDate(now);
+    assetsConnectionInfo.setUpdateTime(now);
     return assetsConnectionInfo;
   }
 

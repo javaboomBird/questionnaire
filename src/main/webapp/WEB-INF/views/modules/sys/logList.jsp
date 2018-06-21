@@ -23,7 +23,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<div>
 			<label>操作菜单：</label><input id="title" name="title" type="text" maxlength="50" class="input-mini" value="${log.title}"/>
-			<label>用户ID：</label><input id="createBy.id" name="createBy.id" type="text" maxlength="50" class="input-mini" value="${log.createBy.id}"/>
+			<label>用户ID：</label><input id="insertBy.id" name="insertBy.id" type="text" maxlength="50" class="input-mini" value="${log.insertBy.id}"/>
 			<label>URI：</label><input id="requestUri" name="requestUri" type="text" maxlength="50" class="input-mini" value="${log.requestUri}"/>
 		</div><div style="margin-top:8px;">
 			<label>日期范围：&nbsp;</label><input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-mini Wdate"
@@ -41,13 +41,13 @@
 		<c:forEach items="${page.list}" var="log">
 			<tr>
 				<td>${log.title}</td>
-				<td>${log.createBy.name}</td>
-				<td>${log.createBy.company.name}</td>
-				<td>${log.createBy.office.name}</td>
+				<td>${log.insertBy.name}</td>
+				<td>${log.insertBy.company.name}</td>
+				<td>${log.insertBy.office.name}</td>
 				<td><strong>${log.requestUri}</strong></td>
 				<td>${log.method}</td>
 				<td>${log.remoteAddr}</td>
-				<td><fmt:formatDate value="${log.createDate}" type="both"/></td>
+				<td><fmt:formatDate value="${log.insertTime}" type="both"/></td>
 			</tr>
 			<c:if test="${not empty log.exception}"><tr>
 				<td colspan="8" style="word-wrap:break-word;word-break:break-all;">

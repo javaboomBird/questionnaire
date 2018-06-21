@@ -57,7 +57,7 @@ public class GenTableController extends BaseController {
 	public String list(GenTable genTable, HttpServletRequest request, HttpServletResponse response, Model model) {
 		User user = UserUtils.getUser();
 		if (!user.isAdmin()){
-			genTable.setCreateBy(user);
+			genTable.setInsertBy(user);
 		}
         Page<GenTable> page = genTableService.find(new Page<GenTable>(request, response), genTable); 
         model.addAttribute("page", page);
