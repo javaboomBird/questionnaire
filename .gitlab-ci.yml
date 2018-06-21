@@ -8,8 +8,8 @@ deploy-job:
       - '194'
   stage: deploy
   script:
-    - mvn clean package
     - $DEPLOY_HOME/bin/shutdown.sh
+    - mvn clean package
     - rm -rf $DEPLOY_HOME/webapps/ra-operations-management*
     - cp target/ra-operations-management.war $DEPLOY_HOME/webapps/
     - $DEPLOY_HOME/bin/startup.sh
