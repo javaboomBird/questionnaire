@@ -50,7 +50,7 @@ public class ${ClassName}Service {
      if (${className} == null) {
       ${className} = new ${ClassName}();
     }
-    ${className}.setDelFlag("N");
+    ${className}.setIsDeleted("N");
     if (pageNum < 0 && pageSize < 0) {
       //查询全部
       PageHelper.startPage(pageNum, 0,true,null,true);

@@ -146,7 +146,7 @@ public class GenTable extends DataEntity<GenTable> {
     for (GenTableColumn column : getColumnList()) {
       if (column.getIsNotBaseField() || ("1".equals(column.getIsQuery()) && "between"
           .equals(column.getQueryType())
-          && ("createDate".equals(column.getSimpleJavaField()) || "updateDate"
+          && ("insertTime".equals(column.getSimpleJavaField()) || "updateTime"
           .equals(column.getSimpleJavaField())))) {
         // 导入类型依赖包， 如果类型中包含“.”，则需要导入引用。
         if (StringUtils.indexOf(column.getJavaType(), ".") != -1 && !importList
@@ -188,7 +188,7 @@ public class GenTable extends DataEntity<GenTable> {
    */
   public Boolean getCreateDateExists() {
     for (GenTableColumn c : columnList) {
-      if ("create_date".equals(c.getName())) {
+      if ("insert_time".equals(c.getName())) {
         return true;
       }
     }
@@ -200,7 +200,7 @@ public class GenTable extends DataEntity<GenTable> {
    */
   public Boolean getUpdateDateExists() {
     for (GenTableColumn c : columnList) {
-      if ("update_date".equals(c.getName())) {
+      if ("update_time".equals(c.getName())) {
         return true;
       }
     }

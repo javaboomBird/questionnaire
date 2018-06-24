@@ -3,7 +3,7 @@
  */
 package com.create80.rd.modules.assets.entity;
 
-import com.create80.rd.modules.customer.enterprise.entity.EnterpriseEntity;
+import com.create80.rd.modules.customer.customer.entity.CustomerEntity;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -42,7 +42,7 @@ public class AssetsManagerEntity extends DataEntity<AssetsManagerEntity> {
   private List<AssetsImageEntity> assetsImageList = Lists.newArrayList();    // 子表列表
 
   //如果不是内部用户则是需要涉及到企业
-  private EnterpriseEntity enterprise;
+  private CustomerEntity customer;
 
   public AssetsManagerEntity() {
     super();
@@ -208,12 +208,12 @@ public class AssetsManagerEntity extends DataEntity<AssetsManagerEntity> {
     return assetsImageList;
   }
 
-  public EnterpriseEntity getEnterprise() {
-    return enterprise;
+  public CustomerEntity getCustomer() {
+    return customer;
   }
 
-  public void setEnterprise(EnterpriseEntity enterprise) {
-    this.enterprise = enterprise;
+  public void setCustomer(CustomerEntity customer) {
+    this.customer = customer;
   }
 
   public void setAssetsImageList(List<AssetsImageEntity> assetsImageList) {

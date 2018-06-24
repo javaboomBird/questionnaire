@@ -78,7 +78,7 @@ public class ${ClassName}Service {
         List<${c.className?cap_first}> insertOrUpdate${c.className?cap_first} = new ArrayList<>();
         ${c.className?uncap_first}List.stream().forEach(${c.className?uncap_first} -> {
           String delFlag = ${c.className?uncap_first}.getIsDeleted();
-          if ("0".equals(delFlag)) {
+          if ("N".equals(delFlag)) {
             ${c.className?uncap_first}.setId(uuid());
             ${c.className?uncap_first}.set${tuofeng(c.parentTableFk)}(${className}.getId());
             insertOrUpdate${c.className?cap_first}.add(${c.className?uncap_first});

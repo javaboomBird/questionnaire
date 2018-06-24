@@ -1,16 +1,10 @@
 package com.create80.rd.common.utils;
 
-import com.create80.rd.modules.customer.it.api.model.IndustryType;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.create80.rd.common.utils.page.PageInfo;
-import com.create80.rd.modules.customer.it.api.model.IndustryType;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -144,13 +138,7 @@ public class JsonUtils {
   }
 
   public static void main(String[] args) {
-    PageInfo<IndustryType> pageInfo = fromJson(
-        "{\"pageNum\":0,\"pageSize\":0,\"size\":10,\"startRow\":1,\"endRow\":10,\"total\":10,\"pages\":0,\"list\":[{\"id\":\"11\",\"industryTypeName\":\"xaa\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:45\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-19 14:18:27\",\"remarks\":\"fff\",\"delFlag\":\"0\"},{\"id\":\"17\",\"industryTypeName\":\"xaa\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:45\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:58:37\",\"remarks\":\"fff\",\"delFlag\":\"0\"},{\"id\":\"18\",\"industryTypeName\":\"ff\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:26\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:55:32\",\"remarks\":\"xxaff\",\"delFlag\":\"0\"},{\"id\":\"19\",\"industryTypeName\":\"xaa\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:45\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:58:37\",\"remarks\":\"fff\",\"delFlag\":\"0\"},{\"id\":\"20\",\"industryTypeName\":\"ff\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:26\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:55:32\",\"remarks\":\"xxaff\",\"delFlag\":\"0\"},{\"id\":\"21\",\"industryTypeName\":\"xaa\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:45\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:58:37\",\"remarks\":\"fff\",\"delFlag\":\"0\"},{\"id\":\"22\",\"industryTypeName\":\"ff\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:26\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:55:32\",\"remarks\":\"xxaff\",\"delFlag\":\"0\"},{\"id\":\"23\",\"industryTypeName\":\"xaa\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:45\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:58:37\",\"remarks\":\"fff\",\"delFlag\":\"0\"},{\"id\":\"24\",\"industryTypeName\":\"ff\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:26\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:55:32\",\"remarks\":\"xxaff\",\"delFlag\":\"0\"},{\"id\":\"25\",\"industryTypeName\":\"xaa\",\"createBy\":null,\"createDate\":\"2018-05-16 12:55:45\",\"updateBy\":\"admin\",\"updateDate\":\"2018-05-16 12:58:37\",\"remarks\":\"fff\",\"delFlag\":\"0\"}],\"prePage\":0,\"nextPage\":0,\"isFirstPage\":false,\"isLastPage\":true,\"hasPreviousPage\":false,\"hasNextPage\":false,\"navigatePages\":8,\"navigatepageNums\":[],\"navigateFirstPage\":0,\"navigateLastPage\":0,\"lastPage\":0,\"firstPage\":0}",
-        PageInfo.class,IndustryType.class);
-    List<IndustryType> industryTypes = pageInfo.getList();
-    for (IndustryType industryType : industryTypes) {
-      System.out.println(industryType);
-    }
+
 
   }
 

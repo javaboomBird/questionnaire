@@ -3,7 +3,7 @@
  */
 package com.create80.rd.modules.assets.web;
 
-import com.create80.rd.modules.customer.enterprise.entity.EnterpriseEntity;
+import com.create80.rd.modules.customer.customer.entity.CustomerEntity;
 import com.create80.rd.modules.sys.entity.Office;
 import com.create80.rd.modules.sys.service.OfficeService;
 import java.util.HashMap;
@@ -138,10 +138,10 @@ public class AssetsManagerViewController extends BaseController {
                   .getForEntity(customerApiBaseUrl + "/enterprise/enterprise/api/{id}",
                       String.class,
                       paramMap);
-              EnterpriseEntity entity = JsonUtils
-                  .toSimpleObject(responseEntity.getBody(), EnterpriseEntity.class);
+              CustomerEntity entity = JsonUtils
+                  .toSimpleObject(responseEntity.getBody(), CustomerEntity.class);
               assetsManagerEntity.setAssetsUseDepartment("");//清空显示
-              assetsManagerEntity.setAssetsUseUnit(entity.getEnterpriseName());
+              assetsManagerEntity.setAssetsUseUnit(entity.getName());
             }
           } catch (Exception e) {
             e.printStackTrace();
@@ -169,13 +169,13 @@ public class AssetsManagerViewController extends BaseController {
         .filter(e -> "2".equals(e.getType())).collect(Collectors.toList());
 
     //获取客户信息列表
-    List<EnterpriseEntity> enterpriseEntityList = null;
+    List<CustomerEntity> enterpriseEntityList = null;
     try {
       String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
       ResponseEntity<String> responseEntity = restTemplate
-          .getForEntity(apiBaseUrl + "/enterprise/enterprise/api/getAll", String.class);
+          .getForEntity(apiBaseUrl + "/customer/api/getEnterpriseList", String.class);
       enterpriseEntityList = JsonUtils
-          .toListObject(responseEntity.getBody(), EnterpriseEntity.class);
+          .toListObject(responseEntity.getBody(), CustomerEntity.class);
     } catch (RestClientException e) {
       e.printStackTrace();
     }

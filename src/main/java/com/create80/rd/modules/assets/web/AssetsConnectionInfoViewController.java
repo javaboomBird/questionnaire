@@ -4,23 +4,18 @@
 package com.create80.rd.modules.assets.web;
 
 import com.create80.rd.modules.assets.entity.AssetsManagerEntity;
-import com.create80.rd.modules.customer.enterprise.entity.EnterpriseEntity;
-import com.create80.rd.modules.sys.entity.Office;
+import com.create80.rd.modules.customer.customer.entity.CustomerEntity;
 import com.create80.rd.modules.sys.service.OfficeService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.Date;
-import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.InvocationTargetException;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,7 +28,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.ResponseEntity;
 
 import com.create80.rd.common.utils.JsonUtils;
 import com.create80.rd.modules.sys.entity.User;
@@ -184,19 +178,19 @@ public class AssetsConnectionInfoViewController extends BaseController {
 //    });
 
     //获取客户信息列表
-    List<EnterpriseEntity> enterpriseEntityList = null;
+    List<CustomerEntity> enterpriseEntityList = null;
     try {
       String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
       ResponseEntity<String> responseEntity = restTemplate
-          .getForEntity(apiBaseUrl + "/enterprise/enterprise/api/getAll", String.class);
+          .getForEntity(apiBaseUrl + "/customer/api/getEnterpriseList", String.class);
       enterpriseEntityList = JsonUtils
-          .toListObject(responseEntity.getBody(), EnterpriseEntity.class);
+          .toListObject(responseEntity.getBody(), CustomerEntity.class);
     } catch (RestClientException e) {
       e.printStackTrace();
     }
     if (enterpriseEntityList != null) {
       enterpriseEntityList.stream().forEach(enterpriseEntity -> {
-        resultMap.put(enterpriseEntity.getId(), enterpriseEntity.getEnterpriseName());
+        resultMap.put(enterpriseEntity.getId(), enterpriseEntity.getName());
       });
     }
     model.addAttribute("enterpriseMap", resultMap);

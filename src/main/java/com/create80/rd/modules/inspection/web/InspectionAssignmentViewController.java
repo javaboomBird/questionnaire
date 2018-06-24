@@ -7,8 +7,9 @@ import com.create80.rd.common.utils.DateUtils;
 import com.create80.rd.modules.assets.api.model.AssetsManager;
 import com.create80.rd.modules.assets.entity.AssetsManagerEntity;
 import com.create80.rd.modules.assets.web.AssetsManagerViewController;
-import com.create80.rd.modules.customer.enterprise.entity.EnterpriseEntity;
-import com.create80.rd.modules.customer.enterprise.web.EnterpriseViewController;
+
+import com.create80.rd.modules.customer.customer.entity.CustomerEntity;
+import com.create80.rd.modules.customer.customer.web.CustomerEnterpriseViewController;
 import com.create80.rd.modules.group.api.model.SysGroup;
 import com.create80.rd.modules.group.web.SysGroupViewController;
 import com.create80.rd.modules.inspection.api.model.InspectionAssignment;
@@ -22,7 +23,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,7 +64,7 @@ public class InspectionAssignmentViewController extends BaseController {
   private RestTemplate restTemplate;
 
   @Autowired
-  private EnterpriseViewController enterpriseViewController;
+  private CustomerEnterpriseViewController customerEnterpriseViewController;
 
   @Autowired
   private AssetsManagerViewController assetsManagerViewController;
@@ -140,7 +140,7 @@ public class InspectionAssignmentViewController extends BaseController {
     inspectionAssignmentEntityList.stream().forEach(inspectionAssignmentEntity -> {
       AssetsManagerEntity assetsManagerEntity = assetsManagerViewController
           .get(inspectionAssignmentEntity.getAssetId());
-      assetsManagerEntity.setEnterprise(enterpriseViewController
+      assetsManagerEntity.setCustomer(customerEnterpriseViewController
           .get(assetsManagerEntity.getAssetsUseUnit()));
       inspectionAssignmentEntity
           .setSysGroup(sysGroupViewController.get(inspectionAssignmentEntity.getTeamId()));
@@ -200,12 +200,12 @@ public class InspectionAssignmentViewController extends BaseController {
       //根据资产所在公司区域作为树的根节点
       List<String> areaIdList = new ArrayList<>();
       assetsManagerList.stream().forEach(assetsManager -> {
-        EnterpriseEntity enterpriseEntity = enterpriseViewController
+        CustomerEntity enterpriseEntity = customerEnterpriseViewController
             .get(assetsManager.getAssetsUseUnit());
         String areaId = enterpriseEntity.getAreaId();
         if (areaIdList.contains(areaId)) {
           ZTreeNode enterpriseTreeNode = new ZTreeNode(assetsManager.getId(), areaId,
-              enterpriseEntity.getEnterpriseName(), false, false);
+              enterpriseEntity.getName(), false, false);
           zTreeNoLis.add(enterpriseTreeNode);
         } else {
           ZTreeNode areaTreeNode = new ZTreeNode(areaId, "-1",
@@ -213,7 +213,7 @@ public class InspectionAssignmentViewController extends BaseController {
           zTreeNoLis.add(areaTreeNode);
 
           ZTreeNode enterpriseTreeNode = new ZTreeNode(assetsManager.getId(), areaId,
-              enterpriseEntity.getEnterpriseName(), false, false);
+              enterpriseEntity.getName(), false, false);
           zTreeNoLis.add(enterpriseTreeNode);
           areaIdList.add(areaId);
         }

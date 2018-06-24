@@ -317,10 +317,10 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
   public Boolean getIsNotBaseField() {
     return !StringUtils.equals(getSimpleJavaField(), "id")
         && !StringUtils.equals(getSimpleJavaField(), "remarks")
-        && !StringUtils.equals(getSimpleJavaField(), "createBy")
-        && !StringUtils.equals(getSimpleJavaField(), "createDate")
+        && !StringUtils.equals(getSimpleJavaField(), "insertBy")
+        && !StringUtils.equals(getSimpleJavaField(), "insertTime")
         && !StringUtils.equals(getSimpleJavaField(), "updateBy")
-        && !StringUtils.equals(getSimpleJavaField(), "updateDate")
+        && !StringUtils.equals(getSimpleJavaField(), "updateTime")
         && !StringUtils.equals(getSimpleJavaField(), "isDeleted");
   }
 
