@@ -231,11 +231,10 @@
     <div class="control-group">
         <label class="control-label">甲方：</label>
         <div class="controls">
-            <form:input
-                    path="firstParty"
-                    htmlEscape="false"
-                    maxlength="64"
-                    class="input-xlarge "/>
+            <sys:dynamicselect url="{customer}/customer/api/getEnterpriseList"
+                               cssClass="input-xlarge required" id="firstParty" name="firstParty"
+                               valueProperty="id"
+                               textProperty="name"/>
         </div>
     </div>
     <div class="control-group">
