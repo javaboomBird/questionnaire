@@ -71,8 +71,10 @@ public class CustomerEnterpriseViewController extends BaseController {
           .getForEntity(apiBaseUrl + "/customer/api/{id}", String.class,
               urlVariables);
 
-      entity = JsonUtils.toSimpleObject(responseEntity.getBody(), CustomerEntity.class);
-
+      String customerEntity = responseEntity.getBody();
+      if (StringUtils.isNotEmpty(customerEntity)) {
+        entity = JsonUtils.toSimpleObject(customerEntity, CustomerEntity.class);
+      }
       entity.setArea(areaService.get(entity.getAreaId()));
     }
     return entity;

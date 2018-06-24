@@ -57,13 +57,13 @@
     <c:forEach items="${page.list}" var="inspectionAssignment">
         <tr>
             <td>
-                    ${inspectionAssignment.assetsManager.enterprise.area.name}
+                    ${inspectionAssignment.assetsManager.customer.area.name}
             </td>
             <td>
                     ${inspectionAssignment.sysGroup.groupName}
             </td>
             <td>
-                    ${inspectionAssignment.assetsManager.enterprise.enterpriseName}
+                    ${inspectionAssignment.assetsManager.customer.name}
             </td>
             <td>
                     ${inspectionAssignment.assetsManager.assetsName}
