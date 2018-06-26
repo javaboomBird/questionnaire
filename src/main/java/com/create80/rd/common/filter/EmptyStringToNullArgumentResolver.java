@@ -43,15 +43,15 @@ public class EmptyStringToNullArgumentResolver extends
     toNullRequestDataBinderBinder
         .registerCustomEditor(Date.class, new CustomDateEditor(timeDateFormat, true));
 
-    SimpleDateFormat dayDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_DATE_PATTERN);
-    dayDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-    toNullRequestDataBinderBinder
-        .registerCustomEditor(Date.class, new CustomDateEditor(dayDateFormat, true));
-
-    SimpleDateFormat monthDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_MONTH_PATTERN);
-    monthDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-    toNullRequestDataBinderBinder
-        .registerCustomEditor(Date.class, new CustomDateEditor(monthDateFormat, true));
+//    SimpleDateFormat dayDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_DATE_PATTERN);
+//    dayDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+//    toNullRequestDataBinderBinder
+//        .registerCustomEditor(Date.class, new CustomDateEditor(dayDateFormat, true));
+//
+//    SimpleDateFormat monthDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_MONTH_PATTERN);
+//    monthDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+//    toNullRequestDataBinderBinder
+//        .registerCustomEditor(Date.class, new CustomDateEditor(monthDateFormat, true));
 
     ServletRequest servletRequest = request.getNativeRequest(ServletRequest.class);
     toNullRequestDataBinderBinder.bind(servletRequest);

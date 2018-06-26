@@ -3,6 +3,8 @@
  */
 package com.create80.rd.modules.projectmanager.web;
 
+import com.create80.rd.modules.projectmanager.api.model.ProjectContactRelation;
+import com.create80.rd.modules.projectmanager.entity.ProjectContactRelationEntity;
 import com.create80.rd.modules.projectmanager.entity.ProjectMemberEntity;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationTargetException;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -21,7 +24,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.BeanUtils;
@@ -82,6 +88,39 @@ public class ProjectViewController extends BaseController {
     }
     return entity;
   }
+
+  @RequestMapping(value = "/getProjectIdByContact", method = RequestMethod.GET)
+  @ResponseBody
+  public Map<String, Object> getProjectIdByContact(
+      @RequestParam(value = "contactId") String contactId) {
+
+    Map<String, Object> resultMap = new HashMap<>();
+    resultMap.put("projectId", "");
+
+    List<ProjectContactRelation> projectContactRelationEntityList = null;
+    try {
+      Map<String, Object> urlVariables = new HashMap<>();
+      urlVariables.put("contactId", contactId);
+      String apiBaseUrl = moduleLinkConfiguration.getLink("projectmanager");
+      ResponseEntity<String> responseEntity = restTemplate
+          .getForEntity(apiBaseUrl
+                  + "/projectmanager/project/api/getProjectListByContactId?contactId={contactId}",
+              String.class,
+              urlVariables);
+      projectContactRelationEntityList = JsonUtils
+          .toListObject(responseEntity.getBody(), ProjectContactRelation.class);
+    } catch (RestClientException e) {
+      e.printStackTrace();
+    }
+
+    if (projectContactRelationEntityList != null) {
+      projectContactRelationEntityList.stream().forEach(projectContactRelationEntity -> {
+        resultMap.put("projectId", projectContactRelationEntity.getProjectId());
+      });
+    }
+    return resultMap;
+  }
+
 
   @RequiresPermissions("projectmanager:project:view")
   @RequestMapping(value = {"list", ""})

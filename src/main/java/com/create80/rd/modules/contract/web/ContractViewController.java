@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationTargetException;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,7 +21,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.BeanUtils;
@@ -125,6 +128,26 @@ public class ContractViewController extends BaseController {
 
 		return "redirect:"+Global.getAdminPath()+"/contract/contract/?repage";
 	}
+
+  /**
+   * 通过甲方ID获取合同列表信息
+   *
+   * @param firstParty 项目ID
+   */
+  @RequestMapping(value = "getAll", method = RequestMethod.GET)
+  @ResponseBody
+  public List<Contract> getAllProjectTaskList(@Param(value = "firstParty") String firstParty) {
+
+    String apiBaseUrl = moduleLinkConfiguration.getLink("contract");
+    Map<String, Object> urlVariables = new HashMap<>();
+    urlVariables.put("firstParty", firstParty);
+
+    ResponseEntity<String> responseEntity = restTemplate
+        .getForEntity(apiBaseUrl + "/contract/contract/api/getAll?firstParty={firstParty}",
+            String.class, urlVariables);
+
+    return JsonUtils.toListObject(responseEntity.getBody(), Contract.class);
+  }
 	
 	@RequiresPermissions("contract:contract:edit")
 	@RequestMapping(value = "delete")

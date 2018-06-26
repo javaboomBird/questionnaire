@@ -26,7 +26,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>项目名称：</label>
-			  <sys:dynamicselect url="{projectmanager}//projectmanager/project/api/getAll" cssClass="input-medium required" id="projectId" name="projectId" valueProperty="id" textProperty="projectName" />
+			  <sys:dynamicselect url="{projectmanager}/projectmanager/project/api/getAll" cssClass="input-medium required" id="projectId" name="projectId" valueProperty="id" textProperty="projectName" />
 			</li>
 			<li><label>阶段名称：</label>
 				<form:input path="stageName" htmlEscape="false" maxlength="64" class="input-medium"/>
