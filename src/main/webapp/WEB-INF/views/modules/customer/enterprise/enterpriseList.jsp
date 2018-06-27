@@ -52,7 +52,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="enterprise">
         <tr>
-            <td><a href="${ctx}/customer/enterprise/form?id=${enterprise.id}">
+            <td><a href="${ctx}/customer/enterprise/formView?id=${enterprise.id}">
                     ${enterprise.name}
             </a></td>
             <td>

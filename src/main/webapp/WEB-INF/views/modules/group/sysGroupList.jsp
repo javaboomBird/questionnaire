@@ -60,7 +60,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="sysGroup">
         <tr>
-            <td><a href="${ctx}/group/sysGroup/form?id=${sysGroup.id}">
+            <td><a href="${ctx}/group/sysGroup/formView?id=${sysGroup.id}">
                     ${sysGroup.office.name}
             </a></td>
             <td>

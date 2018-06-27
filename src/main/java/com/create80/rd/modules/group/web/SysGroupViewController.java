@@ -128,6 +128,12 @@ public class SysGroupViewController extends BaseController {
     return "modules/group/sysGroupForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(SysGroupEntity sysGroup, Model model) {
+    model.addAttribute("sysGroup", sysGroup);
+    return "modules/group/sysGroupFormView";
+  }
+
   @RequiresPermissions("group:sysGroup:edit")
   @RequestMapping(value = "save")
   public String save(SysGroupEntity sysGroup, Model model, RedirectAttributes redirectAttributes) {
