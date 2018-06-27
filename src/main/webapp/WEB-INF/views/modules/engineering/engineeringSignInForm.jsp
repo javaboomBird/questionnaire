@@ -26,23 +26,26 @@
       //工单change事件
       $("#engineeringId").change(function () {
         var value = $(this).val();
-        $.ajax({
-          type: "get",
-          url: "${ctx}/engineering/engineeringWorkOrder/getById?id=" + value,
-          dataType: "JSON",
-          success: function (data) {
-            var teamId = data.sysGroup.id;
-            var teamName = data.sysGroup.groupName;
-            var customerId = data.customer.id;
-            var customerName = data.customer.name;
-            $("#teamId").val(teamId);
-            $("#teamName").val(teamName);
-            $("#customerId").val(customerId);
-            $("#customerName").val(customerName);
-          }, error: function () {
+        if (value == '') {
+          $("#customerId").val('');
+          $("#customerName").val('');
+        } else {
+          $.ajax({
+            type: "get",
+            url: "${ctx}/engineering/engineeringWorkOrder/getById?id=" + value,
+            dataType: "JSON",
+            success: function (data) {
 
-          }
-        });
+              var customerId = data.customer.id;
+              var customerName = data.customer.name;
+
+              $("#customerId").val(customerId);
+              $("#customerName").val(customerName);
+            }, error: function () {
+
+            }
+          });
+        }
       });
 
     });
@@ -61,22 +64,39 @@
            action="${ctx}/engineering/engineeringSignIn/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
+
+    <div class="control-group">
+        <label class="control-label">签到类型：</label>
+        <div class="controls">
+            <form:select path="signType" class="input-xlarge required">
+                <form:option value="" label="请选择"/>
+                <form:options items="${fns:getDictList('engineering_sign_in_type')}"
+                              itemLabel="label"
+                              itemValue="value" htmlEscape="false"/>
+            </form:select>
+            <span class="help-inline"><font color="red">*</font> </span>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label">分组：</label>
+        <div class="controls">
+            <sys:dynamicselect url="{group}/group/sysGroup/api/getAll?groupType=1"
+                               cssClass="input-xlarge required" id="teamId" name="teamId"
+                               valueProperty="id" textProperty="groupName"/>
+            <span class="help-inline"><font color="red">*</font> </span>
+        </div>
+    </div>
+
     <div class="control-group">
         <label class="control-label">工单：</label>
         <div class="controls">
             <sys:dynamicselect url="{engineering}/engineering/engineeringWorkOrder/api/getAll"
-                               cssClass="input-xlarge required "
+                               cssClass="input-xlarge "
                                id="engineeringId" name="engineeringId" valueProperty="id"
                                textProperty="orderNumber"/>
-            <span class="help-inline"><font color="red">*</font> </span>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">分组：</label>
-        <div class="controls">
-            <input id="teamName" type="text" class="input-xlarge " readonly="readonly"
-                   value="${engineeringSignIn.engineeringWorkOrder.sysGroup.groupName}"/>
-            <form:hidden path="teamId"/>
+
         </div>
     </div>
 
@@ -100,6 +120,7 @@
             <span class="help-inline"><font color="red">*</font> </span>
         </div>
     </div>
+
     <div class="control-group">
         <label class="control-label">签到位置纬度：</label>
         <div class="controls">
@@ -112,18 +133,7 @@
             <form:input path="signLng" htmlEscape="false" class="input-xlarge "/>
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label">签到类型：</label>
-        <div class="controls">
-            <form:select path="signType" class="input-xlarge required">
-                <form:option value="" label="请选择"/>
-                <form:options items="${fns:getDictList('engineering_sign_in_type')}"
-                              itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
-            <span class="help-inline"><font color="red">*</font> </span>
-        </div>
-    </div>
+
 
     <div class="control-group">
         <label class="control-label">签到描述：</label>

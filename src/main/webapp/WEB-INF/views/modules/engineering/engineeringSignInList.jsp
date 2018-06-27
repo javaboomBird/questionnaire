@@ -30,6 +30,12 @@
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
     <ul class="ul-form">
+        <li><label>分组：</label>
+            <sys:dynamicselect url="{group}/group/sysGroup/api/getAll?groupType=1"
+                               cssClass="input-xlarge required" id="teamId" name="teamId"
+                               valueProperty="id" textProperty="groupName"/>
+        </li>
+
         <li><label>工单：</label>
 
             <sys:dynamicselect url="{engineering}/engineering/engineeringWorkOrder/api/getAll"
@@ -37,11 +43,7 @@
                                id="engineeringId" name="engineeringId" valueProperty="id"
                                textProperty="orderNumber"/>
         </li>
-        <li><label>分组：</label>
-            <sys:dynamicselect url="{group}/group/sysGroup/api/getAll"
-                               cssClass="input-xlarge required" id="teamId" name="teamId"
-                               valueProperty="id" textProperty="groupName"/>
-        </li>
+
         <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
         </li>
         <li class="clearfix"></li>
@@ -51,11 +53,11 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>工单</th>
+        <th>签到类型</th>
         <th>分组</th>
+        <th>工单</th>
         <th>客户</th>
         <th>签到时间</th>
-        <th>签到类型</th>
         <th>备注</th>
         <shiro:hasPermission name="engineering:engineeringSignIn:edit">
             <th>操作</th>
@@ -65,12 +67,17 @@
     <tbody>
     <c:forEach items="${page.list}" var="engineeringSignIn">
         <tr>
-            <td><a href="${ctx}/engineering/engineeringSignIn/form?id=${engineeringSignIn.id}">
-                    ${engineeringSignIn.engineeringWorkOrder.orderNumber}
-            </a></td>
             <td>
-                    ${engineeringSignIn.engineeringWorkOrder.sysGroup.groupName}
+                <a href="${ctx}/engineering/engineeringSignIn/form?id=${engineeringSignIn.id}"></a>
+                    ${fns:getDictLabel(engineeringSignIn.signType,'engineering_sign_in_type' ,'')}
             </td>
+            <td>
+                    ${engineeringSignIn.sysGroup.groupName}
+            </td>
+            <td>
+                    ${engineeringSignIn.engineeringWorkOrder.orderNumber}
+            </td>
+
             <td>
                     ${engineeringSignIn.engineeringWorkOrder.customer.name}
             </td>
@@ -78,9 +85,7 @@
                 <fmt:formatDate value="${engineeringSignIn.signTime}"
                                 pattern="yyyy-MM-dd HH:mm:ss"/>
             </td>
-            <td>
-                    ${fns:getDictLabel(engineeringSignIn.signType,'engineering_sign_in_type' ,'')}
-            </td>
+
 
             <td>
                     ${engineeringSignIn.remarks}

@@ -4,6 +4,7 @@
 package com.create80.rd.modules.engineering.entity;
 
 import com.create80.rd.modules.customer.customer.entity.CustomerEntity;
+import com.create80.rd.modules.group.api.model.SysGroup;
 import com.create80.rd.modules.group.entity.SysGroupEntity;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class EngineeringSignInEntity extends DataEntity<EngineeringSignInEntity>
   private String description;    // 签到描述
 
   private EngineeringWorkOrderEntity engineeringWorkOrder;
+  private SysGroupEntity sysGroup;
 
 
   public EngineeringSignInEntity() {
@@ -117,5 +119,13 @@ public class EngineeringSignInEntity extends DataEntity<EngineeringSignInEntity>
   public void setEngineeringWorkOrder(
       EngineeringWorkOrderEntity engineeringWorkOrder) {
     this.engineeringWorkOrder = engineeringWorkOrder;
+  }
+
+  public SysGroupEntity getSysGroup() {
+    return sysGroup;
+  }
+
+  public void setSysGroup(SysGroupEntity sysGroup) {
+    this.sysGroup = sysGroup;
   }
 }

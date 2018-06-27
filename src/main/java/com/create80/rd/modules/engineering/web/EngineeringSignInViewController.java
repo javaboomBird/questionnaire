@@ -3,6 +3,7 @@
  */
 package com.create80.rd.modules.engineering.web;
 
+import com.create80.rd.modules.group.web.SysGroupViewController;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -53,6 +54,9 @@ public class EngineeringSignInViewController extends BaseController {
   @Autowired
   private EngineeringWorkOrderViewController engineeringWorkOrderViewController;
 
+  @Autowired
+  private SysGroupViewController sysGroupViewController;
+
   @ModelAttribute
   public EngineeringSignInEntity get(@RequestParam(required = false) String id) {
 
@@ -77,6 +81,7 @@ public class EngineeringSignInViewController extends BaseController {
     if (entity != null) {
       entity.setEngineeringWorkOrder(
           engineeringWorkOrderViewController.get(entity.getEngineeringId()));
+      entity.setSysGroup(sysGroupViewController.get(entity.getTeamId()));
     }
   }
 
