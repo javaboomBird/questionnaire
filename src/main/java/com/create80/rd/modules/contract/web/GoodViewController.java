@@ -110,6 +110,12 @@ public class GoodViewController extends BaseController {
     return "modules/contract/goodForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(GoodEntity good, Model model) {
+    model.addAttribute("good", good);
+    return "modules/contract/goodFormView";
+  }
+
   @RequiresPermissions("contract:good:edit")
   @RequestMapping(value = "save")
   public String save(GoodEntity good, Model model, RedirectAttributes redirectAttributes) {

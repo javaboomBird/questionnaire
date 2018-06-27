@@ -28,7 +28,19 @@
       $("#replaceNo").val("RP-${fns:getDate('yyyyMMddHHmmss')}");
     });
 
+    </script>
+    <script type="text/javascript">
 
+        function submitForm(){
+            document.inputForm.submit();
+        }
+        function sumbit_sure(){
+            var replace,replaced;
+            replace=$("#s2id_replaceAssetsId").children("a").children("span").eq(0).text();
+            replaced=$("#s2id_originalAssetsId").children("a").children("span").eq(0).text();
+            resetTip();
+            confirmx("确定要将"+replace+"替换"+replaced+"?",submitForm);
+        }
     </script>
 </head>
 <body>
@@ -40,7 +52,7 @@
             name="assets:assetsReplace:edit">查看</shiro:lacksPermission></a></li>
 </ul>
 <br/>
-<form:form id="inputForm" modelAttribute="assetsReplace" action="${ctx}/assets/assetsReplace/save"
+<form:form id="inputForm" name="inputForm" modelAttribute="assetsReplace" action="${ctx}/assets/assetsReplace/save"
            method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
@@ -107,10 +119,8 @@
         </div>
     </div>
     <div class="form-actions">
-        <shiro:hasPermission name="assets:assetsReplace:edit"><input id="btnSubmit"
-                                                                     class="btn btn-primary"
-                                                                     type="submit"
-                                                                     value="保 存"/>&nbsp;</shiro:hasPermission>
+        <shiro:hasPermission name="assets:assetsReplace:edit">
+            <input id="btnSubmit" class="btn btn-primary" type="button" value="保 存" onclick="sumbit_sure()"/>&nbsp;</shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
     </div>
 </form:form>
