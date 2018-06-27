@@ -127,6 +127,12 @@ public class CustomerEnterpriseViewController extends BaseController {
     return "modules/customer/enterprise/enterpriseForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(CustomerEntity customer, Model model) {
+    model.addAttribute("customer", customer);
+    return "modules/customer/enterprise/enterpriseFormView";
+  }
+
   @RequiresPermissions("customer:enterprise:edit")
   @RequestMapping(value = "save")
   public String save(CustomerEntity customer, Model model, RedirectAttributes redirectAttributes) {
