@@ -194,10 +194,10 @@
                         <c:forEach items="${enterpriseEntityList}" var="enterprise">
                             <c:if test="${assetsManager.assetsUseUnit==enterprise.id}">
                                 <option value="${enterprise.id}"
-                                        selected="selected">${enterprise.enterpriseName}</option>
+                                        selected="selected">${enterprise.name}</option>
                             </c:if>
                             <c:if test="${assetsManager.assetsUseUnit!=enterprise.id}">
-                                <option value="${enterprise.id}">${enterprise.enterpriseName}</option>
+                                <option value="${enterprise.id}">${enterprise.name}</option>
                             </c:if>
                         </c:forEach>
                     </select>
@@ -232,10 +232,10 @@
                         <c:forEach items="${enterpriseEntityList}" var="enterprise">
                             <c:if test="${assetsManager.assetsUseUnit==enterprise.id}">
                                 <option value="${enterprise.id}"
-                                        selected="selected">${enterprise.enterpriseName}</option>
+                                        selected="selected">${enterprise.name}</option>
                             </c:if>
                             <c:if test="${assetsManager.assetsUseUnit!=enterprise.id}">
-                                <option value="${enterprise.id}">${enterprise.enterpriseName}</option>
+                                <option value="${enterprise.id}">${enterprise.name}</option>
                             </c:if>
                         </c:forEach>
                     </select>
