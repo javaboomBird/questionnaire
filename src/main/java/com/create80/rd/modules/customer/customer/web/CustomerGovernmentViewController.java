@@ -58,6 +58,12 @@ public class CustomerGovernmentViewController extends BaseController {
     return "modules/customer/government/governmentForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(CustomerEntity customer, Model model) {
+    model.addAttribute("customer", customer);
+    return "modules/customer/government/governmentFormView";
+  }
+
   @RequiresPermissions("customer:government:edit")
   @RequestMapping(value = "save")
   public String save(CustomerEntity customer, Model model, RedirectAttributes redirectAttributes) {
