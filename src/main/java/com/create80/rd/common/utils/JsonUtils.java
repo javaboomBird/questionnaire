@@ -8,6 +8,7 @@ import com.create80.rd.common.utils.page.PageInfo;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 public class JsonUtils {
 
@@ -23,6 +24,7 @@ public class JsonUtils {
         true);
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     mapper.setDateFormat(DATE_FORMAT);
+    mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
   }
 
   /**
@@ -138,7 +140,6 @@ public class JsonUtils {
   }
 
   public static void main(String[] args) {
-
 
   }
 
