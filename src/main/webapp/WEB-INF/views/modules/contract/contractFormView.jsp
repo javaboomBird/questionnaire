@@ -132,11 +132,35 @@
     </style>
 </head>
 <body>
-<p style="display:inline-block;" class="p-title">合同信息列表</p>
+<p style="display:inline-block;" class="p-title">合同信息查看</p>
 <input id="btnCancel" class="btn" style="margin-bottom:10px;float: right;" type="button" value="返 回" onclick="history.go(-1)"/>
 <div class="container-fluit container-fluit-m">
 <form:form id="inputForm" modelAttribute="contract" action="${ctx}/contract/contract/save" method="post" class="form-horizontal">
     <form:hidden path="id"/> <sys:message content="${message}"/>
+
+
+    <div class="row-fluid row-border row-m-t">
+        <div class="span6">
+            <label class="control-label">主合同编号：</label>
+            <div class="controls">
+                <form:input
+                        path="majorContractId"
+                        htmlEscape="false"
+                        maxlength="64"
+                        class="input-xlarge "/>
+            </div>
+        </div>
+        <div class="span6">
+            <label class="control-label">合同项目名称：</label>
+            <div class="controls">
+                <form:input
+                        path="projectName"
+                        htmlEscape="false"
+                        maxlength="128"
+                        class="input-xlarge "/>
+            </div>
+        </div>
+    </div>
 
     <div class="row-fluid row-border row-m-t">
         <div class="span6">
@@ -161,28 +185,6 @@
                         itemValue="value"
                         htmlEscape="false"
                         class=""/>
-            </div>
-        </div>
-    </div>
-    <div class="row-fluid row-border row-m-t">
-        <div class="span6">
-            <label class="control-label">主合同编号：</label>
-            <div class="controls">
-                <form:input
-                        path="majorContractId"
-                        htmlEscape="false"
-                        maxlength="64"
-                        class="input-xlarge "/>
-            </div>
-        </div>
-        <div class="span6">
-            <label class="control-label">合同项目名称：</label>
-            <div class="controls">
-                <form:input
-                        path="projectName"
-                        htmlEscape="false"
-                        maxlength="128"
-                        class="input-xlarge "/>
             </div>
         </div>
     </div>
