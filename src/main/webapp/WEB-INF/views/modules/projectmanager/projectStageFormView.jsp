@@ -266,9 +266,7 @@
                 <shiro:hasPermission name="projectmanager:projectStage:edit">
                     <tfoot>
                     <tr>
-                        <td colspan="8"><a href="javascript:"
-                                           onclick="addRow('#projectDocumentList', projectDocumentRowIdx, projectDocumentTpl);projectDocumentRowIdx = projectDocumentRowIdx + 1;"
-                                           class="btn">新增</a></td>
+                        <td colspan="8"></td>
                     </tr>
                     </tfoot>
                 </shiro:hasPermission>
