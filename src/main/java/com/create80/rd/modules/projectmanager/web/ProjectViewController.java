@@ -160,6 +160,12 @@ public class ProjectViewController extends BaseController {
     return "modules/projectmanager/projectForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(ProjectEntity project, Model model) {
+    model.addAttribute("project", project);
+    return "modules/projectmanager/projectFormView";
+  }
+
   @RequiresPermissions("projectmanager:project:edit")
   @RequestMapping(value = "save")
   public String save(ProjectEntity project, Model model, RedirectAttributes redirectAttributes) {
