@@ -186,6 +186,33 @@ public class AssetsManagerViewController extends BaseController {
     return "modules/assets/assetsManagerForm";
   }
 
+
+  @RequestMapping(value = "formView")
+  public String formView(AssetsManagerEntity assetsManager, Model model) {
+
+    //获取内部所有的部门信息列表
+
+    List<Office> allOfficeList = officeService.findList(true).stream()
+            .filter(e -> "2".equals(e.getType())).collect(Collectors.toList());
+
+    //获取客户信息列表
+    List<CustomerEntity> enterpriseEntityList = null;
+    try {
+      String apiBaseUrl = moduleLinkConfiguration.getLink("customer");
+      ResponseEntity<String> responseEntity = restTemplate
+              .getForEntity(apiBaseUrl + "/customer/api/getEnterpriseList", String.class);
+      enterpriseEntityList = JsonUtils
+              .toListObject(responseEntity.getBody(), CustomerEntity.class);
+    } catch (RestClientException e) {
+      e.printStackTrace();
+    }
+
+    model.addAttribute("enterpriseEntityList", enterpriseEntityList);
+    model.addAttribute("allOfficeList", allOfficeList);
+    model.addAttribute("assetsManager", assetsManager);
+    return "modules/assets/assetsManagerFormView";
+  }
+
   @RequiresPermissions("assets:assetsManager:edit")
   @RequestMapping(value = "save")
   public String save(AssetsManagerEntity assetsManager, Model model,
