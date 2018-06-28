@@ -113,7 +113,14 @@ public class ContractViewController extends BaseController {
 		return "modules/contract/contractForm";
 	}
 
-	@RequiresPermissions("contract:contract:edit")
+    @RequestMapping(value = "formView")
+    public String formView(ContractEntity contract, Model model) {
+        model.addAttribute("contract", contract);
+        return "modules/contract/contractFormView";
+    }
+
+
+    @RequiresPermissions("contract:contract:edit")
 	@RequestMapping(value = "save")
 	public String save(ContractEntity contract, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, contract)){
