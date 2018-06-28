@@ -56,7 +56,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="assetsRepair">
         <tr>
-            <td><a href="${ctx}/assets/assetsRepair/form?id=${assetsRepair.id}">
+            <td><a href="${ctx}/assets/assetsRepair/formView?id=${assetsRepair.id}">
                     ${assetsRepair.repairNo}
             </a></td>
             <td>

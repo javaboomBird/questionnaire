@@ -110,7 +110,7 @@
     </style>
 </head>
 <body>
-<p style="display:inline-block;" class="p-title">商品信息管理列表</p>
+<p style="display:inline-block;" class="p-title">商品信息查看</p>
 <input id="btnCancel" class="btn" style="margin-bottom:10px;float: right;" type="button" value="返 回" onclick="history.go(-1)"/>
 <div class="container-fluit container-fluit-m">
 <form:form id="inputForm" modelAttribute="good" action="${ctx}/contract/good/save" method="post"

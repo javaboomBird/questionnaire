@@ -86,7 +86,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="assetsManager">
         <tr>
-            <td><a href="${ctx}/assets/assetsManager/form?id=${assetsManager.id}">
+            <td><a href="${ctx}/assets/assetsManager/formView?id=${assetsManager.id}">
                     ${assetsManager.assetsNo}
             </a></td>
             <td>

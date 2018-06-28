@@ -112,6 +112,12 @@ public class AssetsRepairViewController extends BaseController {
     return "modules/assets/assetsRepairForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(AssetsRepairEntity assetsRepair, Model model) {
+    model.addAttribute("assetsRepair", assetsRepair);
+    return "modules/assets/assetsRepairFormView";
+  }
+
   @RequiresPermissions("assets:assetsRepair:edit")
   @RequestMapping(value = "save")
   public String save(AssetsRepairEntity assetsRepair, Model model,
