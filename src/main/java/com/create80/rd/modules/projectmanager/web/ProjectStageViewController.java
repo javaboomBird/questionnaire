@@ -144,6 +144,12 @@ public class ProjectStageViewController extends BaseController {
     return "modules/projectmanager/projectStageForm";
   }
 
+  @RequestMapping(value = "formView")
+  public String formView(ProjectStageEntity projectStage, Model model) {
+    model.addAttribute("projectStage", projectStage);
+    return "modules/projectmanager/projectStageFormView";
+  }
+
   @RequiresPermissions("projectmanager:projectStage:edit")
   @RequestMapping(value = "save")
   public String save(ProjectStageEntity projectStage, Model model,
