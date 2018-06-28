@@ -150,6 +150,11 @@ public class ProjectTaskViewController extends BaseController {
     model.addAttribute("projectTask", projectTask);
     return "modules/projectmanager/projectTaskForm";
   }
+  @RequestMapping(value = "formView")
+  public String formView(ProjectTaskEntity projectTask, Model model) {
+    model.addAttribute("projectTask", projectTask);
+    return "modules/projectmanager/projectTaskFormView";
+  }
 
   @RequiresPermissions("projectmanager:projectTask:edit")
   @RequestMapping(value = "save")

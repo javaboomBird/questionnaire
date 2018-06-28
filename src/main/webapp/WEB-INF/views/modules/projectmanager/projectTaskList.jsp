@@ -61,7 +61,7 @@
     <c:forEach items="${page.list}" var="projectTask">
         <tr>
             <td>
-                <a href="${ctx}/projectmanager/projectTask/form?id=${projectTask.id}">
+                <a href="${ctx}/projectmanager/projectTask/formView?id=${projectTask.id}">
                         ${projectTask.project.projectName}
                 </a>
             </td>
