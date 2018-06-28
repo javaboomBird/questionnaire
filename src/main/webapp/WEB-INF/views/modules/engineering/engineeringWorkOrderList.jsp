@@ -62,7 +62,7 @@
     <c:forEach items="${page.list}" var="engineeringWorkOrder">
         <tr>
             <td>
-                <a href="${ctx}/engineering/engineeringWorkOrder/form?id=${engineeringWorkOrder.id}">
+                <a href="${ctx}/engineering/engineeringWorkOrder/formView?id=${engineeringWorkOrder.id}">
                         ${engineeringWorkOrder.orderNumber}
                 </a>
             </td>

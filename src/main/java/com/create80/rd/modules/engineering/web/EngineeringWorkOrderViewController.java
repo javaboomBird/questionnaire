@@ -171,6 +171,11 @@ public class EngineeringWorkOrderViewController extends BaseController {
     model.addAttribute("engineeringWorkOrder", engineeringWorkOrder);
     return "modules/engineering/engineeringWorkOrderForm";
   }
+  @RequestMapping(value = "formView")
+  public String formView(EngineeringWorkOrderEntity engineeringWorkOrder, Model model) {
+    model.addAttribute("engineeringWorkOrder", engineeringWorkOrder);
+    return "modules/engineering/engineeringWorkOrderFormView";
+  }
 
   @RequiresPermissions("engineering:engineeringWorkOrder:edit")
   @RequestMapping(value = "save")
