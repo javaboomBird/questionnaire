@@ -39,7 +39,7 @@ public class EmptyStringToNullArgumentResolver extends
         binder.getTarget(), binder.getObjectName());
 
     SimpleDateFormat timeDateFormat = new SimpleDateFormat(DateUtils.DEFAULT_DATE_TIME_PATTERN);
-    timeDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+    timeDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
     toNullRequestDataBinderBinder
         .registerCustomEditor(Date.class, new CustomDateEditor(timeDateFormat, true));
 
