@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/questionnaire?currentSchema=public&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      max-active: 5
+      max-wait: 60000
+
+server:
+  port: 8084
+  address: 0.0.0.0
+
+mybatis:
+  type-aliases-package: com.create80.questionnaire.entity
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.create80.questionnaire.repository: DEBUG

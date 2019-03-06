@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.create80.questionnaire.repository.QuestionRepository">
+
+  <resultMap id="AnswerResultMap" type="com.create80.questionnaire.entity.Answer">
+    <id column="id" jdbcType="VARCHAR" property="id"/>
+    <result column="question_id" jdbcType="CHAR" property="questionId"/>
+    <result column="questionnaire_id" jdbcType="CHAR" property="questionnaireId"/>
+    <result column="answer_content" jdbcType="VARCHAR" property="answerContent"/>
+    <result column="answer_no" jdbcType="VARCHAR" property="answerNo"/>
+  </resultMap>
+
+  <resultMap id="BaseResultMap" type="com.create80.questionnaire.entity.Question">
+    <id column="id" jdbcType="VARCHAR" property="id"/>
+    <result column="is_must" jdbcType="CHAR" property="isMust"/>
+    <result column="type" jdbcType="CHAR" property="type"/>
+    <result column="question_content" jdbcType="VARCHAR" property="questionContent"/>
+    <result column="questionnaire_id" jdbcType="VARCHAR" property="questionnaireId"/>
+    <collection property="answersList" resultMap="AnswerResultMap" />
+  </resultMap>
+
+  <select id="getAll" resultMap="BaseResultMap">
+      select * from question q,answer a where q.id=a.question_id;
+  </select>
+</mapper>

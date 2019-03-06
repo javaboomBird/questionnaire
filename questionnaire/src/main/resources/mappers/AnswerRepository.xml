@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.create80.questionnaire.repository.AnswerRepository">
+  <resultMap id="BaseResultMap" type="com.create80.questionnaire.entity.Answer">
+    <id column="id" jdbcType="VARCHAR" property="id"/>
+    <result column="question_id" jdbcType="VARCHAR" property="questionId"/>
+    <result column="questionnaire_id" jdbcType="VARCHAR" property="questionnaireId"/>
+    <result column="answer_content" jdbcType="VARCHAR" property="answerContent"/>
+    <result column="answer_no" jdbcType="INTEGER" property="answerNo"/>
+  </resultMap>
+</mapper>
